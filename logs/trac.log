@@ -394,3 +394,4 @@
 {"type":"info","data":{"text":"file upload","files":[{"url":"/views/websites/GameStack/images/58473a818f4a0a0f786d2664/Honda-Civic-10-ar-trasera-1024x669.jpg","name":"Honda-Civic-10-ar-trasera-1024x669.jpg","size":"134.1 KB","type":"jpg"}]},"time":"2016-12-06 19:45:45"},
 {"type":"info","data":{"text":"file upload","files":[{"url":"/views/websites/GameStack/images/58473a818f4a0a0f786d2664/1481065714616-654545876.jpg","name":"1481065714616-654545876.jpg","size":"1.7 MB","type":"jpg"}]},"time":"2016-12-06 20:09:15"},
 {"type":"info","data":{"text":"file upload","files":[{"url":"/views/websites/GameStack/images/58473a818f4a0a0f786d2664/1481065807896-746009809.jpg","name":"1481065807896-746009809.jpg","size":"2.1 MB","type":"jpg"}]},"time":"2016-12-06 20:10:50"},
+{"type":"error","error":{"name":"MongoError","message":"failed to connect to server [192.168.1.24:27017] on first connect"},"time":"2016-12-07 14:57:27"},

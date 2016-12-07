@@ -1,5 +1,6 @@
 {
   "id":"publish",
   "title":"Titulo",
-  "subtitle":"Subtitulo"
+  "subtitle":"Subtitulo",
+  "categories":"Seleccion&aacute; la categoria"
 }

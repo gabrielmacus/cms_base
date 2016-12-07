@@ -1,8 +1,8 @@
 {
     "currentWebsite":"GameStack",
 
-    "domain":"https://192.168.1.24",
-    "index":"https://192.168.1.24",
+    "domain":"https://192.168.69.68",
+    "index":"https://192.168.69.68",
 
     "name":"GameStack",
     "secret":"roamormio"
