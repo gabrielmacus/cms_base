@@ -1,0 +1,11 @@
+/*{
+  "items":[{"l":4,"m":6,"s":12,"nombre":"cliente.nombre","label":"Nombre"},
+    {"l":4,"m":6,"s":12,"nombre":"cliente.apellido","label":"Apellido"},
+    {"l":4,"m":6,"s":12,"nombre":"cliente.edad","label":"Edad"},
+    {"l":4,"m":6,"s":12,"nombre":"cliente.estadocivil","label":"Estado Civil","options":[{"value":0,"label":"Casado"},{"value":1,"label":"Soltero"}]}
+  ,{"l":4,"m":6,"s":12,"nombre":"cliente.mayorDeEdad","label":"Mayor de 18 años","box":true}
+  ],
+  "button":{"label":"Aceptar","color":"#212121"},
+  "action":"sendForm()",
+  "id":"data"
+}*/

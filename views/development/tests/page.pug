@@ -1,0 +1,76 @@
+doctype
+html
+    head
+        script(src="/js/adapter.js")
+        script(src="/js/socket.io.js")
+        script(src="https://code.jquery.com/jquery-1.12.4.min.js")
+        script(src="/js/fileReader.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js")
+        link(rel="stylesheet",href="/css/w3.css")
+        script(src="/js/p2p.js")
+        script(src="/js/audio.js")
+        script.
+            var app = angular.module('app', []);
+
+            app.factory('socket', function ($rootScope) {
+                var socket = io.connect('wss://localhost');
+                return {
+                    on: function (eventName, callback) {
+                        socket.on(eventName, function () {
+                            var args = arguments;
+                            $rootScope.$apply(function () {
+                                callback.apply(socket, args);
+                            });
+                        });
+                    },
+                    emit: function (eventName, data, callback) {
+                        socket.emit(eventName, data, function () {
+                            var args = arguments;
+                            $rootScope.$apply(function () {
+                                if (callback) {
+                                    callback.apply(socket, args);
+                                }
+                            });
+                        })
+                    }
+                };
+            });
+
+            app.controller('ctrl', controller);
+
+            function controller($scope, socket) {
+
+                var p2p = new P2P(socket, $scope);
+
+
+                try {
+
+                }catch (e)
+                {
+                    alert("error");
+                    console.log(e);
+                }
+                $scope.loadNavbars=function () {
+
+
+
+
+                }
+
+
+
+
+
+
+            };
+
+
+
+
+    body(data-ng-controller="ctrl",data-ng-app="app")
+        .w3-row-padding
+            .w3-col.s12.m6
+                h2 Barra de navegación
+                select.w3-select.w3-border-black.w3-hover-border-indigo
+
+

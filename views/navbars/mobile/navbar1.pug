@@ -1,0 +1,209 @@
+mixin mobileNavbar(navbar)
+ - navWidth="65%";
+
+ style.
+    #mobile-nav {
+        width: #{navWidth};
+        left: #{'-'+navWidth};
+        position: relative;
+        z-index: 1000;
+    }
+
+    .submenu {
+
+     display: none;
+
+    }
+
+
+
+    .navbar-item {
+
+
+        -webkit-transition: background-color 300ms; /* Safari */
+        transition: background-color 300ms;
+        -moz-transition: background-color 300ms; /* Firefox */
+        text-align: left;
+    }
+
+    .navbar-item:hover {
+
+        background-color: #{navbar.hover};
+
+
+    }
+    .navbar-item.active
+    {
+        background-color: #{navbar.hover};
+    }
+
+    .user .avatar
+    {
+        display: inline-block;
+        position:relative;top:13px;width:60px;height:60px;background-position:center;
+    }
+    .user .username
+    {
+        display: block;
+        margin-top: 30px;
+    }
+    .color {
+        background-color: #{navbar.fondo};
+        color: #{navbar.letras};
+    }
+
+    .arrow
+    {
+        transform: rotate(-90deg);
+
+        position:relative;
+        top:3px;
+
+        transition: 500ms transform;
+
+        -webkit-transition: 500ms transform;
+        -moz-transition: 500ms transform;
+
+
+
+
+    }
+
+    .arrow.active {
+        transform: rotate(90deg);
+        position: relative;
+        top: 3px;
+    }
+    .icon
+    {
+        padding-top: 13px;
+        padding-bottom: 13px;
+    }
+    .w3-sidenav a {
+
+        padding-top: 13px;
+        padding-bottom: 13px;
+        font-size: 18px;
+
+
+    }
+    .submenu a{
+
+        font-weight: bold;
+        padding-left: 40px;
+    }
+    .submenu a:last-child
+    {
+      /*/border-bottom: solid #{navbar.hover} thin;
+    */
+    }
+   
+     #user-actions-mobile
+     {
+      background-color: #{navbar.userItemsBackground};
+         color: #{navbar.userItemsColor};
+     }
+ script.
+
+    $(document).ready(function(){
+
+
+
+        $(document).on("swiperight",openNavBar);
+        $(document).on("swipeleft", closeNavBar);
+        $(document).on("tap",".submenu-wrapper", openSubmenu);
+
+        $(document).on("tap",".user",openActions)
+
+
+    });
+
+
+    function openActions()
+    {
+        var actions=$("#user-actions-mobile");
+        actions.stop();
+        actions.animate({height:"toggle"},300);
+     
+    }
+    function openSubmenu(event)
+    {
+
+
+
+      var  target = $(event.target).closest("a").next(".submenu");
+
+
+        $(event.target).closest("a").toggleClass("active");
+        $(event.target).closest("a").find("svg").toggleClass("active");
+
+        target.stop();
+        target.animate({height:'toggle'},300);
+    }
+    function openNavBar() {
+
+        var nav=$("#mobile-nav");
+        nav.stop();
+        nav.animate({left:'0px'},300);
+
+    }
+
+    function closeNavBar() {
+
+        var nav= $("#mobile-nav");
+        nav.stop();
+        nav.animate({left: '#{"-"+navWidth}'}, 300);
+
+
+    }
+
+
+
+ .w3-hide-large.w3-row
+
+    .color.w3-col.s12.w3-center.w3-padding(style="position:relative")
+        #menuIcon(style="position:absolute;left:10px")
+        if(navbar.logo)
+            img(src=navbar.logo.src, style="width:"+navbar.logo.tamano.ancho+"; height:"+navbar.logo.tamano.alto)
+        else
+         h1 !{navbar.nombre}
+
+    .w3-sidenav#mobile-nav.color
+
+
+        a.user(data-ng-if="user")
+            div.avatar.w3-circle(style="background-image:url({{user.avatar || 'http://www.biometrisches-passbild.net/wp-content/uploads/2015/01/favicon-big.png'}});background-size:100%")
+            span.username.w3-hide-small.w3-padding-0(title="{{user.username}}")
+                strong {{user.username}}
+            a.user.w3-hide-medium.w3-margin-bottom(title="{{user.username}}")
+             span(style="width:100%;text-overflow:ellipsis;overflow:hidden").w3-padding-0.w3-left
+              strong {{user.username}}
+            ul#user-actions-mobile.w3-ul(style="display:none")
+               each item in navbar.userItems
+                li.w3-border-0
+                  a(href=item.href)
+                    b #{item.nombre}
+        each item in navbar.items.reverse()
+         if !item.items
+             a(href=item.href,style="position:relative",data-config=item.data).navbar-item !{item.nombre}
+               if item.img
+                  img.icon.w3-right(src= item.img,style="width:40px;height:60px;right:10px;position:absolute;top:-6px")
+
+         else
+             a(href=item.href,style="position:relative;",data-config=item.data).submenu-wrapper.navbar-item !{item.nombre}
+               svg.arrow.w3-right(width="15px", height="15px", viewBox="0 0 50 80", xml:space="preserve")
+                 polyline(fill="none", stroke=navbar.letras, stroke-width="10", stroke-linecap="round", stroke-linejoin="round", points="45.63,75.8 0.375,38.087 45.63,0.375 ")
+               if item.img
+                 img.icon.w3-right(src= item.img,style="width:40px;height:60px;right:10px;position:absolute;top:-6px")
+             div.submenu.second-color
+               each subitem in item.items
+                  a(data-config=item.data,href=item.href,style="position:relative;border-left-color:"+navbar.hover+";position:relative;border-left-width: medium;border-left-style: solid").navbar-item !{subitem.nombre}
+                      if subitem.icono
+                          img.icon.w3-right(src= subitem.icono,style="width:40px;height:60px;right:10px;position:absolute;top:-6px")
+
+
+
+
+
+
+

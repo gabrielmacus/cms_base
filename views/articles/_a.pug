@@ -1,0 +1,226 @@
+mixin addArticleA(article)
+ style.
+
+    .video iframe
+
+    {
+        -webkit-transition: width 500ms;
+        -moz-transition: width 500ms;
+        -ms-transition: width 500ms;
+        -o-transition: width 500ms;
+        transition: width 500ms;
+        max-width: 100%;
+    }
+    .video .line
+
+    {
+        height: 1px;
+        width: 70%;
+        left: 15%;
+        right: 15%;
+        position: relative;
+        background-color: #aaaaaa;
+    }
+    .video
+    {
+        padding-top:15px;
+        padding-bottom: 15px;
+    }
+    .video .container
+    {
+        background-color: #2e2e2e;
+        text-align: center;
+
+    }
+    .video:hover iframe
+    {
+        width: 100%;
+
+    }
+
+    @media screen and (min-width: 481px) and (max-width:1500px)
+    {
+        .article-container {
+            padding-top: 70px;
+            padding-left: 10%;
+            padding-right: 10%;
+            float: left;
+            width: 100%;
+
+        }
+
+
+    }
+
+
+
+
+
+
+    h1
+
+    {
+        font-weight: bolder;
+    }
+    @media screen and (max-width: 480px)
+    {
+        .article-container {
+            padding-top: 70px;
+            padding-left: 5%;
+            padding-right: 5%;
+            float: left;
+            width: 100%;
+
+        }
+
+
+        .section,.date
+        {
+            font-size: 18px;
+            float: left!important;
+            clear: right;
+
+        }
+        h2
+        {
+            font-size: 20px;
+        }
+        h1
+        {
+            font-size: 25px;
+        }
+        .w3-large
+        {
+            font-size: 15px!important;
+        }
+
+        .article-container figure figcaption {
+
+            font-size: 10px;
+        }
+
+    }
+    .article-container {
+        padding-top: 70px;
+        /*padding-left: 20%;
+        padding-right: 20%;
+        */
+        float: left;
+        width: 100%;
+        position: relative;z-index: 0;
+        padding-bottom: 70px;
+
+    }
+
+    .article-container p
+    {
+        font-size: 1.1em;
+        line-height: 35px;
+    }
+    .article-container figure
+    {
+        position: relative;
+        margin-top: 25px;
+        margin-bottom: 25px;
+    }
+
+    .article-container figure figcaption {
+
+        display: none;
+        position: absolute;
+        bottom:-6px;
+        margin: 0;
+        padding: 10px;
+        width: 100%;
+        color: white;
+        background-color:rgba(0, 0, 0, 0.7);
+    }
+    .caption
+    {
+        padding: 10px;
+        font-weight: 200;
+
+    }
+
+    .start-letter
+    { float: left; color: #3a3a3a; font-size: 75px; line-height: 60px; padding-top: 4px; padding-right: 8px; padding-left: 3px; font-family: Georgia; }
+
+ script.
+    $(document).on("mouseover",".article-container figure",function(e){
+        var target =$(e.target).closest("figure").find("figcaption");
+        target.stop();
+        target.animate({"opacity":"toggle"},300);
+
+    });
+
+    $(document).on("mouseout", ".article-container figure", function (e) {
+        var target = $(e.target).closest("figure").find("figcaption");
+        target.stop();
+        target.animate({"opacity": "toggle"}, 300);
+
+    });
+ .article-container
+    article
+        header
+            if article.categoria
+             a
+                h3.section.w3-left.w3-tag.w3-blue #{article.categoria}
+            h3.date.w3-right.w3-tag.w3-black 10 de marzo de 2016
+            .w3-clear.w3-margin-bottom
+
+            h1.w3-margin-bottom #{article.titulo}
+            h2.w3-margin-bottom #{article.subtitulo}
+
+            if article.imagenPrincipal
+              figure
+                img.responsive-img(src="http://static.vix.com/es/sites/default/files/styles/full/public/btg/curiosidades.batanga.com/files/Las%20lunas%20de%20Saturno%20n.jpg")
+                figcaption.w3-large
+                    b Lunas de saturno visibles al ojo humano
+        each items in article.items
+         section
+            p
+                span.start-letter L
+                span orem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+
+            p Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+
+            p El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.
+
+
+         section
+            header
+                h2 Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+
+            p Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+
+            figure
+                img.responsive-img(src="http://elonce-media.elonce.com/fotos-nuevo/2016/12/04/o_1480889932.jpg")
+                figcaption.w3-large
+                    b Lunas de saturno visibles al ojo humano
+
+            p Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.
+
+            p El trozo de texto estándar de Lorem Ipsum usado desde el año 1500 es reproducido debajo para aquellos interesados. Las secciones 1.10.32 y 1.10.33 de "de Finibus Bonorum et Malorum" por Cicero son también reproducidas en su forma original exacta, acompañadas por versiones en Inglés de la traducción realizada en 1914 por H. Rackham.
+
+            div.audio
+                audio(style="width:100%;color:red",src="a.mp3",controls)
+                .caption
+                    img(style="width:18px;position:relative;top:0px",src="http://www.freeiconspng.com/uploads/volume-icon-32.png")
+                    |&nbsp;
+                    b Transmision en vivo desde el apollo 140
+            div.video.w3-center
+                .line(style="margin-bottom:30px")
+
+                .container
+                    iframe(width="560" ,height="315", src="https://www.youtube.com/embed/4UE0U3V3rmM", frameborder="0", allowfullscreen)
+                .caption
+                    b Video del suceso
+                .line
+
+
+
+
+
+
+
+

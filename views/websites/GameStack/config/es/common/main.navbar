@@ -1,0 +1,40 @@
+{
+
+  "id":"mainNavbar",
+  "hover":"rgb(0, 177, 106)",
+  "active":"rgb(46, 204, 113)",
+  "activeLetras":"black",
+  "hoverLetras":"white",
+  "fija":false,
+  "fondo":"#212121",
+  "letras":"#FFFFFF"
+  ,
+  "logo":{"src":"http://www.clipartkid.com/images/2/leaf-clipart-clipart-panda-free-clipart-images-NQr4bd-clipart.png","tamano":{"ancho":"64px","alto":"auto"},"top":"4px"}
+  ,
+  "nombre":{"data":"Tree","bottom":"14px"},
+  "dropdownColor":"rgb(0, 177, 106)",
+  "dropdownHover":"#212121",
+  "slogan":{"data":"","bottom":"0px"},
+  "subitemWidth":"200px",
+  "imgSubitemWidth":"230px",
+  "items":[
+
+    {"nombre":"Inicio","href":"/"},
+    {"nombre":"Login","href":"/login","data":"hideLogged"},
+    {"nombre":"Registrarse","data":"hideLogged","href":"/register"},
+    {"nombre":"Juegoteca","items":[{"nombre":"Acción"},{"nombre":"Aventura"},{"nombre":"Estrategia"}]},
+    {"nombre":"Condiciones"}
+
+
+  ],
+  "userItemsBackground":"rgba(27, 188, 155,1)",
+  "userItemsColor":"white",
+  "userItemsHover":"black",
+  "userItems":[
+  {"nombre":"Perfil","href":"/profile"},
+  {"nombre":"Mis notas","href":""},
+    {"nombre":"Comentarios"},
+  {"nombre":"Salir","href":"/logout"}
+  ]
+
+}

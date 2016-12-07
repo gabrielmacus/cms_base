@@ -1,0 +1,27 @@
+doctype
+html
+  head
+      script(src="/js/adapter.js")
+      script(src="/js/socket.io.js")
+      script(src="https://code.jquery.com/jquery-1.12.4.min.js")
+      script(src="/js/fileReader.js")
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js")
+      script(src="/js/controller.js")
+      script(src="/js/p2p.js")
+      script(src="/js/audio.js")
+
+  body(data-ng-controller="purpleCtrl",data-ng-app="purpleApp")
+
+        input.file-selector(type="file",multiple)
+        button(data-ng-click="playAudio()") Play
+        button(data-ng-click="pauseAudio()") Pause
+        button#loadFiles(data-ng-click="loadFiles()") Aceptar
+        ul
+            li(data-ng-click="connectTo(u.id)",data-ng-repeat="u in users") {{u.id}}
+
+        div(style="width:50%")
+            div.progressBar(style="width:0%;height:25px;background-color:green")
+                label.label
+            button(onclick="adjustVolume(0)") Mute
+            div.tracks
+        audio(autoplay,controls)

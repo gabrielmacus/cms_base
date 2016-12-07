@@ -1,0 +1,276 @@
+
+doctype html
+html(lang="es")
+    head
+        meta(name="viewport",content ="width=device-width, initial-scale=1.0")
+        script(src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous")
+
+        link(rel="stylesheet" href="/css/w3.css")
+        link(rel="stylesheet" href="/css/animate.css")
+        script(src="/js/adapter.js")
+        script(src="/js/socket.io.js")
+        style.
+
+            #body
+            {
+
+                padding-left: 10%;
+                padding-right: 10%;
+
+            }
+            @media screen and (max-width:600px)  {
+
+                #body {
+
+                    padding-left: 0%;
+                    padding-right: 0%;
+
+                }
+             }
+            video
+            {
+                width: 100%;
+                height: 350px;
+                background-color:black;
+            }
+
+        script.
+
+           $(document).ready(init);
+
+           function getVideoDevices(callback)
+           {
+
+               navigator.mediaDevices.enumerateDevices().then(function (devices) {
+
+
+                   devices= devices.filter(function(element){
+
+                       return element.kind==="videoinput"
+                   });
+
+
+                   callback(devices);
+
+
+
+
+               });
+
+           }
+           function init()
+           {
+               getVideoDevices(function(devices){
+
+
+
+
+
+
+
+                   var deviceSelect = $("#streamSource");
+                   deviceSelect.html("");
+                   $.each(devices,function(index,value){
+
+                       deviceSelect.append("<option value='"+value.deviceId+"'>"+value.label+"</option>");
+
+
+                   });
+
+               });
+               var socket = io.connect('wss://rtcom.ddns.net:8080');
+
+               function send(json) {
+                   socket.emit("msg", json);
+               }
+
+               var configuration = {
+                   "iceServers": [{url: 'stun:stun01.sipphone.com'},
+                       {url: 'stun:stun.ekiga.net'},
+                       {url: 'stun:stun.fwdnet.net'},
+                       {url: 'stun:stun.ideasip.com'},
+                       {url: 'stun:stun.iptel.org'},
+                       {url: 'stun:stun.rixtelecom.se'},
+                       {url: 'stun:stun.schlund.de'},
+                       {url: 'stun:stun.l.google.com:19302'},
+                       {url: 'stun:stun1.l.google.com:19302'},
+                       {url: 'stun:stun2.l.google.com:19302'},
+                       {url: 'stun:stun3.l.google.com:19302'},
+                       {url: 'stun:stun4.l.google.com:19302'},
+                       {url: 'stun:stunserver.org'},
+                       {url: 'stun:stun.softjoys.com'},
+                       {url: 'stun:stun.voiparound.com'},
+                       {url: 'stun:stun.voipbuster.com'},
+                       {url: 'stun:stun.voipstunt.com'},
+                       {url: 'stun:stun.voxgratia.org'},
+                       {url: 'stun:stun.xten.com'},
+                       {
+                           url: 'turn:numb.viagenie.ca',
+                           credential: 'muazkh',
+                           username: 'webrtc@live.com'
+                       },
+                       {
+                           url: 'turn:192.158.29.39:3478?transport=udp',
+                           credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+                           username: '28224511:1379330808'
+                       },
+                       {
+                           url: 'turn:192.158.29.39:3478?transport=tcp',
+                           credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+                           username: '28224511:1379330808'
+                       }] //[{ "url": "stun:stun2.1.google.com:19302" },{ "url": "stun.l.google.com:19302" },{ "url": "stun2.l.google.com:19302" },{ "url": "stun.voipstunt.com" },{ "url": "stun.ideasip.com" },{ "url": "stun01.sipphone.com" },{ "url": "stun.xten.com" },{ "url": "stun.softjoys.com" },{ "url": "stun.l.google.com:19305" },{ "url": "stun1.l.google.com:19305" },{ "url": "stun.rixtelecom.se" },{ "url": "stun.schlund.de" }]
+               };
+
+               var connection;
+               var stream;
+               var endPeer;
+               var localVideo= document.querySelector("video");
+
+               function onError(error)
+               {
+                   console.log(error);
+               }
+               socket.on("msg",function(msg){
+                   console.log(msg);
+                   switch(msg.type)
+                   {
+
+                       case 1:
+
+                               connection.setRemoteDescription(new RTCSessionDescription(msg.data),function(){
+
+                                   connection.createAnswer(function(answer){
+
+                                       connection.setLocalDescription(answer,function(){
+
+                                           endPeer=msg.from;
+
+                                           send({type:2,data:answer,to:msg.from});
+                                       },onError);
+
+                                   },onError);
+
+
+                               },onError);
+
+                           break;
+                       case 3:
+                           var candidate = new RTCIceCandidate(msg.data);
+
+                           connection.addIceCandidate(candidate).then(function () {
+                               console.log("succesfully added candidate");
+                           }).catch(function (error) {
+
+
+                               console.log(error);
+
+
+                           });
+
+
+                           break;
+                   }
+
+               });
+
+
+               $("#btnRefrescar").click(refreshSources);
+               $("#btnTransmitir").click(startStreaming);
+
+               function refreshSources()
+               {
+                   stopStreaming();
+
+                   getVideoDevices(function (devices) {
+                       var deviceSelect = $("#streamSource");
+                       deviceSelect.html("");
+                       $.each(devices, function (index, value) {
+
+                           deviceSelect.append("<option value='" + value.deviceId + "'>" + value.label + "</option>");
+
+
+                       });
+
+                   });
+               }
+
+               function stopStreaming()
+               {
+                   if (stream) {
+                       var tracks = stream.getTracks();
+
+                       $.each(tracks, function (index, value) {
+
+                           value.stop();
+
+
+                       });
+                   }
+               }
+               function startStreaming()
+               {
+                   var deviceId=$("#streamSource").val();
+
+
+                   send({data: $("#streamSource :selected").html() , type: 0});
+
+                   stopStreaming();
+
+                   navigator.webkitGetUserMedia({video:{deviceId:deviceId}}, function (myStream) {
+                       stream = myStream;
+
+                       //displaying local video stream on the page
+                       localVideo.srcObject = stream;
+
+
+                       connection = new webkitRTCPeerConnection(configuration);
+
+                       // setup stream listening
+                       connection.addStream(stream);
+
+                       //when a remote user adds stream to the peer connection, we display it
+                       connection.onaddstream = function (e) {
+                           // remoteVideo.src = window.URL.createObjectURL(e.stream);
+                       };
+
+                       // Setup ice handling
+                       connection.onicecandidate = function (event) {
+                           if (event.candidate) {
+                               send({
+                                   type: 3,
+                                   data: event.candidate,to:endPeer
+                               });
+                           }
+                       };
+
+
+
+
+
+
+                   }, function (error) {
+                       console.log(error);
+                   });
+               }
+
+
+           }
+
+    body
+        #body.w3-center.w3-row-padding(style="width:100%")
+            .w3-col.s12
+              select.w3-select#streamSource
+            .w3-col.s12.m6
+              button.w3-btn.w3-blue.w3-margin-top(style="width:100%")#btnTransmitir Transmitir
+            .w3-col.s12.m6
+              button.w3-btn.w3-blue.w3-margin-top.w3-margin-bottom(style="width:100%")#btnRefrescar Refrescar
+            .w3-col.s12
+                video(autoplay)
+
+
+
+
+
+
+
+

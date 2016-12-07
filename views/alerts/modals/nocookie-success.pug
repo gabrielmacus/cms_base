@@ -1,0 +1,15 @@
+script.
+
+    function showSuccess(msg)
+    {
+        var modal =$("#noCookieSuccessModal");
+        modal.fadeIn('fast');
+        modal.find("h2").html(msg);
+    }
+
+
+.w3-modal.w3-center#noCookieSuccessModal(data-type="nocookiesuccess")
+    .w3-modal-content.w3-animate-top.w3-card-8.w3-padding
+        span.w3-closebtn.close-modal &times;
+        h2.w3-text-green
+

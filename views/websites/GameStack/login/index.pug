@@ -1,0 +1,40 @@
+
+extends ../../../layouts/layout20.pug
+
+block declarations
+    -  body.navbars.mainNavbar.items[0].active=true;
+
+      include declare.pug
+
+block metas
+
+    meta(name="viewport",content ="width=device-width, initial-scale=1.0")
+block styles
+    link(rel="stylesheet",href=body.root + "/css/w3.css")
+block scripts
+
+       include header.pug
+
+block curtain
+    #alert
+        include ../../../alerts/info.pug
+        include ../../../alerts/success.pug
+        include ../../../alerts/error.pug
+
+    #screenCurtain
+        include ../../../loadings/dots.pug
+    #modal
+        include ../../../alerts/modals/error.pug
+        include ../../../alerts/modals/success.pug
+        include ../../../alerts/modals/info.pug
+        include ../../../alerts/modals/nocookie-success.pug
+        include ../../../alerts/modals/nocookie-error.pug
+        include ../../../alerts/modals/nocookie-info.pug
+
+block header
+    include ../../../navbars/desktop/navbar3.pug
+    +addNavbar3(body.navbars.mainNavbar)
+    include ../../../navbars/mobile/navbar1.pug
+    +mobileNavbar(body.navbars.mainNavbar)
+block content
+ include ../../../articles/a.pug

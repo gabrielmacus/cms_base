@@ -1,0 +1,23 @@
+
+
+
+mixin addPublishA(text)
+ script.
+     $(document).ready(function () {
+         var categories = new Select("#categories", {});
+
+     });
+
+ style.
+
+
+ .generic-container
+  form.w3-row-padding
+    .w3-col.s12.m6
+      input(placeholder=text.title+"...").w3-input.cool-input
+    .w3-col.s12.m6
+             input(placeholder=text.subtitle+"...").w3-input.cool-input
+
+    .w3-col.s12
+          select#categories(placeholder=text.subtitle + "...").cool-input
+           option LOKKADA

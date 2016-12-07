@@ -1,0 +1,30 @@
+
+script.
+    $(document).ready(function () {
+
+
+        var infoMsg = Cookies.get('successmsgmodal');
+
+        //https://github.com/js-cookie/js-cookie
+
+        if (infoMsg) {
+
+            var infoContainer = $("#successModal");
+
+            infoContainer.fadeIn('fast');
+            infoContainer.find("h2").html(infoMsg);
+
+        }
+
+
+
+
+    });
+
+
+
+.w3-modal.w3-center#successModal(data-type="success")
+    .w3-modal-content.w3-animate-top.w3-card-8.w3-padding
+        span.w3-closebtn.close-modal &times;
+        h2.w3-text-green
+

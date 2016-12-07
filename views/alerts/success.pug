@@ -1,0 +1,54 @@
+style.
+    #success {
+        background-color: #219161;
+        color: white;
+        animation-name: successalert;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+
+        z-index: 10000;
+    }
+
+    @keyframes successalert {
+
+        100% {
+            background-color: #4CAF50;
+        }
+
+    }
+script.
+    $(document).ready(function () {
+
+
+        var infoMsg = Cookies.get('successmsg');
+
+        //https://github.com/js-cookie/js-cookie
+
+        if (infoMsg) {
+
+            var infoContainer = $("#success");
+
+            infoContainer.slideDown('fast');
+            infoContainer.find("h3 span").html(infoMsg);
+
+        }
+
+        $("#close-success").click(function (e) {
+
+            var target = $(e.target).closest(".info-color");
+            target.slideUp('fast');
+            console.log("removing success");
+            Cookies.remove('successmsg', {path: '/'});
+        });
+
+
+    });
+
+
+
+.w3-center.info-color#success(style="width:100%;display:none")
+    h3
+        span
+        #close-success.w3-right.w3-margin-right &times;
+

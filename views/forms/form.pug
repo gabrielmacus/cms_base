@@ -1,0 +1,60 @@
+mixin addForm(form)
+    style.
+        .error {
+
+
+            display: none;
+            animation-name:grow ;
+            animation-duration: 500ms;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+
+             }
+        @keyframes grow {
+
+            0%{transform: scale(0.8)}
+            100% {
+                transform: scale(1)
+            }
+            }
+
+
+
+
+    script.
+        $(document).on("keyup change","##{form.id} input,select",function(){
+
+           $(this).closest(".w3-col").find(".error").fadeOut();
+
+
+        });
+
+    form.w3-row-padding(data-ng-submit=form.action+"()",id=form.id)
+        each input in form.items
+           div(class="w3-col l"+input.l+" m"+input.m+" s"+input.s,style="position:relative").w3-margin-top
+            if input.box
+               div(style="height:18px")
+               div.w3-col.s12.w3-center(style="position:relative")
+                input.w3-check(type="checkbox",data-name=input.dataName,placeholder=input.placeholder,data-ng-model=input.nombre,required=input.required)
+                | &nbsp;
+                label !{input.label}
+                img.error(src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Warning_sign_font_awesome-red.svg/512px-Warning_sign_font_awesome-red.svg.png",style="width:20px;height:20px;position:absolute;top:26px;right:15px")
+            else if input.options
+                label #{input.label}
+                select.w3-padding-small(multiple=input.multiple,data-name=input.dataName,data-ng-model=input.nombre,style="width:100%")
+                 each option in input.options
+                    option(value=option.value) #{option.label}
+                img.error(src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Warning_sign_font_awesome-red.svg/512px-Warning_sign_font_awesome-red.svg.png",style="width:20px;height:20px;position:absolute;top:26px;right:15px")
+            else if input.multiple
+
+            else
+                label !{input.label}
+                input(placeholder=input.placeholder,data-name=input.dataName,type=input.type,data-ng-model=input.nombre,style="width:100%",required=input.required)
+                img.error(src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Warning_sign_font_awesome-red.svg/512px-Warning_sign_font_awesome-red.svg.png",style="width:20px;height:20px;position:absolute;top:26px;right:15px")
+        .w3-row
+         .w3-col.w3-center.s12.w3-margin-top
+              button(type="submit",style="background-color:"+form.button.color).w3-btn #{form.button.label}
+
+
+
+

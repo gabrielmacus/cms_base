@@ -1,0 +1,83 @@
+// template1.jade Professional and Traditional
+- var mainColor ="#E61D2B"
+- var secondColor ="white";
+doctype html
+html(lang="es")
+    head
+        meta(name="viewport",content ="width=device-width, initial-scale=1.0")
+        script(src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous")
+        script(src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js")
+        link(rel="stylesheet" href="/css/w3.css")
+        link(rel="stylesheet" href="/css/animate.css")
+        style.
+
+            html,body{
+                height: 100%;
+            }
+
+            .hidden
+            {
+                display: none;
+            }
+
+
+
+
+            .main-color {
+                background-color: #{mainColor};
+                color: white;
+            }
+            a{
+                cursor: pointer;
+            }
+
+
+            .second-color
+            {
+                background-color: #{secondColor};
+                color:black;
+            }
+            .margin
+            {
+                margin:0 15% 0 15%;
+            }
+            .margin-top
+            {
+                margin-top:30px;
+            }
+            .img {
+                width: 100%;
+                height:auto;
+
+            }
+            body
+            {
+
+
+            }
+
+
+
+
+
+
+
+
+
+
+
+    body
+
+
+        include ../navbars/desktop/navbar1.pug
+        include ../navbars/mobile/navbar3.pug
+        #body.margin
+            include ../components/contentslider.pug
+
+
+
+
+
+
+
+

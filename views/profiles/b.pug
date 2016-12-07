@@ -1,0 +1,223 @@
+mixin addProfileB(user,text)
+    style.
+        @media screen and (max-width: 768px)
+        {
+            .profile-container {
+                padding-top: 70px;
+                padding-left: 5%;
+                padding-right: 5%;
+                float: left;
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+
+            .profile-container {
+
+                padding:0;
+                float: left;
+                width: 100%;
+
+            }
+        }
+        @media screen and (min-width: 769px) {
+
+            .profile-container {
+                padding-top: 70px;
+                padding-left: 20%;
+                padding-right: 20%;
+                float: left;
+                width: 100%;
+
+            }
+        }
+        .profile-container .w3-row .w3-col{
+            position: relative;;
+        }
+        .profile-container ul li
+        {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+
+        }
+
+        .profile-container h3
+        {
+            padding-bottom: 10px;
+            position: relative;
+        }
+        .avatar
+        {
+            position:relative;
+            width:100%;
+            height: 300px;
+
+            background-color: lightgrey;
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            transition: background-size 500ms ease-in, filter 500ms;
+            -webkit-transition: background-size 500ms ease-in, filter 500ms;
+            -moz-transition: background-size 500ms ease-in, filter 500ms;
+            -o-transition: background-size 500ms ease-in, filter 500ms;
+
+
+
+
+
+            filter:contrast(100%);
+
+        }
+
+        .avatar:hover
+        {
+
+            background-size: 200%;
+
+            filter: contrast(150%);
+        }
+
+        .user-info  {
+            list-style-type: none;
+            padding:0;
+
+        }
+        .user-info li a
+        {
+            text-decoration: none;
+        }
+        .user-info li {
+
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .user-info li:nth-child(1) {
+
+            border-top:lightgrey solid 1px;
+        }
+
+        .join-date
+        {
+
+            font-weight: 300!important;
+        }
+        .male
+        {
+            color:dodgerblue;
+        }
+        .female
+        {
+            color:hotpink;
+        }
+
+
+        .profile-container h3
+        {
+
+            font-style: italic;
+            color:#{text.usernameColor};
+        }
+        .avatar .w3-circle
+        {
+            -webkit-transform: scale(0) translate(-50%, -50%);
+            -moz-transform: scale(0) translate(-50%, -50%);
+            -ms-transform: scale(0) translate(-50%, -50%);
+            -o-transform: scale(0) translate(-50%, -50%);
+            transform: scale(0) translate(-50%, -50%);
+            background-color:white;width:100px;height:100px;top: 50%;left: 50%;
+            position:absolute;
+            -webkit-transition: transform 500ms, filter 300ms;
+            -moz-transition: transform 500ms, filter 300ms;
+            -ms-transition: transform 500ms, filter 300ms;
+            -o-transition: transform 500ms, filter 300ms;
+            transition: transform 500ms, filter 300ms;
+            cursor: hand;
+        }
+        .avatar:hover .w3-circle
+        {
+            -webkit-transform: scale(1) translate(-50%, -50%);
+            -moz-transform: scale(1) translate(-50%, -50%);
+            -ms-transform: scale(1) translate(-50%, -50%);
+            -o-transform: scale(1) translate(-50%, -50%);
+            transform: scale(1) translate(-50%, -50%);
+
+        }
+
+
+
+        .avatar .w3-circle:hover {
+
+            /*-webkit-transition: filter 500ms;
+            -moz-transition: filter 500ms;
+            -ms-transition: filter 500ms;
+            -o-transition: filter 500ms;
+            transition: filter 500ms;*/
+            -webkit-filter: invert(100%);
+            filter: invert(100%);
+
+        }
+
+        .user-info
+        {
+            margin: 0;
+            padding-top: 0;
+
+
+
+        }
+
+    script.
+        angular.element(document).ready(function () {
+
+
+
+
+
+
+
+        });
+
+    .profile-container
+        .w3-row
+            .w3-col.s12.m6
+                .avatar(style="background-image: url('"+user.avatar+"');")
+
+            .w3-col.s12.m6.w3-padding(style="position:relative")
+
+                h2.ellipsis #{user.name} #{user.surname}
+
+
+                h3
+                    |@#{user.username}
+
+                ul.user-info
+                    li.join-date
+                        |#{text.joinDate}
+                        b &nbsp;#{new Date(user.fechaCreacion).toLocaleDateString()}
+
+
+                    li.editable
+                        |#{text.gender}:
+
+                        if user.sex=='m'
+                         b.male  #{text.male}
+
+                        else
+                         b.female  #{text.female}
+
+
+                    li.editable
+                        a(href="mailto:"+user.email) #{text.email}:
+                            b &nbsp;#{user.email}
+
+
+                    li
+                        a.w3-btn.w3-green #{text.sendMessage}
+
+
+
+
+

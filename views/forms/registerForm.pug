@@ -1,0 +1,54 @@
+mixin addRegisterForm(form)
+ script.
+     angular.element(document).ready(function(){
+
+
+
+         angularScope.#{form.action}=function()
+         {
+
+
+             postData(angularHttp, angularScope.usuario, "/register", function (e) {
+
+
+
+
+                 $("##{form.id} input,##{form.id} select").removeClass("red-border");
+
+                 if (e.data == true) {
+                     showSuccess("#{config.messages.success.userRegister}");
+
+                     angularScope.usuario = {};
+
+                 }
+                 else {
+
+                     console.log(e.data);
+
+                     if (!e.data) {
+
+                         showError("#{config.messages.error.unknownEror}");
+
+                     }
+                     else {
+
+                         $.each(e.data, function (index, item) {
+
+                             $("##{form.id} input[data-name=" + item.prop + "],select[data-name=" + item.prop + "]").closest(".w3-col").find(".error").fadeIn();
+
+                         });
+
+                     }
+
+
+
+                 }
+
+             }, function () {
+             });
+         }
+
+     });
+
+ include form.pug
+ +addForm(form)

@@ -1,0 +1,127 @@
+doctype
+html
+    head
+        meta(name="viewport",content ="width=device-width, initial-scale=1.0")
+        script(src="/js/adapter.js")
+        script(src="/js/socket.io.js")
+        script(src="https://code.jquery.com/jquery-1.12.4.min.js")
+        script(src="/js/jquery.mobile.custom.min.js")
+        script(src="/js/fileReader.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js")
+        script(src="/js/AngularRequest.js")
+        script(src="/js/angular-validation.min.js")
+        script(src="/js/angular-validation-rule.min.js")
+        script(src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js")
+        script(src="/js/loader.js")
+        link(rel="stylesheet",href="/css/w3.css")
+        script(src="/js/p2p.js")
+        script(src="/js/audio.js")
+        script(src="/js/js.cookie.js")
+        script(src="/js/helpers.js")
+        script.
+            var app = angular.module('app', ['validation', 'validation.rule']);
+
+            app.factory('testInterceptor', testInterceptor)
+                    .config(function ($httpProvider) {
+                        $httpProvider.interceptors.push('testInterceptor');
+                    })
+                    .run(function ($http) {
+
+                    })
+            app.factory('socket', function ($rootScope) {
+                var socket = io.connect('wss://localhost');
+                return {
+                    on: function (eventName, callback) {
+                        socket.on(eventName, function () {
+                            var args = arguments;
+                            $rootScope.$apply(function () {
+                                callback.apply(socket, args);
+                            });
+                        });
+                    },
+                    emit: function (eventName, data, callback) {
+                        socket.emit(eventName, data, function () {
+                            var args = arguments;
+                            $rootScope.$apply(function () {
+                                if (callback) {
+                                    callback.apply(socket, args);
+                                }
+                            });
+                        })
+                    }
+                };
+            });
+
+
+            function testInterceptor() {
+                return {
+                    request: function (config) {
+
+                        showLoader();
+
+                        return config;
+                    },
+
+                    requestError: function (config) {
+                        hideLoader();
+                        return config;
+                    },
+
+                    response: function (res) {
+                        hideLoader();
+                        return res;
+                    },
+
+                    responseError: function (res) {
+                        hideLoader();
+                        return res;
+                    }
+                }
+            }
+
+
+            app.controller('ctrl', controller);
+
+            var angularScope;
+            var angularHttp;
+            function controller($scope, socket,$http) {
+
+                angularScope = $scope;
+                angularHttp = $http;
+
+                    var p2p = new P2P(socket, $scope);
+
+            };
+
+
+
+
+
+    body(data-ng-controller="ctrl",data-ng-app="app")
+
+       #alert
+           include ../../alerts/info.pug
+           include ../../alerts/success.pug
+           include ../../alerts/error.pug
+
+       #screenCurtain
+           include ../../loadings/gum.pug
+       #modal
+           include ../../alerts/modals/error.pug
+           include ../../alerts/modals/success.pug
+           include ../../alerts/modals/info.pug
+           include ../../alerts/modals/nocookie-success.pug
+           include ../../alerts/modals/nocookie-error.pug
+           include ../../alerts/modals/nocookie-info.pug
+       #body
+        include ../../navbars/desktop/navbar2.pug
+        +addNavbar2(body.navbars.mainNavbar)
+        include ../../navbars/mobile/navbar1.pug
+        +mobileNavbar(body.navbars.mainNavbar)
+        include ../../forms/registerForm.pug
+        +addRegisterForm(body.forms.registerForm)
+
+
+
+
+

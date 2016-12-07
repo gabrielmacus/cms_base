@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        html,body
+        {
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+        .full
+        {
+            width: 100%;
+        }
+        .center
+        {
+            text-align: center;
+        }
+        .main-color
+        {
+            background-color: #{mainColor};
+        }
+        .second-color
+        {
+            background-color: #{secondColor};
+        }
+        .container
+        {
+            margin-right: 10%;
+            margin-left: 10%;
+            padding-top: 20px;
+            padding-bottom: 20px;
+
+         }
+        .header
+        {
+
+        }
+        .padding{
+            padding: 12px 12px 12px 12px;
+        }
+        .link
+        {
+            color: #2F6FAD;
+            text-decoration: underline;
+            cursor: hand;
+        }* {
+             margin: 0;
+             padding: 0;
+         }
+         h1
+         {
+             font-size: 20px;
+         }
+         h2
+         {font-size: 16px
+
+
+         }
+
+         .logo
+         {
+             position: relative;
+             top:14px;
+             height: 40px;
+             width: 40px;
+
+
+         }
+        h1
+        {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            display: inline;
+        }
+
+    </style>
+</head>
+<body class="center">
+<div  class=" header full center main-color padding">
+
+
+    <h1>Solo un paso más #{username}!</h1>
+</div>
+
+    <div  class="center container second-color ">
+        <a class="link" href=#{website}+"/confirm/"+#{hash}><h2>Cliqueá aca y confirma tu registro</h2></a>
+    </div>
+<h3 class="full center">Gracias por registrarte en <a class="link" href="#{website}">#{name}</a> <img class="logo" src="http://nutritionstudies.org/wp-content/uploads/2015/04/cns-logo.png"></h3>
+
+</body>
+</html>

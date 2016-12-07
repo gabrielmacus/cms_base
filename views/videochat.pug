@@ -1,0 +1,25 @@
+doctype
+html
+  head
+      script(src="/js/adapter.js")
+      script(src="/js/socket.io.js")
+      script(src="https://code.jquery.com/jquery-1.12.4.min.js")
+      script(src="/js/fileReader.js")
+      script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js")
+      script(src="/js/controller.js")
+      script(src="/js/p2p.js")
+      script(src="/js/audio.js")
+      script(src="/js/adapter.js")
+      meta(name="viewport",content="width=device-width, initial-scale=1")
+      link(rel="stylesheet",href="css/w3.css")
+
+
+  body(data-ng-controller="purpleCtrl",data-ng-app="purpleApp")
+    h3.w3-center {{myUser}}
+    button.w3-btn.w3-blue(data-ng-click="connectTo(username)",style="width:100%") Llamar
+    select.w3-select(data-ng-model="username",placeholder="Nombre de usuario")
+     option(selected,disabled) Usuarios conectados
+     option(data-ng-repeat="u in users") {{u.id}}
+    div(style="position:relative")
+     video(autoplay,controls,style="z-index:-1000;width:100%;min-height:300px;position:absolute").w3-black#remoteVideo
+     video(autoplay,muted,controls,style="z-index:100;position:absolute;top:0px;width:30%;height:100px").w3-grey#localVideo

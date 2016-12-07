@@ -1,0 +1,33 @@
+.show-up {
+  animation-name: showUp;
+  animation-duration: 400ms;
+  animation-fill-mode: forwards;
+
+  animation-timing-function: cubic-bezier(0.060, 1.370, 0.435, -0.550);
+
+
+}
+.hide-up {
+  animation-name: hideUp;
+  animation-duration: 400ms;
+  animation-fill-mode: forwards;
+
+  animation-timing-function: cubic-bezier(0.060, 1.370, 0.435, -0.550);
+
+
+}
+
+@-moz-keyframes showUp {
+
+}
+
+@-webkit-keyframes showUp {
+
+}
+@keyframes showUp {
+  100%{transform: scale(1)}
+}
+@keyframes hideUp {
+  100%{transform: scale(0)}
+}
+

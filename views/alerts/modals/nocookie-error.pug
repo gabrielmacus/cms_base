@@ -1,0 +1,15 @@
+script.
+
+    function showError(msg)
+    {
+        var modal =$("#noCookieErrorModal");
+        modal.fadeIn('fast');
+        modal.find("h2").html(msg);
+    }
+
+
+.w3-modal.w3-center#noCookieErrorModal(data-type="nocookieerror")
+    .w3-modal-content.w3-animate-top.w3-card-8.w3-padding
+        span.w3-closebtn.close-modal &times;
+        h2.w3-text-red
+

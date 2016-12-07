@@ -1,0 +1,225 @@
+mixin addNavbar3(navbar)
+    script(src=body.root + '/js/jquery.matchHeight.js')
+    script(src=body.root + '/js/jquery.flexverticalcenter.js')
+    style.
+        .color {
+            background-color: #{navbar.fondo};
+            color: #{navbar.letras};
+
+        }
+
+        .navbar-item {
+
+            padding: 25px 25px 25px 25px;
+
+            text-align: center;
+
+            -webkit-transition: background-color 1000ms; /* Safari */
+            transition: background-color 1000ms;
+            -moz-transition: background-color 1000ms; /* Firefox */
+        }
+        .user
+        {
+            padding-right: 25px;
+            padding-left: 25px;
+
+            text-align: center;
+        }
+
+        .user span{
+
+            padding-left: 20px;
+            color:#{navbar.active};
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .navbar-item:hover {
+
+            background-color: #{navbar.hover};
+            color: #{navbar.hoverLetras};
+            cursor: hand;
+
+        }
+
+        .logo a img {
+            -webkit-transition: transform 500ms; /* Safari */
+            transition: transform 500ms;
+            -moz-transition: transform 500ms; /* Firefox */
+
+        }
+
+        .logo a:hover img {
+            transform: rotateY(360deg);
+        }
+
+        .logo {
+           // padding-top: 13px;
+            padding-left: 25px;
+        }
+
+        .inline {
+            display: inline;
+            float: left;
+        }
+
+        .navbar-item .w3-dropdown-content a:hover {
+            background-color: #{navbar.hover};
+
+            color: #{navbar.hoverLetras};
+
+
+
+
+        }
+
+
+        .dropdown a {
+            overflow: hidden;
+            background-color: #{navbar.dropdownColor};
+            padding: 17px !important;
+        }
+
+        .dropdown a:hover {
+            background-color: #{navbar.dropdownHover}!important;
+
+        }
+        .secondary-text {
+            display: inline-block;
+            position: relative;
+            bottom: #{navbar.slogan.bottom};
+
+        }
+
+        .primary-text {
+            position: relative;
+            bottom: #{navbar.nombre.bottom};
+        }
+
+        .active-item {
+            background-color: #{navbar.active};
+            color: #{navbar.activeLetras};
+
+        }
+
+        .w3-dropdown-content {
+
+            left: 0px!important;
+        }
+
+        .user-menu
+
+        {
+            margin: 0;
+            padding: 0
+        }
+        .user-menu li
+        {
+            width: 100%;
+            padding: 0!important;
+        }
+        .user-menu li a:hover
+        {
+            color: #{navbar.userItemsHover};
+
+        }
+        #user-actions
+        {
+            z-index: 100;
+
+        }
+
+
+        @media screen and(min-width: 992px) {
+
+            .user {
+
+                text-align: center;
+            }
+        }
+    script.
+        $(document).on("tap",".user",function(e){
+
+            var actions=$("#user-actions");
+            actions.stop();
+            actions.fadeToggle();
+
+        });
+
+
+
+
+    navbar.w3-navbar.color.w3-card-4.w3-hide-small.w3-hide-medium(id=navbar.id)
+
+        a.user.w3-left(data-ng-if="user.username")
+           div.avatar(style="float:left;border:transparent;position:relative;top:13px;width:45px;height:45px;background-image:url({{user.avatar || 'http://www.biometrisches-passbild.net/wp-content/uploads/2015/01/favicon-big.png'}});background-size:cover;background-position:top")
+           span(style="position:relative;top:23px")
+              strong {{user.username}}
+
+        div(data-ng-if="user",id="user-actions",style="display:none;position:relative")
+         svg(height="25",width="32",viewBox="0 0 64 64",style="position:absolute;left: 30px;z-index:10;top: 60px;")
+          polygon(fill=navbar.userItemsBackground,stroke=navbar.userItemsBackground,stroke-width="4",points="30,4 4,60 60,60",style="top: 60px;")
+
+         div(style="position:absolute;top: 84px;left: 20px;min-width:200px;background-color:"+navbar.userItemsBackground+";color:"+navbar.userItemsColor)
+             ul.user-menu
+               each item in navbar.userItems
+                 li.w3-padding-small(style="display:block")
+                     a(href=item.href).w3-padding #{item.nombre}
+
+
+        div.inline.w3-left.w3-center.items
+
+           each item in navbar.items.reverse()
+
+            if !item.ocultar
+                if !item.items
+                    if item.active
+                        a.w3-right.navbar-item.w3-center.active-item(data-config=item.data,href=item.href,title=item.nombre)
+                            |#{item.nombre}
+                    else
+                        a.w3-right.navbar-item.w3-center(data-config=item.data,href=item.href,title=item.nombre)
+                            |#{item.nombre}
+                else
+                    span.w3-dropdown-hover.w3-right.navbar-item.w3-center(data-config=item.data,href=item.href,title=item.nombre)
+                        |#{item.nombre}
+                        div.w3-dropdown-content.w3-margin-top.dropdown
+                            each subitem in item.items
+                                if subitem.icono
+                                    a.w3-padding-xlarge.color.w3-row(href=subitem.href,title=subitem.nombre,style="width:"+navbar.imgSubitemWidth)
+                                        span.w3-col.s8 #{subitem.nombre}
+                                        img.w3-col.s4(src=subitem.icono,style="height: 28px;width: 28px;position: relative;left:13px;bottom: 3px;")
+                                else
+                                    a.w3-padding.color(href=subitem.href,title=subitem.nombre,style="width:"+navbar.subitemWidth)
+                                        span #{subitem.nombre}
+
+            else
+                 if !item.items
+                     if item.active
+                         span.w3-right.navbar-item.w3-center.active-item.w3-hide(data-config=item.data)
+                             a(href=item.href,title=item.nombre) #{item.nombre}
+                     else
+                         span.w3-right.navbar-item.w3-center.w3-hide(data-config=item.data)
+                             a(href=item.href,title=item.nombre) #{item.nombre}
+                 else
+                     span.w3-dropdown-hover.w3-right.navbar-item.w3-center.w3-hide(data-config=item.data)
+                         a(href=item.href,title=item.nombre) #{item.nombre}
+                         div.w3-dropdown-content.w3-margin-top.dropdown
+                             each subitem in item.items
+                                 if subitem.icono
+                                     a.w3-padding-xlarge.color.w3-row(href=subitem.href,title=subitem.nombre,style="width:" + navbar.imgSubitemWidth)
+                                         span.w3-col.s8 #{subitem.nombre}
+                                         img.w3-col.s4(src=subitem.icono,style="height: 28px;width: 28px;position: relative;left:13px;bottom: 3px;")
+                                 else
+                                     a.w3-padding.color(href=subitem.href,title=subitem.nombre,style="width:" + navbar.subitemWidth)
+                                         span #{subitem.nombre}
+
+
+
+
+
+
+
+        div.logo.inline.w3-right
+            a
+                h1.primary-text(style="display:inline-block;margin-left:25px;position:relative;font-size:30px") #{navbar.nombre.data}
+                h2.secondary-text(style="margin-left:25px;position:relative;font-size:20px;margin-right:15px") #{navbar.slogan.data}
+                img(src=navbar.logo.src, style="position:relative;width:" + navbar.logo.tamano.ancho + "; height:" + navbar.logo.tamano.alto+";top:"+navbar.logo.top)

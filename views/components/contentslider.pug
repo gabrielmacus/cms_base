@@ -1,0 +1,53 @@
+
+link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js')
+
+// Demo styles
+style.
+    @media only screen  and (min-width: 602px)  and (max-width:993px) {
+
+        .swiper-slide img
+        {
+            max-height: 300px;
+        }
+
+    }
+    @media only screen and (max-width:601px) {
+
+        .swiper-slide img {
+            max-height: 200px;
+            min-height: 100px;
+        }
+    }
+
+    .imgWrapper {
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+    }
+
+
+
+
+// Swiper
+.swiper-container(style="z-index:0")
+    .swiper-wrapper
+       each slide in contentSlider
+        .swiper-slide(style="position:relative;height:"+slide.height+"px;background-image:url('"+slide.url+"');background-size:contain;background-repeat:no-repeat;background-position:center")
+            //img(src=slide.url,style="width:100%;height:"+slide.height+"px")
+            //.imgWrapper.w3-center
+                img(src=slide.url,style="height:"+slide.height+"px")
+            .w3-container(style="position:absolute;top:0px")
+               span !{slide.html}
+
+// Swiper JS
+script(src='../dist/js/swiper.min.js')
+// Initialize Swiper
+script.
+    var swiper = new Swiper('.swiper-container', {
+
+
+        speed:500,
+        autoplay:2000
+    });
+

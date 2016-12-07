@@ -1,0 +1,374 @@
+doctype html
+html(lang="es")
+    head
+        meta(name="viewport",content ="width=device-width, initial-scale=1.0")
+        script(src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous")
+
+        link(rel="stylesheet" href="/css/w3.css")
+        link(rel="stylesheet" href="/css/animate.css")
+        script(src="/js/adapter.js")
+        script(src="/js/socket.io.js")
+        style.
+
+            #body {
+
+                padding-left: 10%;
+                padding-right: 10%;
+
+            }
+
+            video {
+                width: 100%;
+                height: 350px;
+                background-color: black;
+            }
+
+        script.
+
+            $(document).ready(init);
+
+            function init() {
+
+
+                var socket = io.connect('wss://192.168.0.15:8080',function () {
+                    alert("connected");
+                });
+
+                socket.emit("login");
+
+                socket.on("msg",function(data){
+                    console.log(data);
+
+                    switch (data.type)
+                    {
+                        case 0:
+
+                                if(data.data)
+                                {
+
+                                    $("#streamSource").html("");
+                                    for(var i=0;i<data.data.length;i++)
+                                    {
+                                        var transmision=data.data[i];
+                                        $("#streamSource").append("<option value='" + transmision.socketId + "'>" + transmision.deviceLabel + "</option>");
+                                    }
+                                }
+                                else
+                                {
+                                    $("#streamSource").append("<option value='" + data.socketId + "'>" + data.deviceLabel + "</option>");
+                                }
+
+
+
+                            break;
+
+                        case 2:
+
+
+                                connection.setRemoteDescription(new RTCSessionDescription(data.data), function() {
+
+
+
+                        }, function(error){
+
+                                    console.log(error);
+                                });
+
+                            break;
+
+                        case 3:
+                            var candidate=new RTCIceCandidate(data.data);
+
+                                        connection.addIceCandidate(candidate).then(function(){
+                                            console.log("succesfully added candidate");
+                                        }).catch(onError);
+
+
+                            break;
+                        }
+
+                });
+                function send(json)
+                {
+                    socket.emit("msg",json);
+                }
+
+
+
+                var connection;
+                var stream;
+                var remoteVideo = document.querySelector("video");
+                //using Google public stun server
+                var configuration = {
+                    "iceServers": [{url: 'stun:stun01.sipphone.com'},
+                        {url: 'stun:stun.ekiga.net'},
+                        {url: 'stun:stun.fwdnet.net'},
+                        {url: 'stun:stun.ideasip.com'},
+                        {url: 'stun:stun.iptel.org'},
+                        {url: 'stun:stun.rixtelecom.se'},
+                        {url: 'stun:stun.schlund.de'},
+                        {url: 'stun:stun.l.google.com:19302'},
+                        {url: 'stun:stun1.l.google.com:19302'},
+                        {url: 'stun:stun2.l.google.com:19302'},
+                        {url: 'stun:stun3.l.google.com:19302'},
+                        {url: 'stun:stun4.l.google.com:19302'},
+                        {url: 'stun:stunserver.org'},
+                        {url: 'stun:stun.softjoys.com'},
+                        {url: 'stun:stun.voiparound.com'},
+                        {url: 'stun:stun.voipbuster.com'},
+                        {url: 'stun:stun.voipstunt.com'},
+                        {url: 'stun:stun.voxgratia.org'},
+                        {url: 'stun:stun.xten.com'},
+                        {
+                            url: 'turn:numb.viagenie.ca',
+                            credential: 'muazkh',
+                            username: 'webrtc@live.com'
+                        },
+                        {
+                            url: 'turn:192.158.29.39:3478?transport=udp',
+                            credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+                            username: '28224511:1379330808'
+                        },
+                        {
+                            url: 'turn:192.158.29.39:3478?transport=tcp',
+                            credential: 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
+                            username: '28224511:1379330808'
+                        }] //[{ "url": "stun:stun2.1.google.com:19302" },{ "url": "stun.l.google.com:19302" },{ "url": "stun2.l.google.com:19302" },{ "url": "stun.voipstunt.com" },{ "url": "stun.ideasip.com" },{ "url": "stun01.sipphone.com" },{ "url": "stun.xten.com" },{ "url": "stun.softjoys.com" },{ "url": "stun.l.google.com:19305" },{ "url": "stun1.l.google.com:19305" },{ "url": "stun.rixtelecom.se" },{ "url": "stun.schlund.de" }]
+                };
+
+
+
+
+
+
+
+                var ua = navigator.userAgent.toLowerCase();
+                var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+                if (!isAndroid) {
+
+                    connection = new RTCPeerConnection(configuration);
+
+                    connection.addStream(document.querySelector("canvas").captureStream());
+
+
+
+                    connection.oniceconnectionstatechange = function (event) {
+
+                        console.log(connection.iceConnectionState );
+                         if(connection.iceConnectionState ==="disconnected"||connection.iceConnectionState==="failed")
+                         {
+                             remoteVideo.src=null;
+
+                             $("#videoInfo").html("La transmisión ha finalizado");
+                         }
+                        else
+                         {
+                             $("#videoInfo").html("");
+                         }
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+                    connection.onaddstream = function (e) {
+                        var remoteStream = e.stream;
+                        remoteVideo.srcObject = remoteStream;
+
+
+                        remoteStream.onended = function () {
+
+                            remoteVideo.src = null;
+                        }
+
+                    };
+
+
+                    connection.onicecandidate = function (event) {
+                        if (event.candidate) {
+
+                            send({
+                                type: 3,
+                                to: $("#streamSource").val()
+                                , data: event.candidate
+                            });
+                        }
+                    };
+
+
+                    connection.onconnectionstatechange = function (event) {
+
+                        switch (connection.connectionState) {
+                            case "connected":
+                                // The connection has become fully connected
+                                break;
+                            case "disconnected":
+                                alert("Desconectado");
+                                remoteVideo.src = null;
+                                break
+                            case "failed":
+                                // One or more transports has terminated unexpectedly or in an error
+                                alert("Falla");
+                                remoteVideo.src = null;
+                                break;
+                            case "closed":
+                                // The connection has been closed
+                                alert("Cerrada");
+                                remoteVideo.src = null;
+                                break;
+                        }
+                    }
+
+
+
+                }
+                else
+                {
+
+                    androidConnectionHandler();
+                }
+
+
+
+
+
+                function androidConnectionHandler()
+                {
+                    navigator.webkitGetUserMedia({video: true, audio: false}, function (myStream) {
+
+
+                        connection = new RTCPeerConnection(configuration);
+
+
+                        connection.addStream(myStream);
+
+
+                        connection.onaddstream = function (e) {
+
+                            var remoteStream = e.stream;
+                            remoteVideo.srcObject = remoteStream;
+
+                            remoteStream.onended = function () {
+
+                                remoteVideo.src = null;
+                            }
+
+
+                        };
+
+
+                        connection.oniceconnectionstatechange = function (event) {
+
+                            console.log(connection.iceConnectionState);
+                            if (connection.iceConnectionState === "disconnected" || connection.iceConnectionState === "failed") {
+                                remoteVideo.src = null;
+
+                                $("#videoInfo").html("La transmisión ha finalizado")
+                                androidConnectionHandler();
+                            }
+                            else {
+                                $("#videoInfo").html("");
+                            }
+                        }
+
+                        connection.onicecandidate = function (event) {
+                            if (event.candidate) {
+
+                                send({
+                                    type: 3,
+                                    to: $("#streamSource").val()
+                                    , data: event.candidate
+                                });
+                            }
+                        };
+
+                        connection.onconnectionstatechange = function (event) {
+
+                            switch (connection.connectionState) {
+                                case "connected":
+                                    // The connection has become fully connected
+                                    break;
+                                case "disconnected":
+                                    alert("Desconectado");
+                                    remoteVideo.src = null;
+                                    break
+                                case "failed":
+                                    // One or more transports has terminated unexpectedly or in an error
+                                    alert("Falla");
+                                    remoteVideo.src = null;
+                                    break;
+                                case "closed":
+                                    // The connection has been closed
+                                    alert("Cerrada");
+                                    remoteVideo.src = null;
+                                    break;
+                            }
+                        }
+
+
+                    }, function (error) {
+                        console.log(error);
+                    });
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+                function onError(error)
+                {
+                    console.log(error);
+
+                }
+                $(document).on("click", "#btnVerTransmision", function () {
+
+
+                    connection.createOffer(function(offer){
+
+
+                        connection.setLocalDescription(offer,function(){
+
+
+
+                            var to = $("#streamSource").val();
+                            send({type:1,data:offer,to:to});
+                        },onError);
+                    },onError);
+
+                });
+
+
+
+            }
+
+    body
+
+        #body.w3-center.w3-margin-top(style="width:100%")
+            select.w3-select#streamSource
+            .w3-col.s12.m6
+            button#btnVerTransmision.w3-btn.w3-blue.w3-margin-top.w3-margin-bottom(style="width:100%") Ver transmisión
+            div(style="position:relative;")
+             h3.w3-text-white(style="position:absolute;top:30px;left:20px;right:20px")#videoInfo
+             video(autoplay)
+            canvas(hidden)
+
+
+
+
+
+
+

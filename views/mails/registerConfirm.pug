@@ -1,0 +1,81 @@
+doctype html
+html
+    head
+        meta(http-equiv="Content-Type",content="text/html; charset=utf-8")
+        style.
+            html,body
+            {
+                height: 100%;
+                width: 100%;
+                margin: 0px;
+                padding: 0px;
+                font-family: "Segoe UI", Arial, sans-serif;
+            }
+            .full
+            {
+                width: 100%;
+            }
+            .center
+            {
+                text-align: center;
+            }
+            .main-color
+            {
+                background-color: #{mainColor};
+            }
+            .second-color
+            {
+                background-color: #{secondColor};
+            }
+            .container
+            {
+                margin-right: 10%;
+                margin-left: 10%;
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+            .header
+            {
+            }
+            .padding{
+                padding: 12px 12px 12px 12px;
+            }
+            .link
+            {
+                color: #2F6FAD;
+                text-decoration: underline;
+                cursor: hand;
+            }* {
+                 margin: 0;
+                 padding: 0;
+             }
+            h1
+            {
+                font-size: 20px;
+            }
+            h2
+            {font-size: 16px
+            }
+            .logo
+            {
+                position: relative;
+                top:14px;
+                height: 40px;
+                width: 40px;
+            }
+            h1
+            {
+                padding-top: 5px;
+                padding-bottom: 5px;
+                display: inline;
+            }
+    body.center
+        .header.full.center.main-color.padding
+            h1 Solo un paso más #{username}!
+        .center.container.second-color
+            a.link(href=website+"/confirm/"+hash)
+                h2 Cliqueá aca y confirma tu registro
+        h3.full.center
+            | Gracias por registrarte en &nbsp;
+            a.link(href=website,target="_blank") #{name}
+            img.logo(src=logo)

@@ -1,0 +1,14 @@
+mixin addLoginForm(form)
+        form.w3-row-padding(action="/login",method="post",id=form.id)
+            each input in form.items
+                div(class="w3-col l" + input.l + " m" + input.m + " s" + input.s).w3-margin-top
+
+                        label !{input.label}
+                        input(placeholder=input.placeholder,name=input.dataName,type=input.type,data-ng-model=input.nombre,style="width:100%",required=input.required)
+            .w3-row
+                .w3-col.w3-center.s12.w3-margin-top
+                    button(type="submit",style="background-color:" + form.button.color).w3-btn #{form.button.label}
+
+
+
+
