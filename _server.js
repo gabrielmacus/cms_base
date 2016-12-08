@@ -31,7 +31,7 @@ global.app = express();
 global.Cookies= require('cookies');
 
 var http = require('http');
-
+var publishManager = require('./utils/publishManager')
 var router =require("./utils/urlRouter");
 global.mongod= require('./utils/mongod');
 var pug = require('./utils/pugrendering');

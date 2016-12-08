@@ -5,7 +5,7 @@
   "messages":{
    "error":{"userConfirmation":"Error al activar el usuario. Verific&aacute que el usuario exista, no este activo y no haya caducado",
    "userLogin":"Ingreso incorrecto. Verific&aacute que tu usuario este activo y que hayas ingresado correctamente los datos","unknownEror":"Error desconocido. Reintent&aacute mas tarde",
-     "updateUserError":"Error al actualizar el usuario, comproba que los datos sean v&aacutelidos"
+     "updateUserError":"Error al actualizar el usuario, comproba que los datos sean v&aacutelidos","sectionNotSelected":"Seleccioná una sección"
    },
     "success":{
       "userConfirmation":"Usuario activado correctamente","userRegister":"Solo te queda un paso. Ingresá a tu email y verificá la cuenta"
@@ -15,7 +15,7 @@
     },
   "db":{
     "name":"db",
-    "address":"192.168.69.68",
+    "address":"192.168.43.123",
     "port":27017
   }
   ,

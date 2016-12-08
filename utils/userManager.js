@@ -464,7 +464,7 @@ app.post("/login",function(req,res){
 
  var password= MD5(req.body.password).toString();
 
-    mongod.find({$or : [ { "username" : req.body.username }, {"email": req.body.username } ],password:password,confirmed:true},'usuarios',function(result,err){
+     mongod.find({$or : [ { "username" : req.body.username }, {"email": req.body.username } ],password:password,confirmed:true},'usuarios',function(result,err){
 
 
         if(result)

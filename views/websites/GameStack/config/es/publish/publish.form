@@ -2,5 +2,16 @@
   "id":"publish",
   "title":"Titulo",
   "subtitle":"Subtitulo",
-  "categories":"Seleccion&aacute; la categoria"
+  "categoriesLabel":"Seleccion&aacute; la categoria",
+  "categoriesBackground":"#ededed",
+  "categories":[{"name":"Interés General","background":"#4790ef","value":0},{"name":"Policiales","background":"#e83629","value":1}
+  ,{"name":"Deportes","background":"#7d41c6","value":2}
+  ,{"name":"Ciencia","value":3},{"name":"Salud","background":"#2ec14e","value":4},{"name":"Humor","background":"#f2eb35","value":5}],
+  "startWritingLabel":"Y ahora... a redactar!",
+  "toolbarBackground":" #111111",
+  "sectionBackground":"#202021",
+  "sectionActive":"#cbccc7",
+  "paragraph":"Párrafo",
+  "section":"Sección"
+
 }

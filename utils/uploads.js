@@ -5,7 +5,7 @@
 var logger = require('./log');
 module.exports=
 {
-    upload: function (dir,res,req,callback)
+    upload: function (dir,res,req,callback,fieldCallback)
     {
 
 
@@ -16,7 +16,6 @@ module.exports=
 
 
         var urls=[];
-            console.log("UPLOADING FILE/s");
             // create an incoming form object
             var form = new formidable.IncomingForm();
 
@@ -26,17 +25,17 @@ module.exports=
             // store all users in the  directory
             form.uploadDir = path.join(__dirname+"/..", dir);
 
-      var existeDirectorio=  fs.existsSync(  form.uploadDir);
 
-        if(existeDirectorio===false)
-        {
-            fs.mkdirSync(form.uploadDir,0777);
-        }
         var mainDir= dir;
             // every time a file has been uploaded successfully,
             // rename it to it's orignal name
             form.on('file', function(field, file) {
+                var existeDirectorio=  fs.existsSync(  form.uploadDir);
 
+                if(existeDirectorio===false)
+                {
+                    fs.mkdirSync(form.uploadDir,0777);
+                }
                 var fileNameSplit=file.name.split(".");
                 urls.push({url:mainDir+"/"+file.name,name:file.name,size:bytesToKb(file.size),type:fileNameSplit[fileNameSplit.length-1]});
 
@@ -47,6 +46,11 @@ module.exports=
 
 
             });
+        var json =
+        form.on('field', function(name, value) {
+
+            json=JSON.parse(value);
+        });
 
             // log any errors that occur
             form.on('error', function(err) {
@@ -68,7 +72,7 @@ module.exports=
 
                 if(callback)
                 {
-                  callback(urls);
+                  callback(urls,json);
 
                 }
 

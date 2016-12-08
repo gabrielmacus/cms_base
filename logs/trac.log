@@ -395,3 +395,8 @@
 {"type":"info","data":{"text":"file upload","files":[{"url":"/views/websites/GameStack/images/58473a818f4a0a0f786d2664/1481065714616-654545876.jpg","name":"1481065714616-654545876.jpg","size":"1.7 MB","type":"jpg"}]},"time":"2016-12-06 20:09:15"},
 {"type":"info","data":{"text":"file upload","files":[{"url":"/views/websites/GameStack/images/58473a818f4a0a0f786d2664/1481065807896-746009809.jpg","name":"1481065807896-746009809.jpg","size":"2.1 MB","type":"jpg"}]},"time":"2016-12-06 20:10:50"},
 {"type":"error","error":{"name":"MongoError","message":"failed to connect to server [192.168.1.24:27017] on first connect"},"time":"2016-12-07 14:57:27"},
+{"type":"info","data":{"text":"file upload","files":[]},"time":"2016-12-08 05:52:58"},
+{"type":"info","data":{"text":"file upload","files":[{"url":"/views/websites/GameStack/images/584350bdc97f580834cc1bf5/10690178_879818028738582_151147454557972781_n.jpg","name":"10690178_879818028738582_151147454557972781_n.jpg","size":"56.8 KB","type":"jpg"}]},"time":"2016-12-08 05:55:57"},
+{"type":"info","data":{"text":"file upload","files":[{"url":"/views/websites/GameStack/images/584350bdc97f580834cc1bf5/slash.jpg","name":"slash.jpg","size":"43.2 KB","type":"jpg"}]},"time":"2016-12-08 05:56:05"},
+{"type":"info","data":{"text":"file upload","files":[]},"time":"2016-12-08 05:56:25"},
+{"type":"info","data":{"text":"file upload","files":[]},"time":"2016-12-08 05:56:42"},

@@ -12,18 +12,283 @@ mixin addPublishA(text)
  style.
 
 
- .generic-container
-  form.w3-row-padding
-    .w3-col.s12.m6
-      input(placeholder=text.title+"...").w3-input.cool-input
-    .w3-col.s12.m6
-             input(placeholder=text.subtitle+"...").w3-input.cool-input
+     /*.w3-col:hover  .category-wrapper:not(:hover)
+     {
 
-    .w3-col.s12.w3-center.w3-margin-top
-        h2 !{text.categories}
-        .w3-col.s12.m6.l4.w3-padding-right.w3-margin-top
-            .w3-card-4.w3-blue(style="height:100px")  a
-        .w3-col.s12.m6.l4.w3-padding-right.w3-padding-left.w3-margin-top
-            .w3-card-4.w3-blue(style="height:100px")  a
-        .w3-col.s12.m6.l4.w3-padding-left.w3-margin-top
-            .w3-card-4.w3-blue(style="height:100px")  a
+
+         -webkit-transform: scale(0.8);
+         -moz-transform: scale(0.8);
+         -ms-transform: scale(0.8);
+         -o-transform: scale(0.8);
+         transform: scale(0.8);
+     filter:opacity(50%);
+
+     }*/
+     .toolbar
+     {
+         background-color: #{text.toolbarBackground};
+
+     }
+     .w3-col.active .category-wrapper:not(.active)
+     {
+         -webkit-transform: scale(0.8);
+         -moz-transform: scale(0.8);
+         -ms-transform: scale(0.8);
+         -o-transform: scale(0.8);
+         transform: scale(0.8);
+         filter: opacity(50%);
+     }
+     .paragraphs .section
+     {
+         -webkit-transition: background 500ms, color 500ms;
+         -moz-transition: background 500ms, color 500ms;
+         -ms-transition: background 500ms, color 500ms;
+         -o-transition: background 500ms, color 500ms;
+         transition: background 500ms, color 500ms;
+         padding: 10px;
+         background-color: #{text.sectionBackground};
+         margin-bottom: 15px;
+     }
+
+     .paragraphs .section.active {
+
+         background-color:#{text.sectionActive};
+     }
+
+
+
+     .category-wrapper:hover
+     {
+         -webkit-transform: scale(1.1) ;
+         -moz-transform: scale(1.1) ;
+         -ms-transform: scale(1.1);
+         -o-transform: scale(1.1) ;
+         transform: scale(1.1) ;
+
+     }
+     .category-wrapper
+     {
+         padding-top: 20px;
+         -webkit-transition: filter 500ms,transform 500ms;
+         -moz-transition: filter 500ms, transform 500ms;
+         -ms-transition: filter 500ms, transform 500ms;
+         -o-transition: filter 500ms, transform 500ms;
+         transition: filter 500ms, transform 500ms;
+     }
+
+
+
+     .category {
+         background-color: #{text.categoriesBackground};
+
+     }
+
+     .category b
+     {
+         font-size: 15px;
+     }
+     .category-noimage
+     {
+         padding-top: 70px;
+         padding-bottom: 70px;
+     }
+
+     .paragraph-wrapper p
+     {
+         padding: 15px;
+
+         color: black;;
+         -webkit-transition: background 500ms,color 500ms;
+         -moz-transition:  background 500ms,color 500ms;
+         -ms-transition:  background 500ms,color 500ms;
+         -o-transition:  background 500ms,color 500ms;
+         transition:  background 500ms,color 500ms;
+
+     }
+
+
+     .paragraph-wrapper:hover p {
+
+         background-color: #3a3a3a !important;
+         color: white !important;
+     }
+
+
+
+
+
+
+
+     @media screen and (min-width: 993px) {
+         .paragraph-wrapper:nth-of-type(3n+1) {
+           padding-right: 10px !important;
+
+          }
+
+         .paragraph-wrapper:nth-of-type(3n+0) {
+             padding-left: 10px;
+
+         }
+
+         .paragraph-wrapper:nth-of-type(3n+2) {
+             padding-right: 10px !important;
+
+             padding-left: 10px;
+         }
+         .category-wrapper:nth-of-type(3n+1) {
+             padding-right: 10px !important;
+
+
+         }
+
+         .category-wrapper:nth-of-type(3n+2) {
+             padding-right: 10px !important;
+
+             padding-left: 10px;
+         }
+
+         .category-wrapper:nth-of-type(3n+0) {
+             padding-left: 10px;
+
+         }
+     }
+     @media screen and (min-width: 601px) and (max-width: 992px) {
+
+         .paragraph-wrapper:nth-of-type(odd) {
+             padding-right: 10px !important;
+
+         }
+
+         .paragraph-wrapper:nth-of-type(even) {
+             padding-left: 10px !important;
+
+         }
+
+         .category-wrapper:nth-of-type(even)  {
+             padding-left: 10px !important;
+
+         }
+         .category-wrapper:nth-of-type(odd)  {
+             padding-right: 10px !important;
+
+         }
+      }
+     @media screen and (max-width: 600px){
+
+      }
+
+
+
+ .generic-container
+  script.
+
+      angular.element(document).ready(function () {
+
+          angularScope.post={};
+          angularScope.post.sections=[];
+          angularScope.post.sections
+          var selectedSection;
+          angularScope.addSection=function(){
+
+              angularScope.post.sections.push(angular.copy(angularScope.section));
+
+
+          }
+          angularScope.publishPost=function()
+          {
+
+              uploadData(angularHttp,"/publish",[],angular.copy(angularScope.post),function(data){
+
+                  console.log(data);
+
+
+              },error)
+          }
+          angularScope.toggleSection=function(e,idx)
+          {
+              $(".section").removeClass("active");
+              var target  =$(e.currentTarget).closest(".section");
+              target.addClass("active");
+              selectedSection=idx;
+          }
+          angularScope.addParagraph=function()
+          {
+              var section=angularScope.post.sections[selectedSection];
+              if(section)
+              {
+                  if(!section.items)
+                  {
+                      section.items=[];
+
+                  }
+
+
+                  section.items.push(angular.copy(angularScope.paragraph));
+
+
+              }
+              else
+              {
+                  showError("#{config.messages.error.sectionNotSelected}");
+              }
+
+          }
+
+          angularScope.selectCategory=function(e)
+          {
+              $(".category-wrapper").removeClass("active");
+              var target = $(e.currentTarget).closest(".category-wrapper");
+
+              var value =target.attr("data-value");
+              angularScope.post.category=value;
+              target.addClass("active");
+              target.closest(".categories").addClass("active");
+
+
+          }
+
+
+      });
+
+  form.w3-row(data-ng-submit="publishPost()")
+    .w3-col.s12.m6
+      input(placeholder=text.title+"...",data-ng-model="post.title").w3-input.cool-input
+    .w3-col.s12.m6
+             input(placeholder=text.subtitle+"...",data-ng-model="post.subtitle").w3-input.cool-input
+
+
+    .w3-col.s12(style="margin-top:30px")
+
+      h2.w3-center !{text.categoriesLabel}
+    .w3-col.s12.w3-center.w3-margin-top.categories
+
+        each category in text.categories
+         .w3-col.s12.m6.l4.category-wrapper(data-ng-click="selectCategory($event)",data-value=category.value)
+           if !category.image
+            .category.w3-hover-shadow.category-noimage(style="background-color:"+category.background)
+              b #{category.name}
+    .w3-col.s12(style="margin-top:30px")
+
+          h2.w3-center(style="margin-bottom:30px") !{text.startWritingLabel}
+
+
+    .w3-col.s12
+        .w3-col.s12.toolbar.w3-row-padding
+            .w3-col.s3.w3-padding
+                button(data-ng-click="addSection()",type="button").w3-col.w3-btn.w3-green +
+                input.w3-input(placeholder=text.section+"...",data-ng-model="section.title")
+            .w3-col.s3.w3-padding
+                button(data-ng-click="addParagraph()",type="button").w3-col.w3-btn.w3-green Nuevo párrafo
+                textarea.w3-input(placeholder=text.paragraph+"...",data-ng-model="paragraph.text")
+            .w3-col.s3.w3-padding
+                button.w3-col.w3-btn.w3-green Insertar video
+            .w3-col.s3.w3-padding
+                button.w3-col.w3-btn.w3-green Nuevo párrafo
+
+    .w3-col.s12.paragraphs
+        .w3-col.s12.section(data-ng-repeat="s in post.sections",data-ng-click="toggleSection($event,$index)")
+            h3.w3-tag.w3-blue.w3-show-block {{s.title}}
+            .w3-col.s12.m6.paragraph-wrapper(data-ng-repeat="i in s.items")
+                p.w3-light-grey(data-ng-if="i.text") {{i.text}}
+        .w3-col.s12
+            button.w3-btn.w3-green(type="submit") OK

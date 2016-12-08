@@ -21,6 +21,7 @@ function setUrl()
     {
          mongodUrl='mongodb://'+config.db.address+':'+config.db.port+'/'+config.db.name;
     }
+    console.log(mongodUrl);
 }
 
 module.exports=

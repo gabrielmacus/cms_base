@@ -19,9 +19,49 @@ function uploadFiles(angularHttp, url,files,callback,error)
 
 	$.each(files,function (index,file) {
 
+
 		formData.append(file.name, file);
 	})
 
+
+
+
+	angularHttp.post(url, formData, {
+				withCredentials: false,
+				headers: {
+					'Content-Type': undefined
+				},
+				transformRequest: angular.identity
+			})
+			.success(function (data) {
+
+				if(callback)
+				{
+					callback(data);
+				}
+
+
+			})
+			.error(function (data) {
+
+				if(error)
+				{
+					error();
+				}
+
+			});
+}
+function uploadData(angularHttp, url,files,json,callback,error)
+{
+	var formData = new FormData();
+
+	$.each(files,function (index,file) {
+
+
+		formData.append(file.name, file);
+	})
+
+	formData.append("json",JSON.stringify(json));
 
 
 
