@@ -17,9 +17,11 @@ app.use(function(req, res, next) {
 
 
     var cookies = new Cookies(req,res);
-    global.token =cookies.get("access_token")||(req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];
 
+    var _token=cookies.get("access_token",{path:"/"});//||(req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];
 
+    global.token = _token;
+    console.log("TK "+_token);
 
 //https://github.com/pillarjs/cookies
 
@@ -46,8 +48,10 @@ app.use(function(req, res, next) {
 
             global.config=JSON.parse(fs.readFileSync("./views/websites/"+website+"/config/"+componentReader.getLanguage(req)+"/config.json"));
 
-            jwt.verify(token, mainConfig.secret, function(err, decodedToken) {
+            jwt.verify(_token, mainConfig.secret, function(err, decodedToken) {
 
+                console.log("_error "+err);
+                console.log("_token"+decodedToken);
 
                 if(!err)
                 {
@@ -71,7 +75,7 @@ app.use(function(req, res, next) {
 
 
 
-                getUserData(token, function (result) {
+                getUserData(_token, function (result) {
 
                     console.log(result);
                     componentReader.readComponents(mainDir,req);
@@ -125,7 +129,7 @@ app.use(function(req, res, next) {
                             res.sendFile(file);
                     break;
                 default:
-                    jwt.verify(token, mainConfig.secret, function(err, decodedToken) {
+                    jwt.verify(_token, mainConfig.secret, function(err, decodedToken) {
 
                         if(!err)
                         {

@@ -1,6 +1,12 @@
 
 var app = angular.module('app', []);
 
+app.filter('trustUrl', function ($sce) {
+    return function(url) {
+        return $sce.trustAsResourceUrl(url);
+    };
+});
+
 app.factory('testInterceptor', testInterceptor)
     .config(function ($httpProvider) {
         $httpProvider.interceptors.push('testInterceptor');
@@ -64,6 +70,7 @@ app.controller('ctrl', controller);//Controlador logueado
 
 var angularScope;
 var angularHttp;
+var angularSce;
 function processNavbar()
 {
 
@@ -99,8 +106,10 @@ function processNavbar()
 }
 
 
-function controller($scope, socket, $http) {
 
+function controller($scope, socket, $http,$sce) {
+
+    angularSce=$sce;
 
     function error() {
         showError(config.messages.error.unknownEror);
@@ -132,3 +141,10 @@ function controller($scope, socket, $http) {
     processNavbar();
 
 };
+angular.module('filters-module', [])
+    .filter('trustAsResourceUrl', ['$sce', function ($sce) {
+        return function (val) {
+            console.log("OKA");
+            return $sce.trustAsResourceUrl(val);
+        };
+    }])

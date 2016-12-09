@@ -464,26 +464,28 @@ app.post("/login",function(req,res){
 
  var password= MD5(req.body.password).toString();
 
+    console.log({$or : [ { "username" : req.body.username }, {"email": req.body.username } ],password:password,confirmed:true});
      mongod.find({$or : [ { "username" : req.body.username }, {"email": req.body.username } ],password:password,confirmed:true},'usuarios',function(result,err){
 
-
+         console.log("result");
+         console.log(result);
+         console.log("err");
+         console.log(err);
         if(result)
         {
 
+
             if(!err)
         {
+
             //guardar solo el nombre de usuario y/u otros datos,excepto la contraseña,debido a que se almacena en base64 y puede ser decodificado
             var token = jwt.sign({_id:result[0]._id,username:req.body.username}, mainConfig.secret, {
                 expiresIn : 86400 // expires in 24 hours
             });
 
-            cookies.set('access_token',token,{httpOnly:false,overwrite:true});
+            cookies.set('access_token',token,{httpOnly:false,overwrite:true,path:"/"});
+            console.log("TOKEN: "+token);
 
-            var user = {
-                agent: req.headers['user-agent'], // User Agent we get from headers
-                ip: req.headers['x-forwarded-for'] || req.connection.remoteAddress,// Get IP - allow for proxy
-                username:req.body.username
-            };
 
 
             var index;
@@ -503,7 +505,8 @@ app.post("/login",function(req,res){
 
 
 
-            res.statusCode = 302;
+
+            res.writeHead( 302, { "Location": "/" } );
             res.end();
 
 

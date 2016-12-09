@@ -69,6 +69,10 @@ module.exports=
                      body.profiles[item.id] = item;
 
                      break;
+                 case "json":
+
+                     body.json=item;
+                     break;
              }
 
          }

@@ -1,0 +1,32 @@
+script.
+
+    function showInput(text,callback)
+    {
+        var modal =$("#inputModal");
+        var input =modal.find("input");
+        var btn = modal.find("button");
+        modal.fadeIn('fast');
+        modal.find("h2").html(text);
+
+        btn.on("click",function(){
+            if (callback) {
+
+                callback(input.val());
+            }
+            modal.fadeOut();
+
+         });
+
+
+
+
+    }
+
+
+.w3-modal.w3-center#inputModal
+    .w3-center.w3-modal-content.w3-animate-top.w3-card-8.w3-padding
+        span.w3-closebtn.close-modal(style="position:absolute;right:10px") &times;
+        h2
+        input.w3-input
+        button.w3-btn.w3-black.w3-margin-top !{body.json.buttons.accept}
+

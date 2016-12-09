@@ -143,3 +143,29 @@ html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
   { width: 100%;
 
  }
+
+ .barra-compartir
+ {
+     display: inline-block;
+
+ }
+
+ .altura-ancho
+ {
+     width:45px; height: 45px;
+ }
+ .padding
+ {
+     padding: 10px;
+ }
+
+.barrita
+{
+    display:inline-block;
+transition:width 400ms;
+
+}
+.barrita:hover
+{
+width:50%;
+}

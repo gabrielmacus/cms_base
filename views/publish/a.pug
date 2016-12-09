@@ -182,28 +182,31 @@ mixin addPublishA(text)
  .generic-container
   script.
 
+
+
+
       angular.element(document).ready(function () {
 
-          angularScope.post={};
-          angularScope.post.sections=[];
-          angularScope.post.sections
+          /*
+          angularScope.post={title:"Lorem ipsum Neque porro",
+              subtitle:"Lorem ipsum Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+              "mainImage":{src:"http://static.vix.com/es/sites/default/files/styles/full/public/btg/curiosidades.batanga.com/files/Las%20lunas%20de%20Saturno%20n.jpg"}}
+          ;
+          angularScope.post.sections=[{items:[{type:"paragraph",text:"Lrem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas 'Letraset', las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum."}
+              ,{type:"paragraph",text:"Lrem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas 'Letraset', las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum."}
+              ,{type:"paragraph",text:"Lrem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas 'Letraset', las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum."}
+              ,{type:"image",src:"http://static.vix.com/es/sites/default/files/styles/full/public/btg/curiosidades.batanga.com/files/Las%20lunas%20de%20Saturno%20n.jpg"},
+              {type:"audio",src:"a.mp3",caption:"Audio del suceso"},{type:"video",src:"https://www.youtube.com/embed/4UE0U3V3rmM",caption:"HOLA,este es un video"}
+          ]},
+              {title:"Lrem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto",items:[{type: "paragraph", text: "Lrem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas 'Letraset', las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum."}, {type: "paragraph", text: "Lrem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas 'Letraset', las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum."}, {type: "paragraph", text: "Lrem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas 'Letraset', las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum."}, {type: "image", src: "http://static.vix.com/es/sites/default/files/styles/full/public/btg/curiosidades.batanga.com/files/Las%20lunas%20de%20Saturno%20n.jpg"}, {type: "audio", src: "a.mp3", caption: "Audio del suceso"}, {type: "video", src: "https://www.youtube.com/embed/4UE0U3V3rmM", caption: "HOLA,este es un video"}]}
+
+
+
+          ];*/
+
           var selectedSection;
-          angularScope.addSection=function(){
-
-              angularScope.post.sections.push(angular.copy(angularScope.section));
 
 
-          }
-          angularScope.publishPost=function()
-          {
-
-              uploadData(angularHttp,"/publish",[],angular.copy(angularScope.post),function(data){
-
-                  console.log(data);
-
-
-              },error)
-          }
           angularScope.toggleSection=function(e,idx)
           {
               $(".section").removeClass("active");
@@ -211,28 +214,7 @@ mixin addPublishA(text)
               target.addClass("active");
               selectedSection=idx;
           }
-          angularScope.addParagraph=function()
-          {
-              var section=angularScope.post.sections[selectedSection];
-              if(section)
-              {
-                  if(!section.items)
-                  {
-                      section.items=[];
 
-                  }
-
-
-                  section.items.push(angular.copy(angularScope.paragraph));
-
-
-              }
-              else
-              {
-                  showError("#{config.messages.error.sectionNotSelected}");
-              }
-
-          }
 
           angularScope.selectCategory=function(e)
           {
@@ -249,6 +231,13 @@ mixin addPublishA(text)
 
 
       });
+
+  .w3-row.fixed-bottom.w3-blue.w3-center#toolbar
+      .w3-col.s6.m3.w3-green.w3-padding-xlarge Seccion
+      .w3-col.s6.m3.w3-blue.w3-padding-xlarge Parrafo
+      .w3-col.s6.m3.w3-red.w3-padding-xlarge Slider
+      .w3-col.s6.m3.w3-yellow.w3-padding-xlarge Elemento
+
 
   form.w3-row(data-ng-submit="publishPost()")
     .w3-col.s12.m6
@@ -273,22 +262,59 @@ mixin addPublishA(text)
 
 
     .w3-col.s12
-        .w3-col.s12.toolbar.w3-row-padding
-            .w3-col.s3.w3-padding
-                button(data-ng-click="addSection()",type="button").w3-col.w3-btn.w3-green +
-                input.w3-input(placeholder=text.section+"...",data-ng-model="section.title")
-            .w3-col.s3.w3-padding
-                button(data-ng-click="addParagraph()",type="button").w3-col.w3-btn.w3-green Nuevo párrafo
-                textarea.w3-input(placeholder=text.paragraph+"...",data-ng-model="paragraph.text")
-            .w3-col.s3.w3-padding
-                button.w3-col.w3-btn.w3-green Insertar video
-            .w3-col.s3.w3-padding
-                button.w3-col.w3-btn.w3-green Nuevo párrafo
 
-    .w3-col.s12.paragraphs
-        .w3-col.s12.section(data-ng-repeat="s in post.sections",data-ng-click="toggleSection($event,$index)")
-            h3.w3-tag.w3-blue.w3-show-block {{s.title}}
-            .w3-col.s12.m6.paragraph-wrapper(data-ng-repeat="i in s.items")
-                p.w3-light-grey(data-ng-if="i.text") {{i.text}}
-        .w3-col.s12
-            button.w3-btn.w3-green(type="submit") OK
+
+        .article-container
+          article
+            header
+                a
+                    h3.section.w3-left.w3-tag.w3-blue Espacio exterior
+                h3.date.w3-right.w3-tag.w3-black 10 de marzo de 2016
+                .w3-clear.w3-margin-bottom
+
+                h1.w3-margin-bottom {{post.title}}
+                h2.w3-margin-bottom {{post.subtitle}}
+                figure
+                    img.responsive-img(data-ng-src="{{post.mainImage.src}}")
+                    figcaption.w3-large
+                        b {{post.mainImage.caption}}
+            section(data-ng-repeat="s in post.sections")
+
+                header(data-ng-if="s.title")
+                    h2 {{s.title}}
+
+
+                p(data-ng-repeat="i in s.items",data-ng-if="i.type=='paragraph'") {{i.text}}
+
+
+
+
+
+                figure(data-ng-repeat="i in s.items",data-ng-if="i.type=='image'")
+                    img.responsive-img(data-ng-src="{{i.src}}")
+                    figcaption.w3-large(data-ng-if="i.caption")
+                        b {{i.caption}}
+
+                div.audio(data-ng-repeat="i in s.items",data-ng-if="i.type=='audio'")
+                    audio(style="width:100%",data-ng-src="{{i.src}}",controls)
+                    .caption(data-ng-if="i.caption")
+                        img(style="width:18px;position:relative;top:0px",src="http://www.freeiconspng.com/uploads/volume-icon-32.png")
+                        | &nbsp;
+                        b {{i.caption}}
+                div.video.w3-center(data-ng-repeat="i in s.items",data-ng-if="i.type=='video'")
+                    .line(style="margin-bottom:30px")
+
+                    .container
+
+                        iframe(width="560" ,height="315",data-ng-src="{{i.src | trustUrl}}", frameborder="0", allowfullscreen)
+                    div(data-ng-if="i.caption")
+                            .caption
+                                b {{i.caption}}
+                    .line
+
+
+
+
+
+
+
