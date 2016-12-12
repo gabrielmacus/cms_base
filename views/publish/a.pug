@@ -257,11 +257,12 @@ mixin addPublishA(text)
           }
           angularScope.loadSwiper=function()
           {
+              console.log("GHERE");
               var swiper = new Swiper('.swiper-container', {
                   // Optional parameters
-                  direction: 'horizontal',
-                  speed: 400,
-                  slidesPerView: 1
+                  speed: 500,
+                  slidesPerView: 1,autoHeight:true,
+                  effect:"flip"
               })
           }
 
@@ -453,7 +454,7 @@ mixin addPublishA(text)
 
 
 
-                div(data-ng-repeat="i in post.items",repeat-end="loadSwiper()")
+                div(data-ng-repeat="i in post.items")
 
                  h2(data-ng-if="i.type=='title'") {{i.text}}
 
@@ -462,13 +463,7 @@ mixin addPublishA(text)
 
 
 
-                 .swiper-container(data-ng-if="i.type='multiple'")
-                     .swiper-wrapper
-                        .swiper-slide(data-ng-repeat="element in i.elements ")
-                            figure(data-ng-if="element.type=='image'")
-                                img.responsive-img(data-ng-src="{{element.src}}")
-                                figcaption.w3-large(data-ng-if="element.caption")
-                                    b {{element.caption}}
+
 
 
                  figure(data-ng-if="i.type=='image'")
@@ -492,6 +487,14 @@ mixin addPublishA(text)
                             .caption
                                 b {{i.caption}}
                     .line
+
+                 .swiper-container(data-ng-if="i.type=='multiple'")
+                         .swiper-wrapper
+                             .swiper-slide(data-ng-repeat="element in i.elements",repeat-end="loadSwiper()")
+                                 figure(data-ng-if="element.type=='image'")
+                                     img.responsive-img(data-ng-src="{{element.src}}")
+                                     figcaption.w3-large(data-ng-if="element.caption")
+                                         b {{element.caption}}
           .w3-center.no-post(data-ng-if="!post")
             h1 #{text.noPost.text}
 
