@@ -1,4 +1,14 @@
 var app = angular.module('purpleApp', []);
+app.directive("repeatEnd", function(){
+    return {
+        restrict: "A",
+        link: function (scope, element, attrs) {
+            if (scope.$last) {
+                scope.$eval(attrs.repeatEnd);
+            }
+        }
+    };
+});
 
 app.factory('socket', function ($rootScope) {
     var socket = io.connect('wss://192.168.1.103');

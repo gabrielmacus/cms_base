@@ -9,6 +9,7 @@ block metas
     meta(name="viewport",content ="width=device-width, initial-scale=1.0")
 block styles
     link(rel="stylesheet",href=body.root + "/css/w3.css")
+    link( rel="stylesheet" ,href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.0/css/swiper.min.css")
 block scripts
 
     include header.pug
@@ -28,6 +29,7 @@ block curtain
         include ../../../alerts/modals/nocookie-success.pug
         include ../../../alerts/modals/nocookie-error.pug
         include ../../../alerts/modals/nocookie-info.pug
+        include ../../../alerts/modals/input.pug
 
 block header
     include ../../../navbars/desktop/navbar3.pug

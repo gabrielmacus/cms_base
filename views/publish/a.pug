@@ -82,6 +82,11 @@ mixin addPublishA(text)
          background-color: #{text.categoriesBackground};
 
      }
+     .no-post
+     {
+         background-color: #{text.noPost.color};
+         padding: 30px;
+     }
 
      .category b
      {
@@ -176,6 +181,10 @@ mixin addPublishA(text)
      @media screen and (max-width: 600px){
 
       }
+     #toolbar button
+     {
+         background-color:#{text.toolbarColor}
+     }
 
 
 
@@ -187,6 +196,17 @@ mixin addPublishA(text)
 
       angular.element(document).ready(function () {
 
+          function initPost()
+          {
+              if(!angularScope.post)
+              {
+                  angularScope.post = {};
+              }
+              if(!angularScope.post.items)
+              {
+                  angularScope.post.items = [];
+              }
+          }
           /*
           angularScope.post={title:"Lorem ipsum Neque porro",
               subtitle:"Lorem ipsum Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
@@ -204,20 +224,11 @@ mixin addPublishA(text)
 
           ];*/
 
-          var selectedSection;
-
-
-          angularScope.toggleSection=function(e,idx)
-          {
-              $(".section").removeClass("active");
-              var target  =$(e.currentTarget).closest(".section");
-              target.addClass("active");
-              selectedSection=idx;
-          }
 
 
           angularScope.selectCategory=function(e)
           {
+
               $(".category-wrapper").removeClass("active");
               var target = $(e.currentTarget).closest(".category-wrapper");
 
@@ -229,14 +240,161 @@ mixin addPublishA(text)
 
           }
 
+          angularScope.addTitle=function()
+          {
+
+              showInput("#{text.title}", function (value) {
+
+
+                  if (value) {
+                      initPost();
+                      angularScope.post.items.push({type: "title", text: value});
+
+                  }
+                  angularScope.$apply();
+
+              });
+          }
+          angularScope.loadSwiper=function()
+          {
+              var swiper = new Swiper('.swiper-container', {
+                  // Optional parameters
+                  direction: 'horizontal',
+                  speed: 400,
+                  slidesPerView: 1
+              })
+          }
+
+
+          angularScope.addElement = function () {
+
+              var i=0;
+              showFile("#{text.image}", function (files) {
+
+                  i++;
+
+                  if (files) {
+                      initPost();
+
+                      var _files=[];
+                      readFile(files, 1, function(result,ext){
+
+                          var cant=files.length;
+                          console.log(cant);
+                          i++;
+                          if(cant==1)
+                          {
+
+                              switch (ext) {
+                                  case "jpg":
+                                  case "jpeg":
+                                  case "gif":
+                                  case "png":
+                                  case "bmp":
+
+                                      angularScope.post.items.push({type: "image", src: result});
+
+
+                                      break;
+                                  case "mp3":
+                                      angularScope.post.items.push({type: "audio", src: result});
+                                      break;
+                              }
+
+                              angularScope.$apply();
+                          }
+                          else {
+
+
+
+                              switch (ext) {
+                                  case "jpg":
+                                  case "jpeg":
+                                  case "gif":
+                                  case "png":
+                                  case "bmp":
+                                      _files.push({type: "image", src: result});
+                                      break;
+                                  case "mp3":
+
+                                      break;
+                              }
+
+
+                              console.log(cant+" "+i);
+                          if(cant==i)
+                          {
+
+                              angularScope.post.items.push({type: "multiple", elements: _files});
+
+
+
+                              angularScope.$apply();
+
+
+
+
+                          }
+
+                          }
+
+
+                      });
+                      //
+
+
+
+
+                  }
+
+
+              });
+
+          }
+
+
+
+          angularScope.addParagraph = function () {
+
+              showTextArea("#{text.paragraph}", function (value) {
+
+
+                  if (value) {
+                      initPost();
+                      angularScope.post.items.push({type: "paragraph", text: value});
+
+                  }
+                  angularScope.$apply();
+
+              });
+          }
+          $(document).on("scroll",function(e){
+              var scroll = $(window).scrollTop();
+
+              var toolbar=$("#toolbar");
+
+              var offset=$("#toolbar-wrapper");
+
+
+              if(parseInt(scroll)>=parseInt(offset.offset().top) )
+              {
+                  toolbar.fadeOut(150,function(){
+
+                      toolbar.addClass("fixed-top");
+                      toolbar.fadeIn(150);
+                  });
+              }
+              else
+              {
+                  toolbar.removeClass("fixed-top");
+
+              }
+          });
+
 
       });
 
-  .w3-row.fixed-bottom.w3-blue.w3-center#toolbar
-      .w3-col.s6.m3.w3-green.w3-padding-xlarge Seccion
-      .w3-col.s6.m3.w3-blue.w3-padding-xlarge Parrafo
-      .w3-col.s6.m3.w3-red.w3-padding-xlarge Slider
-      .w3-col.s6.m3.w3-yellow.w3-padding-xlarge Elemento
+
 
 
   form.w3-row(data-ng-submit="publishPost()")
@@ -258,19 +416,33 @@ mixin addPublishA(text)
               b #{category.name}
     .w3-col.s12(style="margin-top:30px")
 
-          h2.w3-center(style="margin-bottom:30px") !{text.startWritingLabel}
+          h2#toolbar-blank.w3-center(style="margin-bottom:30px") !{text.startWritingLabel}
 
 
     .w3-col.s12
 
 
+        .w3-row#toolbar-wrapper
+          .w3-col.w3-center#toolbar
+
+            button.w3-btn.w3-col.s6.m4.w3-padding-xlarge.title-btn(data-ng-click="addTitle()") Titulo
+            button.w3-btn.w3-col.s6.m4.w3-padding-xlarge(data-ng-click="addParagraph()") Parrafo
+            button.w3-btn.w3-col.s12.m4.w3-padding-xlarge.open-submenu(data-submenu="elements",data-ng-click="addElement()") Elemento
+            //.w3-col.s12.m4.w3-right.w3-center.submenu-wrapper
+              ul.submenu.elements
+                  li(data-ng-click="addImage()") #{text.image}
+                  li #{text.video}
+                  li #{text.audio}
+                  li #{text.slider}
+
+
+
+
+
+
         .article-container
-          article
+          article(data-ng-if="post")
             header
-                a
-                    h3.section.w3-left.w3-tag.w3-blue Espacio exterior
-                h3.date.w3-right.w3-tag.w3-black 10 de marzo de 2016
-                .w3-clear.w3-margin-bottom
 
                 h1.w3-margin-bottom {{post.title}}
                 h2.w3-margin-bottom {{post.subtitle}}
@@ -278,30 +450,39 @@ mixin addPublishA(text)
                     img.responsive-img(data-ng-src="{{post.mainImage.src}}")
                     figcaption.w3-large
                         b {{post.mainImage.caption}}
-            section(data-ng-repeat="s in post.sections")
-
-                header(data-ng-if="s.title")
-                    h2 {{s.title}}
-
-
-                p(data-ng-repeat="i in s.items",data-ng-if="i.type=='paragraph'") {{i.text}}
 
 
 
+                div(data-ng-repeat="i in post.items",repeat-end="loadSwiper()")
+
+                 h2(data-ng-if="i.type=='title'") {{i.text}}
 
 
-                figure(data-ng-repeat="i in s.items",data-ng-if="i.type=='image'")
+                 p(data-ng-if="i.type=='paragraph'") {{i.text}}
+
+
+
+                 .swiper-container(data-ng-if="i.type='multiple'")
+                     .swiper-wrapper
+                        .swiper-slide(data-ng-repeat="element in i.elements ")
+                            figure(data-ng-if="element.type=='image'")
+                                img.responsive-img(data-ng-src="{{element.src}}")
+                                figcaption.w3-large(data-ng-if="element.caption")
+                                    b {{element.caption}}
+
+
+                 figure(data-ng-if="i.type=='image'")
                     img.responsive-img(data-ng-src="{{i.src}}")
                     figcaption.w3-large(data-ng-if="i.caption")
                         b {{i.caption}}
 
-                div.audio(data-ng-repeat="i in s.items",data-ng-if="i.type=='audio'")
+                 figure.audio(data-ng-if="i.type=='audio'")
                     audio(style="width:100%",data-ng-src="{{i.src}}",controls)
                     .caption(data-ng-if="i.caption")
                         img(style="width:18px;position:relative;top:0px",src="http://www.freeiconspng.com/uploads/volume-icon-32.png")
                         | &nbsp;
                         b {{i.caption}}
-                div.video.w3-center(data-ng-repeat="i in s.items",data-ng-if="i.type=='video'")
+                 figure.video.w3-center(data-ng-if="i.type=='video'")
                     .line(style="margin-bottom:30px")
 
                     .container
@@ -311,6 +492,10 @@ mixin addPublishA(text)
                             .caption
                                 b {{i.caption}}
                     .line
+          .w3-center.no-post(data-ng-if="!post")
+            h1 #{text.noPost.text}
+
+
 
 
 

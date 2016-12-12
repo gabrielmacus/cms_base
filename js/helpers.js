@@ -2,6 +2,16 @@
  * Created by Gabriel on 24/09/2016.
  */
 
+$(document).on("click",".open-submenu",function(e){
+
+    var target = $(e.target).closest(".open-submenu");
+    var submenu =target.attr("data-submenu");
+
+   var menu=   $(".submenu."+submenu);
+    menu.stop();
+    menu.slideToggle();
+
+});
 
 $(document).on("click",".close-modal",function(e){
 

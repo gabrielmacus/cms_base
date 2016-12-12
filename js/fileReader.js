@@ -66,9 +66,16 @@ function readFile(files,type,callback)
 
             return function (e) {
 
+                var split =file.name.split(".");
+                var ext;
+                if(split.length) {
+                     ext = split[split.length - 1];
+                }
+
+
                 if(callback)
                 {
-                    callback(e.target.result);
+                    callback(e.target.result,ext);
                 }
 
 

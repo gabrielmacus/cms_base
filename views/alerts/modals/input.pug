@@ -1,14 +1,38 @@
 script.
 
+    function showTextArea(text, callback) {
+        var modal = $("#textareaModal");
+        var input = modal.find("textarea");
+        var btn = modal.find("#acceptTextareaBtn");
+        modal.fadeIn('fast');
+        modal.find("h2").html(text);
+
+
+        btn.off("tap");
+        btn.on('tap', function () {
+            if (callback) {
+
+                callback(input.val());
+            }
+            modal.fadeOut();
+
+        });
+    }
+
+
+
+
     function showInput(text,callback)
     {
         var modal =$("#inputModal");
         var input =modal.find("input");
-        var btn = modal.find("button");
+        var btn = modal.find("#acceptBtn");
         modal.fadeIn('fast');
         modal.find("h2").html(text);
 
-        btn.on("click",function(){
+
+        btn.off("tap");
+       btn.on('tap',function(){
             if (callback) {
 
                 callback(input.val());
@@ -16,11 +40,35 @@ script.
             modal.fadeOut();
 
          });
-
-
-
-
     }
+
+
+
+    function showFile(text, callback) {
+        var modal = $("#fileModal");
+        var input =document.querySelector("#fileModalInput");
+        var btn = modal.find("#acceptFileBtn");
+        modal.fadeIn('fast');
+        modal.find("h2").html(text);
+
+
+        btn.off("tap");
+        btn.on('tap', function () {
+            if (callback) {
+
+
+                callback(input.files);
+            }
+            modal.fadeOut();
+
+        });
+    }
+
+
+
+
+
+
 
 
 .w3-modal.w3-center#inputModal
@@ -28,5 +76,21 @@ script.
         span.w3-closebtn.close-modal(style="position:absolute;right:10px") &times;
         h2
         input.w3-input
-        button.w3-btn.w3-black.w3-margin-top !{body.json.buttons.accept}
+        button.w3-btn.w3-black.w3-margin-top#acceptBtn !{body.json.buttons.accept}
+
+.w3-modal.w3-center#textareaModal
+    .w3-center.w3-modal-content.w3-animate-top.w3-card-8.w3-padding
+        span.w3-closebtn.close-modal(style="position:absolute;right:10px") &times;
+        h2
+        textarea.w3-input
+        button.w3-btn.w3-black.w3-margin-top#acceptTextareaBtn !{body.json.buttons.accept}
+
+
+.w3-modal.w3-center#fileModal
+    .w3-center.w3-modal-content.w3-animate-top.w3-card-8.w3-padding
+        span.w3-closebtn.close-modal(style="position:absolute;right:10px") &times;
+        h2
+        input.w3-input(type="file",multiple)#fileModalInput
+        button.w3-btn.w3-black.w3-margin-top#acceptFileBtn !{body.json.buttons.accept}
+
 
