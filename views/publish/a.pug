@@ -255,15 +255,21 @@ mixin addPublishA(text)
 
               });
           }
+
           angularScope.loadSwiper=function()
           {
 
-              console.log("GHERE");
-              var swiper = new Swiper('.swiper-container', {
-                  // Optional parameters
-                  speed: 500,
-                  slidesPerView: 1,autoHeight:true
-              })
+              setTimeout(function () {
+                  var swiper = new Swiper('.swiper-container', {
+                      // Optional parameters
+                      speed: 500,
+                      slidesPerView: 1,
+                      autoHeight: true,
+                      nextButton: '.next-slide',
+                      prevButton: '.prev-slide',
+                  });
+              },0);
+
           }
 
           angularScope.addCaption=function(element){
@@ -333,7 +339,7 @@ mixin addPublishA(text)
 
 
                               console.log(cant+" "+i);
-                          if(cant<i)
+                          if(i>cant)
                           {
 
                               angularScope.post.items.push({type: "multiple", elements: _files});
@@ -408,6 +414,9 @@ mixin addPublishA(text)
 
 
 
+
+
+
   form.w3-row(data-ng-submit="publishPost()")
     .w3-col.s12.m6
       input(placeholder=text.title+"...",data-ng-model="post.title").w3-input.cool-input
@@ -457,7 +466,7 @@ mixin addPublishA(text)
 
                 h1.w3-margin-bottom {{post.title}}
                 h2.w3-margin-bottom {{post.subtitle}}
-                figure
+                figure(data-ng-if="post.mainImage")
                     img.responsive-img(data-ng-src="{{post.mainImage.src}}")
                     figcaption.w3-large
                         b {{post.mainImage.caption}}
@@ -507,9 +516,9 @@ mixin addPublishA(text)
                                      img.responsive-img(data-ng-src="{{element.src}}")
                                      figcaption.w3-large(data-ng-if="element.caption")
                                          b {{element.caption}}
-                         .swiper-button-prev
+                         .next-slide.swiper-button-next
 
-                         .swiper-button-next
+                         .prev-slide.swiper-button-prev
 
           .w3-center.no-post(data-ng-if="!post")
             h1 #{text.noPost.text}

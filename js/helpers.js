@@ -1,7 +1,7 @@
 /**
  * Created by Gabriel on 24/09/2016.
  */
-$(document).on("mouseover","figure",function(e){
+/*$(document).on("mouseover","figure",function(e){
     var target =$(e.target).closest("figure").find("figcaption");
     target.stop();
     target.animate({"opacity":"toggle"},300);
@@ -13,7 +13,7 @@ $(document).on("mouseout", "figure", function (e) {
     target.stop();
     target.animate({"opacity": "toggle"}, 300);
 
-});
+});*/
 $(document).on("click",".open-submenu",function(e){
 
     var target = $(e.target).closest(".open-submenu");
