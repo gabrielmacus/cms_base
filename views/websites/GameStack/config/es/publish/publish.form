@@ -19,5 +19,6 @@
   "image":"Imagen",
   "video":"Video",
   "audio":"Audio",
-  "slider":"Slider"
+  "slider":"Slider",
+  "caption":"Pie de foto"
 }

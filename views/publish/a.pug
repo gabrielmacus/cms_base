@@ -257,15 +257,25 @@ mixin addPublishA(text)
           }
           angularScope.loadSwiper=function()
           {
+
               console.log("GHERE");
               var swiper = new Swiper('.swiper-container', {
                   // Optional parameters
                   speed: 500,
-                  slidesPerView: 1,autoHeight:true,
-                  effect:"flip"
+                  slidesPerView: 1,autoHeight:true
               })
           }
 
+          angularScope.addCaption=function(element){
+
+              showInput("#{text.caption}",function(val){
+
+                  element.caption=val;
+                  angularScope.$apply();
+
+              });
+
+          }
 
           angularScope.addElement = function () {
 
@@ -323,7 +333,7 @@ mixin addPublishA(text)
 
 
                               console.log(cant+" "+i);
-                          if(cant==i)
+                          if(cant<i)
                           {
 
                               angularScope.post.items.push({type: "multiple", elements: _files});
@@ -466,18 +476,20 @@ mixin addPublishA(text)
 
 
 
-                 figure(data-ng-if="i.type=='image'")
+                 figure(data-ng-if="i.type=='image'",data-ng-dblclick="addCaption(i)")
                     img.responsive-img(data-ng-src="{{i.src}}")
+
+
                     figcaption.w3-large(data-ng-if="i.caption")
                         b {{i.caption}}
 
-                 figure.audio(data-ng-if="i.type=='audio'")
+                 figure.audio(data-ng-if="i.type=='audio'",data-ng-dblclick="addCaption(i)")
                     audio(style="width:100%",data-ng-src="{{i.src}}",controls)
                     .caption(data-ng-if="i.caption")
                         img(style="width:18px;position:relative;top:0px",src="http://www.freeiconspng.com/uploads/volume-icon-32.png")
                         | &nbsp;
                         b {{i.caption}}
-                 figure.video.w3-center(data-ng-if="i.type=='video'")
+                 figure.video.w3-center(data-ng-if="i.type=='video'",data-ng-dblclick="addCaption(i)")
                     .line(style="margin-bottom:30px")
 
                     .container
@@ -491,10 +503,14 @@ mixin addPublishA(text)
                  .swiper-container(data-ng-if="i.type=='multiple'")
                          .swiper-wrapper
                              .swiper-slide(data-ng-repeat="element in i.elements",repeat-end="loadSwiper()")
-                                 figure(data-ng-if="element.type=='image'")
+                                 figure(data-ng-if="element.type=='image'",data-ng-dblclick="addCaption(element)")
                                      img.responsive-img(data-ng-src="{{element.src}}")
                                      figcaption.w3-large(data-ng-if="element.caption")
                                          b {{element.caption}}
+                         .swiper-button-prev
+
+                         .swiper-button-next
+
           .w3-center.no-post(data-ng-if="!post")
             h1 #{text.noPost.text}
 

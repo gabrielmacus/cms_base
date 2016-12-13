@@ -1,18 +1,4 @@
 
-script.
-    $(document).on("mouseover",".article-container figure",function(e){
-        var target =$(e.target).closest("figure").find("figcaption");
-        target.stop();
-        target.animate({"opacity":"toggle"},300);
-
-    });
-
-    $(document).on("mouseout", ".article-container figure", function (e) {
-        var target = $(e.target).closest("figure").find("figcaption");
-        target.stop();
-        target.animate({"opacity": "toggle"}, 300);
-
-    });
 .article-container
  article
      header
