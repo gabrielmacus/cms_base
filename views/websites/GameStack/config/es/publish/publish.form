@@ -18,7 +18,10 @@
   "toolbarColor":"#42c472",
   "image":"Imagen",
   "video":"Video",
+  "element":"Elemento",
   "audio":"Audio",
   "slider":"Slider",
-  "caption":"Pie de foto"
+  "caption":"Pie de foto",
+  "submit":"Publicar nota",
+  "submitButtonColor":"#42c472"
 }
