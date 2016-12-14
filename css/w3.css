@@ -769,3 +769,14 @@ z-index: 300;display: none;
     -o-transform: scale(-1);
     transform: scale(-1);
 }
+.cross
+{
+    position: absolute;
+    right: 10px;
+    top:5px;
+    background-image: url("/images/icons/close.png");
+    background-size: 100%;
+    width: 30px;
+    z-index: 100;
+    height: 30px;
+}
