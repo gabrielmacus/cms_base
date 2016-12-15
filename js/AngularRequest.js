@@ -90,3 +90,44 @@ function uploadData(angularHttp, url,files,json,callback,error)
 
 			});
 }
+function uploadJSONFiles(angularHttp, url,filesKey,json,callback,error)
+{
+	var formData = new FormData();
+
+	var files=json[filesKey];
+	console.log(files);
+	$.each(files,function (index,file) {
+
+
+		formData.append(file.name, file);
+	})
+
+	formData.append("json",JSON.stringify(json));
+
+
+
+	angularHttp.post(url, formData, {
+				withCredentials: false,
+				headers: {
+					'Content-Type': undefined
+				},
+				transformRequest: angular.identity
+			})
+			.success(function (data) {
+
+				if(callback)
+				{
+					callback(data);
+				}
+
+
+			})
+			.error(function (data) {
+
+				if(error)
+				{
+					error();
+				}
+
+			});
+}
