@@ -17,7 +17,8 @@ global.mainConfig = JSON.parse(fs.readFileSync("./mainConfig.json"));
 
 global.website=mainConfig.currentWebsite;
 
-
+global.websiteRoot=process.cwd()+"/views/websites/"+website;
+global.relativeWebsiteRoot="/views/websites/"+website;
 /*
 global.configs.push(JSON.parse(fs.readFileSync("./views/websites/"+website+"/config/es/config.json")));
 

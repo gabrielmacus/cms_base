@@ -261,6 +261,7 @@ mixin addPublishA(text,categories)
 
           angularScope.addCaption=function(element){
 
+
               showInput("#{text.caption}",function(val){
 
                   element.caption=val;
@@ -270,8 +271,39 @@ mixin addPublishA(text,categories)
 
           }
 
+          function error()
+          {
+              showError(config.messages.error.unknownEror);
+          }
           angularScope.addImage = function () {
 
+
+              //angularScope.post.items.push({type: "image", src: result, file: files[0]});
+
+              showFile("#{text.image}", function (files) {
+
+                  if(files)
+                  {
+                      uploadFiles(angularHttp, "/publishImages", files, function (data){
+
+                          console.log(data);
+
+
+
+
+
+
+
+                      }, error)
+                      if(files.length>1)
+                      {
+
+                      }
+                  }
+
+
+              });
+              /*
               var i=0;
               showFile("#{text.image}", function (files) {
 
@@ -348,7 +380,7 @@ mixin addPublishA(text,categories)
                   }
 
 
-              });
+              });*/
 
           }
 
