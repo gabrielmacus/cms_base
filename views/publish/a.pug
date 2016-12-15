@@ -353,12 +353,37 @@ mixin addPublishA(text,categories)
           }
 
 
+          var processElements=function(elements){
+
+              $.each(elements,function(index,item){
+
+
+
+                  switch (item.type)
+                  {
+                      case "multiple":
+
+                          $.each(item.elements, function (index, item) {
+
+                              delete item.src;
+                          });
+
+                          break;
+                      case "image":
+                          delete item.src;
+
+                          break;
+
+                  }
+
+
+              });
+
+              return angular.copy(elements);
+
+
+          }
           angularScope.publishPost=function () {
-              console.log(angularScope.post);
-              if(angularScope.post)
-              {
-                 //uploadJSONFiles(angularHttp,"/publish","")
-              }
 
 
           }
