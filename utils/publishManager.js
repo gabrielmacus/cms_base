@@ -12,11 +12,13 @@ var utilities = require('./utilities');
 var componentReader = require("./componentReader");
 var formidable = require('formidable');
 var uploads = require('./uploads');
-var ImageMagick = require('imagemagick');
+
+var path= require('path');
+
+var resize = require('im-resize');
 
 
 
-var easyimg = require('easyimage');
 
 app.post("/publishImages",function(req,res) {
     var ahora=  new Date();
@@ -25,23 +27,31 @@ app.post("/publishImages",function(req,res) {
     
 uploads.upload(relativeWebsiteRoot+"/images/"+ahora.getFullYear()+"/"+(ahora.getMonth()+1)+"/"+ahora.getDate(),res,req,function (urls,json) {
 
+
     urls.forEach(function (url) {
 
-        console.log(url);
+  
+
+        var image = {
+            path: path.join( process.cwd(),url.url)
+        };
+
+        var output = {
+            versions: [{
+                suffix: '-thumb',
+                maxHeight: 150,
+                maxWidth: 150,
+            }]
+        };
+
+        resize(image, output, function(error, versions) {
+            if (error) { console.error(error); }
+            console.log(versions);
+
+        });
 
 
 
-        easyimg.rescrop({
-            src:'146.jpg', dst:'147.jpg',
-            width:500, height:500
-        }).then(
-            function(image) {
-                console.log('Resized and cropped: ' + image.width + ' x ' + image.height);
-            },
-            function (err) {
-                console.log(err);
-            }
-        );
 
     })
     res.send(urls);

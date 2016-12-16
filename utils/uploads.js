@@ -37,6 +37,9 @@ module.exports=
                 var mainDir= dir;
                 // every time a file has been uploaded successfully,
                 // rename it to it's orignal name
+
+
+
                 form.on('file', function(field, file) {
 
 
@@ -44,6 +47,8 @@ module.exports=
 
                     var fileNameSplit=file.name.split(".");
                     var ext =fileNameSplit[fileNameSplit.length-1];
+
+
                     urls.push({url:mainDir+"/"+file.name,name:file.name,size:bytesToKb(file.size),type:ext});
 
 
@@ -53,9 +58,11 @@ module.exports=
 
                     utilities.getFileOcurrencies(form.uploadDir,file.name,function (length) {
 
+
+                        file.name=length+"_"+file.name;
                         if(length>0)
                         {
-                            var dir =path.join(form.uploadDir, length+"_"+file.name);
+                            var dir =path.join(form.uploadDir,file.name);
                         }
                         else
                         {
@@ -96,8 +103,7 @@ module.exports=
                 // once all the files have been uploaded, send a response to the client
                 form.on('end', function() {
                     logger.log({type:"info",data:{text:"file upload",files:urls}});
-
-
+                    
                     if(callback)
                     {
                         callback(urls,json);

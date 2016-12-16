@@ -543,7 +543,7 @@ mixin addPublishA(text,categories)
                      span.cross(data-ng-click="deleteElement(i,post.items)")
 
 
-                 p.w3-animate-zoom.element(data-ng-if="i.type=='paragraph'",style="position:relative") {{i.text}}
+                 p.w3-animate-zoom.element.draggable-element(data-ng-if="i.type=='paragraph'",style="position:relative") {{i.text}}
                      span.cross(data-ng-click="deleteElement(i,post.items)")
 
 

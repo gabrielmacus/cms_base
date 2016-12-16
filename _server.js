@@ -8,8 +8,6 @@
 var fs = require('fs');
 
 
-
-
 global.configs=[];
 
 
@@ -114,6 +112,9 @@ app.get('/', function (req, res) {
     res.send("OK");
 
 });
+
+
+
 
 
 

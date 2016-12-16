@@ -31,15 +31,10 @@ module.exports=
     },
     getFileOcurrencies:function (path,name,callback) {
 
-        var i=0;
-        fs.readdir(path, function(err, files){
 
-            files.filter(function (el) {
-                return el==name;
-            })
-            if(callback){
-                callback(files.length);
-            }
-    });
+
+        return fs.readdirSync(path).filter(function (el) {
+            return el==name;
+        });
     }
 }
