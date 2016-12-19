@@ -10,6 +10,7 @@ module.exports=
     {
 
 
+
         try {
 
             var formidable = require('formidable'),
@@ -17,6 +18,7 @@ module.exports=
                 fs = require('fs');
 
 
+            var originalDir= dir;
             var urls=[];
             // create an incoming form object
             var form = new formidable.IncomingForm();
@@ -25,7 +27,7 @@ module.exports=
             form.multiples = true;
 
             // store all users in the  directory
-            form.uploadDir = path.join(__dirname+"/..", dir);
+            form.uploadDir = path.join(__dirname+"/..",relativeWebsiteRoot+ dir);
 
             utilities.mkDirRecursive(form.uploadDir);
 
@@ -34,12 +36,9 @@ module.exports=
 
                 form.parse(req);
 
-                var mainDir= dir;
+                var mainDir= relativeWebsiteRoot+dir;
                 // every time a file has been uploaded successfully,
                 // rename it to it's orignal name
-
-
-
                 form.on('file', function(field, file) {
 
 
@@ -48,21 +47,22 @@ module.exports=
                     var fileNameSplit=file.name.split(".");
                     var ext =fileNameSplit[fileNameSplit.length-1];
 
+                    var newName= new Date().getTime()+"_"+file.name;
+                    var dir =path.join(form.uploadDir,newName);
+                    fs.rename(file.path, dir);
 
-                    urls.push({url:mainDir+"/"+file.name,name:file.name,size:bytesToKb(file.size),type:ext});
-
-
-
-
-
-
-                    utilities.getFileOcurrencies(form.uploadDir,file.name,function (length) {
+                    urls.push({url:originalDir+"/"+newName,name:newName,size:bytesToKb(file.size),type:ext});
 
 
-                        file.name=length+"_"+file.name;
+
+
+
+
+                   /* utilities.getFileOcurrencies(form.uploadDir,file.name,function (length) {
+
                         if(length>0)
                         {
-                            var dir =path.join(form.uploadDir,file.name);
+                            var dir =path.join(form.uploadDir, length+"_"+file.name);
                         }
                         else
                         {
@@ -75,7 +75,7 @@ module.exports=
 
 
 
-                    });
+                    });*/
 
 
 
@@ -103,7 +103,8 @@ module.exports=
                 // once all the files have been uploaded, send a response to the client
                 form.on('end', function() {
                     logger.log({type:"info",data:{text:"file upload",files:urls}});
-                    
+
+
                     if(callback)
                     {
                         callback(urls,json);

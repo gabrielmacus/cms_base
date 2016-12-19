@@ -140,7 +140,6 @@ module.exports=
                 var collection  = db.collection(colName);
 
 
-                collection.agg
                 collection.aggregate(obj).toArray(function (err, result) {
                     if (err) {
                         logger.log({type:"error",error:err});
@@ -306,64 +305,65 @@ module.exports=
 
     ,
     insert:function (obj,colName,callback)
-{
+    {
 
 
-    setUrl();
+        setUrl();
 
 
-    // Use connect method to connect to the Server
-    MongoClient.connect(mongodUrl, function (err, db) {
+        // Use connect method to connect to the Server
+        MongoClient.connect(mongodUrl, function (err, db) {
 
-        if (err) {
+            if (err) {
 
-            logger.log({type:"error",error:err});
-        } else {
-            //HURRAY!! We are connected. :)
+                logger.log({type:"error",error:err});
+            } else {
+                //HURRAY!! We are connected. :)
 
-            var collection  = db.collection(colName);
-
-
-
-
-
-            if(!obj.length)
-            {
-
-                collection.insertOne(obj, function (err, result) {
-                    if (err) {
-                        logger.log({type:"error",error:err});
-                    } else {
-
-                        if(callback)
-                        {
-                            callback(result,err);
-                            db.close();
-                        }
-
-                        /*
-                        collection.find({}).toArray(function (result,err) {
-                            if (err) {
-                                logger.log({type:"error",error:err});
-                            } else {
-
-                                cacheman.dataToMem(colName,JSON.stringify(result),86400,true);
+                var collection  = db.collection(colName);
 
 
 
-                            }
+
+
+                if(!obj.length)
+                {
+
+                    collection.insertOne(obj, function (err, result) {
+                        if (err) {
+                            logger.log({type:"error",error:err});
+                        } else {
+
                             if(callback)
                             {
-                                console.log(err);
 
-                                    callback(result,err);
-
-
-
+                                callback(result,err);
+                                db.close();
                             }
-                            //Close connection
-                            db.close();
-                        });*/
+
+                            /*
+                             collection.find({}).toArray(function (result,err) {
+                             if (err) {
+                             logger.log({type:"error",error:err});
+                             } else {
+
+                             cacheman.dataToMem(colName,JSON.stringify(result),86400,true);
+
+
+
+                             }
+                             if(callback)
+                             {
+                             console.log(err);
+
+                             callback(result,err);
+
+
+
+                             }
+                             //Close connection
+                             db.close();
+                             });*/
 
 
 
@@ -371,10 +371,10 @@ module.exports=
 
 
 
-                    }
-                });
-            }
-            else {
+                        }
+                    });
+                }
+                else {
 
 
 
@@ -391,29 +391,29 @@ module.exports=
                             }
                             db.close();
                             /*
-                            collection.find({}).toArray(function (err, result) {
-                                if (err) {
-                                    logger.log({type: "error", error: err});
-                                } else {
+                             collection.find({}).toArray(function (err, result) {
+                             if (err) {
+                             logger.log({type: "error", error: err});
+                             } else {
 
-                                    cacheman.dataToMem(colName, JSON.stringify(result), 86400, true);
-
-
-                                }
-
-                                if(callback)
-                                {
-                                    console.log(err);
-
-                                    callback(result,err);
+                             cacheman.dataToMem(colName, JSON.stringify(result), 86400, true);
 
 
+                             }
 
-                                }
-                                //Close connection
-                                db.close();
-                            });
-                            */
+                             if(callback)
+                             {
+                             console.log(err);
+
+                             callback(result,err);
+
+
+
+                             }
+                             //Close connection
+                             db.close();
+                             });
+                             */
 
                         }
                     });
@@ -425,13 +425,13 @@ module.exports=
 
 
 
+                }
+
+
+
             }
-
-
-
-        }
-    });
-},
+        });
+    } ,
     find:function(obj,colName,callback) {
 
 

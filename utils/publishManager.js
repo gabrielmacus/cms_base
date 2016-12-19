@@ -12,10 +12,22 @@ var utilities = require('./utilities');
 var componentReader = require("./componentReader");
 var formidable = require('formidable');
 var uploads = require('./uploads');
-
-var path= require('path');
-
 var resize = require('im-resize');
+var path = require('path');
+
+
+var output = {
+    versions: [{
+        suffix: '-thumb',
+        maxHeight: 150,
+        maxWidth: 150
+    },
+    {
+        suffix: '-sthumb',
+        maxHeight: 75,
+        maxWidth:75
+    }]
+};
 
 
 
@@ -24,60 +36,72 @@ app.post("/publishImages",function(req,res) {
     var ahora=  new Date();
 
 
-    
-uploads.upload(relativeWebsiteRoot+"/images/"+ahora.getFullYear()+"/"+(ahora.getMonth()+1)+"/"+ahora.getDate(),res,req,function (urls,json) {
+
+uploads.upload("/images/"+ahora.getFullYear()+"/"+(ahora.getMonth()+1)+"/"+ahora.getDate(),res,req,function (urls,json) {
+
+
+
+    var cantImages=urls.length;
+    var i=0;
 
 
     urls.forEach(function (url) {
 
-  
 
         var image = {
-            path: path.join( process.cwd(),url.url)
+            path:process.cwd()+path.join(relativeWebsiteRoot,url.url)
         };
 
-        var output = {
-            versions: [{
-                suffix: '-thumb',
-                maxHeight: 150,
-                maxWidth: 150,
-            }]
-        };
+
+        url.type="image";
 
         resize(image, output, function(error, versions) {
-            if (error) { console.error(error); }
-            console.log(versions);
+
+            i++;
+
+            if(versions)
+            {
+                versions.forEach(function(version){
+
+
+
+                });
+                if(i==cantImages)
+                {
+
+                    res.send(urls);
+                }
+
+            }
 
         });
 
 
 
+    });
 
-    })
-    res.send(urls);
+
+
+
+
 });
 });
 
 app.post("/publish",function(req,res){
 
+    console.log(req.body);
 
+    mongod.insert(req.body,"posts",function(result,err){
 
-
-    uploads.upload("/blah",res,req,function(urls,post){
-        console.log(urls);
-        mongod.insert(post,"posts",function(result,err){
-
-            if(result)
-            {
-                res.send(true);
-            }
-            else
-            {
-                res.send(false);
-            }
-        });
-    })
-
+        if(result)
+        {
+            res.send(true);
+        }
+        else
+        {
+            res.send(false);
+        }
+    });
 
 
 });
