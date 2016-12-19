@@ -214,38 +214,16 @@ var Core=class Core
 
 }
 var MD5 = require("crypto-js/md5");
-var User =class User extends Core
-{
 
 
-    constructor(id,username,email,password,connection,callback)
-    {
-
-        super(callback,id,connection);
-
-        this.username=username;
-        this.email=email;
-        this.password=MD5(password).toString();
-
-
-
-    }
-
-
-
-
-}
-
+var connection = new Connection('localhost',27017,'db');
+var core = new Core(function(){},null,connection);
 
 
 var user;
 async.series([
     function(next) {
 
-        var connection =new Connection("localhost",27017,"db");
-        user = new User('5857835fb7cad81df85134c3',null,null,null,connection,function(){
-            next();
-        });
 
          /*user= new User('gabiMcs','gabrielmacus@gmail.com','powersoccer',function(){
 
