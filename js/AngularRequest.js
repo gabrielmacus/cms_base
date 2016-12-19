@@ -2,7 +2,8 @@
 function postData($http,json,url,success,error) {
 	// body...
 
-	$http({method:"POST",url:url,data:$.param(json),headers:{'Content-Type':'application/x-www-form-urlencoded'}})
+	//console.log($.param(json));
+	$http({method:"POST",url:url,data:json,headers:{'Content-Type':'application/json'}})
 	.then(success,error);
 
 }

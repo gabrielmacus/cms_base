@@ -36,7 +36,7 @@ app.post("/avatar",function(req,res){
                 for(var i=0;i<_avatar.length;i++)
                 {
 
-                    if(_avatar[i]=="images"|| pathEncountered)
+                    if(_avatar[i]=="images")
                     {
                         
 
@@ -46,9 +46,6 @@ app.post("/avatar",function(req,res){
 
                 }
 
-
-
-                console.log();
 
                     mongod.update({_id:new ObjectID(decodedToken._id)},{$set :{avatar:avatar}},"usuarios",function (result) {
 

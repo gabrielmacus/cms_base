@@ -1,3 +1,4 @@
+
 /**
  * Created by Gabriel on 06/10/2016.
  */
@@ -6,8 +7,6 @@
  */
 
 var fs = require('fs');
-
-
 
 
 global.configs=[];
@@ -32,7 +31,6 @@ global.app = express();
 global.Cookies= require('cookies');
 
 var http = require('http');
-var publishManager = require('./utils/publishManager')
 var router =require("./utils/urlRouter");
 global.mongod= require('./utils/mongod');
 var pug = require('./utils/pugrendering');
@@ -41,7 +39,6 @@ var formidable = require('formidable');
 global.subdomain = require('./utils/subdomain');
 global.jwt    = require('jsonwebtoken');
 var p2p = require('./utils/p2p');
-var MD5 = require("crypto-js/md5");
 
 //https
 global.https = require('https');
@@ -71,6 +68,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
+var publishManager = require('./utils/publishManager')
 
 var userManager = require("./utils/userManager");
 //http://scottksmith.com/blog/2014/09/04/simple-steps-to-secure-your-express-node-application/

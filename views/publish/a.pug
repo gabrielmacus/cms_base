@@ -286,8 +286,24 @@ mixin addPublishA(text,categories)
                   {
                       uploadFiles(angularHttp, "/publishImages", files, function (data){
 
-                          console.log(data);
+                          initPost();
 
+                          console.log(data);
+                          if(data.length>1)
+                          {
+
+
+                              angularScope.post.items.push({type: "multiple", elements: data});
+
+                          }
+                          else
+                          {
+                              angularScope.post.items.push({type: "image",data:data[0]});
+
+                          }
+
+
+                          console.log(angularScope.post.items);
 
 
 
@@ -303,84 +319,7 @@ mixin addPublishA(text,categories)
 
 
               });
-              /*
-              var i=0;
-              showFile("#{text.image}", function (files) {
 
-                  i++;
-
-                  if (files) {
-                      initPost();
-
-                      var _files=[];
-                      readFile(files, 1, function(result,ext){
-
-                          var cant=files.length;
-                          console.log(cant);
-                          i++;
-                          if(cant==1)
-                          {
-
-                              switch (ext) {
-                                  case "jpg":
-                                  case "jpeg":
-                                  case "gif":
-                                  case "png":
-                                  case "bmp":
-
-                                      angularScope.post.items.push({type: "image", src: result,file:files[0]});
-
-
-                                      break;
-
-                              }
-
-                              angularScope.$apply();
-                          }
-                          else {
-
-
-
-                              switch (ext) {
-                                  case "jpg":
-                                  case "jpeg":
-                                  case "gif":
-                                  case "png":
-                                  case "bmp":
-                                      _files.push({type: "image", src: result,file:files[i-2]});
-                                      break;
-
-                              }
-
-
-                              console.log(cant+" "+i);
-                          if(i>cant)
-                          {
-
-                              angularScope.post.items.push({type: "multiple", elements: _files});
-
-
-
-                              angularScope.$apply();
-
-
-
-
-                          }
-
-                          }
-
-
-                      });
-                      //
-
-
-
-
-                  }
-
-
-              });*/
 
           }
 
@@ -417,6 +356,11 @@ mixin addPublishA(text,categories)
           }
           angularScope.publishPost=function () {
 
+              console.log(angularScope.post);
+              postData(angularHttp,angular.copy(angularScope.post),"/publish",function(data){
+
+                  console.log(data);
+              },error)
 
           }
 
@@ -510,13 +454,13 @@ mixin addPublishA(text,categories)
         .w3-row#toolbar-wrapper
           .w3-col.w3-center#toolbar
 
-            button.w3-btn.w3-col.s6.m3.w3-padding-xlarge.title-btn(data-ng-click="addTitle()") Titulo
-            button.w3-btn.w3-col.s6.m3.w3-padding-xlarge(data-ng-click="addParagraph()") Parrafo
-            button.w3-btn.w3-col.s6.m2.w3-padding-xlarge.open-submenu(data-submenu="elements",data-ng-click="addImage()",style="background-image:url('/images/icons/image.png');background-size:contain;background-repeat:no-repeat;background-position:center")
+            button.w3-btn.w3-col.s6.m3.w3-padding-xlarge.title-btn(data-ng-click="addTitle()",type="button") Titulo
+            button.w3-btn.w3-col.s6.m3.w3-padding-xlarge(data-ng-click="addParagraph()",type="button") Parrafo
+            button.w3-btn.w3-col.s6.m2.w3-padding-xlarge.open-submenu(type="button",data-submenu="elements",data-ng-click="addImage()",style="background-image:url('/images/icons/image.png');background-size:contain;background-repeat:no-repeat;background-position:center")
              |&nbsp;
-            button.w3-btn.w3-col.s6.m2.w3-padding-xlarge.open-submenu(data-submenu="elements",data-ng-click="addVideo()",style="background-image:url('/images/icons/video.png');background-size:contain;background-repeat:no-repeat;background-position:center")
+            button.w3-btn.w3-col.s6.m2.w3-padding-xlarge.open-submenu(type="button",data-submenu="elements",data-ng-click="addVideo()",style="background-image:url('/images/icons/video.png');background-size:contain;background-repeat:no-repeat;background-position:center")
                     | &nbsp;
-            button.w3-btn.w3-col.s12.m2.w3-padding-xlarge.open-submenu(data-submenu="elements",data-ng-click="addVideo()",style="background-image:url('/images/icons/audio.png');background-size:contain;background-repeat:no-repeat;background-position:center")
+            button.w3-btn.w3-col.s12.m2.w3-padding-xlarge.open-submenu(type="button",data-submenu="elements",data-ng-click="addVideo()",style="background-image:url('/images/icons/audio.png');background-size:contain;background-repeat:no-repeat;background-position:center")
                   | &nbsp;
 
 
@@ -552,7 +496,7 @@ mixin addPublishA(text,categories)
 
 
                  figure.element(data-ng-if="i.type=='image'",data-ng-dblclick="addCaption(i)",style="position:relative")
-                    img.responsive-img(data-ng-src="{{i.src}}")
+                    img.responsive-img(data-ng-src="{{i.url}}")
 
 
                     figcaption.w3-large(data-ng-if="i.caption")
@@ -581,7 +525,7 @@ mixin addPublishA(text,categories)
                          .swiper-wrapper
                              .swiper-slide(data-ng-repeat="element in i.elements",repeat-end="loadSwiper()")
                                  figure(data-ng-if="element.type=='image'",data-ng-dblclick="addCaption(element)",style="margin:0")
-                                     img.responsive-img(data-ng-src="{{element.src}}")
+                                     img.responsive-img(data-ng-src="{{element.url}}")
                                      figcaption.w3-large(data-ng-if="element.caption")
                                          b {{element.caption}}
                          .next-slide.swiper-button-next
