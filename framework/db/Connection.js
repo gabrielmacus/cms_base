@@ -110,6 +110,7 @@ module.exports = class Connection
                     {
                         res=res[0];
                     }
+
                     callback(res);
 
 
