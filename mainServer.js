@@ -2,261 +2,49 @@
 * Created by Gabriel Macus on 18/12/2016.
 */
 var async = require('async');
-var ObjectID = require('mongodb').ObjectID;
-var Connection =class Connection
-{
+var fs = require('fs');
+var express = require('express');
+var Connection = require('./framework/db/Connection');
+var Core = require('./framework/middleware/Core');
+var User  = require('./framework/middleware/User')
+var connection = new Connection('localhost','db',27017);
 
+var https = require('https');
+var cfg =  {
 
+    // providing server with  SSL key/cert
+    key: fs.readFileSync("./certificates/private.key"),
+    cert: fs.readFileSync("./certificates/certificate.crt")
 
+};
 
-    constructor(address,port,db,user,pass)
-    {
-        this.address=address;
-        this.port= port;
-        this.db =db;
-        this.user =user;
-        this.pass =pass;
+global.ObjectID = require('mongodb').ObjectID;
+var app= express();
+var bodyParser = require('body-parser');
 
-        this.mongodb= require("mongodb");
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
 
-        this.MongoClient=this.mongodb.MongoClient;
+// parse application/json
+app.use(bodyParser.json());
 
 
-    }
-    getUrl()
-    {
 
-        if(this.db && this.pass)
-        {
+var core = new Core(app,'secret');
+var user = new User(app,connection,'secret');
+var server=https.createServer(cfg,app).listen(443);
+var Config = require('./framework/classes/Config');
 
-            return 'mongodb://'+this.user+':'+this.pass+'@'+this.address+':'+this.port+'/'+this.db;
-        }
-        else
-        {
-            return 'mongodb://'+this.address+':'+this.port+'/'+this.db;
-        }
+var HTML = require('./framework/classes/HTML');
 
-    }
-    connect(callback)
-    {
+global.config = new Config();
 
-        this.MongoClient.connect(this.getUrl(), function (err, db) {
+app.get('/',function(req,res){
 
-            if (err) {
+    var html = new HTML("default","index",{nombre:"Roberto"});
 
 
+    res.send(html);
 
-                throw err;
-            } else {
-                //HURRAY!! We are connected. :)
 
-                if(callback)
-                {
-                    callback(db);
-                }
-
-
-
-
-            }});
-
-    }
-     process(err, result,callback,db)
-    {
-        if (err) {
-            throw  err;
-        } else {
-
-            if(callback)
-            {
-                callback(result);
-
-            }
-            db.close();
-
-
-        }
-    }
-    insert (obj,col,callback)
-    {
-
-        var self=this;
-        this.connect(function (db) {
-
-
-            var collection = db.collection(col);
-
-            if (!obj.length) {
-
-
-                collection.insertOne(obj,function (err, result) {
-
-
-                    self.process(err, result, callback, db);
-                });
-            }
-            else {
-                collection.insertMany(obj,function (err, result) {
-                    self.process(err, result, callback, db);
-                });
-
-
-            }
-        });
-
-
-    }
-    find(obj,col,callback)
-    {
-
-
-        var self=this;
-        this.connect(function (db) {
-
-
-            var collection = db.collection(col);
-
-            collection.find(obj).toArray(function (err, result) {
-
-                self.process(err, result, callback, db);
-            });
-
-
-
-
-
-
-        });
-
-    }
-
-
-}
-
-
-
-var Core=class Core
-{
-
-
-
-    constructor(callback,id,connection) {
-        this.col =  this.constructor.name.toLowerCase();
-        this.connection=connection;
-        var self =this;
-
-        if(!id)
-        {
-            this.connection.insert(this,this.col,function(res,err){
-
-                self._id=  new ObjectID(res.ops[0]._id);
-
-                if(err)
-                {
-
-                    throw err;
-                }
-
-                if(callback)
-                {
-                    callback();
-                }
-
-            })
-        }
-        else
-        {
-
-
-            this.get(id,callback);
-        }
-
-    }
-
-    get(id,callback)
-    {
-
-        var result;
-        async.series([
-
-            function(next)
-            {
-                this.connection.find({_id:new ObjectID(id.toString())},this.col,
-                    function (res) {
-
-
-                        result=res;
-
-                    }
-
-                )
-            },
-            function(next)
-            {
-
-
-//                this=result;
-
-                if(callback)
-                {
-                    callback();
-                }
-
-                next();
-
-            }
-
-        ]);
-
-    }
-
-
-
-}
-var MD5 = require("crypto-js/md5");
-
-
-var connection = new Connection('localhost',27017,'db');
-var core = new Core(function(){},null,connection);
-
-
-var user;
-async.series([
-    function(next) {
-
-
-         /*user= new User('gabiMcs','gabrielmacus@gmail.com','powersoccer',function(){
-
-             next();
-
-         });*/
-    },function(next) {
-
-
-        console.log(user);
-
-
-
-
-        next();
-    }
-], function (err, result) {
-
-
-
-
-
-
-
-
-});
-/*async.waterfall([
-    function(callback) {
-        var user= new User('gabiMcs','gabrielmacus@gmail.com','powersoccer');
-
-        callback(user)
-    },
-    function(user) {
-        console.log(user);
-    }
-]);*/
+})

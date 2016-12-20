@@ -1,202 +1,184 @@
+/**
+ * Created by Luis Garcia on 19/12/2016.
+ */
 
-"use strict";
-module.exports=class Connection
+var mongodb = require("mongodb");
+
+var  MongoClient=mongodb.MongoClient;
+
+
+module.exports = class Connection
 {
-
-
-
-
-    constructor(address,port,db,user,pass)
+    constructor(url,db,port,user,pass)
     {
-        this.address=address;
-        this.port= port;
-        this.db =db;
-        this.user =user;
-        this.pass =pass;
-
-        this.mongodb= require("mongodb");
-
-        this.MongoClient=this.mongodb.MongoClient;
-
-
-    }
-    getUrl()
-    {
-
-        if(this.db && this.pass)
+        if(!user || !pass)
         {
+            this.connectionUrl='mongodb://'+url+':'+port+'/'+db;
 
-            return 'mongodb://'+this.user+':'+this.pass+'@'+this.address+':'+this.port+'/'+this.db;
         }
-        else
-        {
-            return 'mongodb://'+this.address+':'+this.port+'/'+this.db;
+        else {
+
+            this.connectionUrl='mongodb://'+user+':'+pass+'@'+url+':'+port+'/'+db;
         }
 
     }
-    connect(callback)
+
+    connect(col,callback)
     {
-
-        this.MongoClient.connect(this.getUrl(), function (err, db) {
-
-            if (err) {
+        MongoClient.connect(this.connectionUrl,function(err,db){
 
 
-
+            if(err)
+            {
                 throw err;
-            } else {
-                //HURRAY!! We are connected. :)
+            }
+            else
+            {
+                var collection  = db.collection(col);
+
 
                 if(callback)
                 {
-                    callback(db);
+                    callback(collection);
                 }
-
-
-
-
-            }});
-
+            }
+        })
     }
-    process(err, result,callback,db)
-    {
-        if (err) {
-            throw  err;
-        } else {
 
-            if(callback)
+    create(obj,collection,callback){
+        this.connect(
+            collection,
+            function(collection)
             {
-                callback(result);
+
+               if(!obj.length)
+               {
+                   collection.insertOne(obj,function(err,res){
+
+                       if(err)
+                       {
+                           throw err;
+                       }
+
+                       callback(res.ops[0]);
+
+
+                   });
+               }
+                else
+               {
+
+                   collection.insertMany(obj,function(err,res){
+
+                       if(err)
+                       {
+                           throw err;
+                       }
+
+                       callback(res.ops);
+
+
+
+                   });
+
+               }
+
+
 
             }
-            db.close();
+        );
 
-
+    }
+    read(obj,collection,callback){
+        if(obj._id)
+        {
+            obj._id= new ObjectID(obj._id.toString());
         }
-    }
-    insert (obj,col,callback)
-    {
+        this.connect(
+            collection,
+            function(collection)
+            {
 
-        var self=this;
-        this.connect(function (db) {
+                collection.find(obj).toArray(function(err,res){
+
+                    if(err)
+                    {
+                        throw err;
+                    }
+
+                    if(res.length==1)
+                    {
+                        res=res[0];
+                    }
+
+                    callback(res);
 
 
-            var collection = db.collection(col);
-
-
-            if (!obj.length) {
-
-
-                collection.insertOne(obj,function (err, result) {
-
-
-
-                    self.process(err, result, callback, db);
-                });
-            }
-            else {
-                collection.insertMany(obj,function (err, result) {
-                    self.process(err, result, callback, db);
                 });
 
 
             }
-        });
-
+        );
 
     }
-    find(obj,col,callback)
-    {
+    update(obj,newObj,collection,options,callback){
+        if (obj._id) {
+            obj._id = new ObjectID(obj._id.toString());
+        }
+        this.connect(
+            collection,
+            function (collection) {
+
+                collection.updateMany(obj,newObj,options,function(err,res){
 
 
-        var self=this;
-        this.connect(function (db) {
+                    if(err)
+                    {
+                        throw err;
+                    }
+
+                    if(res.length==1)
+                    {
+                        res=res[0];
+                    }
+                    callback(res);
+
+                });
+            });
+    }
+    delete(obj,collection,callback){
+        if (obj._id) {
+            obj._id = new ObjectID(obj._id.toString());
+        }
+        this.connect(
+            collection,
+            function (collection) {
 
 
-            var collection = db.collection(col);
+                collection.deleteMany(obj,function(err,res){
 
-            collection.find(obj).toArray(function (err, result) {
+                    if(err)
+                    {
+                        throw err;
+                    }
 
-                self.process(err, result, callback, db);
+                    if(res.length==1)
+                    {
+                        res=res[0];
+                    }
+                    callback(res);
+
+                });
+
+
+
+
+
+
+
             });
 
-
-
-
-
-
-        });
-
     }
-    update(obj,newObj,col,config,callback)
-    {
-
-        var self=this;
-        this.connect(function (db) {
-
-
-            var collection = db.collection(col);
-
-            if (!obj.length) {
-
-                if(obj._id)
-                {
-                    obj._id = new ObjectID(obj._id.toString());
-                }
-
-
-                
-                collection.updateOne(obj,newObj,config,function (err, result) {
-
-
-                    
- 
-
-                    self.process(err, result, callback, db);
-                });
-
-            }
-            else {
-
-
-                collection.updateMany(obj,newObj,config,function (err, result) {
-
-
-                    self.process(err, result, callback, db);
-                });
-
-
-            }
-        });
-
-
-    }
-    remove(obj,col,callback)
-    {
-
-        var self=this;
-        this.connect(function (db) {
-
-            var collection = db.collection(col);
-
-            if(obj._id)
-            {
-                obj._id=new ObjectID(obj._id);
-            }
-
-                collection.deleteMany(obj,function (err,result) {
-                    self.process(err, result, callback, db);
-                });
-
-        });
-
-
-
-        }
-    
-    
-    
-    
 
 
 }

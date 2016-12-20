@@ -1,0 +1,34 @@
+
+{
+
+  "language":"es",
+  "messages":{
+   "error":{"userConfirmation":"Error al activar el usuario. Verific&aacute que el usuario exista, no este activo y no haya caducado",
+   "userLogin":"Ingreso incorrecto. Verific&aacute que tu usuario este activo y que hayas ingresado correctamente los datos","unknownEror":"Error desconocido. Reintent&aacute mas tarde",
+     "updateUserError":"Error updating user. Check if the fields were filled properly"
+   },
+    "success":{
+      "userConfirmation":"Usuario activado correctamente","userRegister":"Solo te queda un paso. Ingresá a tu email y verificá la cuenta"
+
+    }
+
+    },
+  "db":{
+    "name":"db",
+    "address":"localhost",
+    "port":27017
+  }
+  ,
+  "emailAddress":"gabrielmacus@gmail.com",
+  "emailConfig": {
+    "host": "in-v3.mailjet.com",
+    "port": 465,
+    "secure": true,
+   "auth": {
+      "user": "ca3cddd0fa18cbaaca7d3a963dfa5dd8",
+      "pass": "20775d6159271e334c1d3aabc699e856"
+    }
+  }
+
+
+}

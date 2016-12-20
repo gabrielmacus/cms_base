@@ -1,0 +1,11 @@
+
+
+{
+  "items":[
+    {"m":6,"s":12,"nombre":"usuario.username","label":"Usuario o Email","dataName":"username","required":true},
+    {"m":6,"s":12,"nombre":"usuario.password","label":"Contraseña","dataName":"password","required":true,"type":"password"}
+  ],
+  "button":{"label":"Aceptar","color":"#212121"},
+  "action":"registerUser",
+  "id":"loginForm"
+}

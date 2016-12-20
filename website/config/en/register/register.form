@@ -1,0 +1,23 @@
+
+
+{
+  "items":[
+    {"l":4,"m":12,"s":12,"nombre":"usuario.username","label":"Nombre de usuario","dataName":"username","required":true},
+    {"l":4,"m":6,"s":12 ,"nombre":"usuario.email","label":"Email","dataName":"email","required":true},
+    {"l":4,"m":6,"s":12,"nombre":"usuario.repeatEmail","label":"Confirmar email","dataName":"email","required":true}
+    ,
+        {"l":6,"m":6,"s":12,"nombre":"usuario.name","label":"Nombre","dataName":"name","required":true},
+        {"l":6,"m":6,"s":12,"nombre":"usuario.surname","label":"Apellido","dataName":"surname","required":true}
+,
+{"l":12,"m":12,"s":12,"nombre":"usuario.sex","label":"Sexo","dataName":"gender","required":true,"options":[
+{"label":"Masculino","value":"m"},{"label":"Femenino","value":"f"}
+
+]}
+,
+    {"l":6,"m":6,"s":12,"nombre":"usuario.password","label":"Contraseña","dataName":"password","required":true},
+    {"l":6,"m":6,"s":12,"nombre":"usuario.repeatPassword","label":"Confirmar contraseña","dataName":"password","required":true}
+  ],
+  "button":{"label":"Aceptar","color":"#212121"},
+  "action":"registerUser",
+  "id":"registerForm"
+}
