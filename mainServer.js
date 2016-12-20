@@ -1,6 +1,8 @@
 /**
 * Created by Gabriel Macus on 18/12/2016.
 */
+'use strict';
+
 var async = require('async');
 var fs = require('fs');
 var express = require('express');
@@ -33,18 +35,19 @@ app.use(bodyParser.json());
 var core = new Core(app,'secret');
 var user = new User(app,connection,'secret');
 var server=https.createServer(cfg,app).listen(443);
-var Config = require('./framework/classes/Config');
+
 
 var HTML = require('./framework/classes/HTML');
 
-global.config = new Config();
 
 app.get('/',function(req,res){
 
-    var html = new HTML("default","index",{nombre:"Roberto"});
 
 
-    res.send(html);
+    var html = new HTML(language,"index",{nombre:"Roberto"},res);
+
+
+    res.send(html.code);
 
 
 })

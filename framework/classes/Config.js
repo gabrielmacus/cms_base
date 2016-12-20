@@ -1,6 +1,10 @@
 /**
  * Created by Luis Garcia on 20/12/2016.
  */
+
+'use strict';
+
+
 var fs = require('fs');
 
 module.exports=class Config

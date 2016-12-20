@@ -1,6 +1,8 @@
 /**
  * Created by Luis Garcia on 19/12/2016.
  */
+'use strict';
+
 
 var mongodb = require("mongodb");
 
@@ -136,7 +138,7 @@ module.exports = class Connection
                     {
                         throw err;
                     }
-
+        
                     if(res.length==1)
                     {
                         res=res[0];
