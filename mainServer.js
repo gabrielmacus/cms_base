@@ -36,18 +36,19 @@ var core = new Core(app,'secret');
 var user = new User(app,connection,'secret');
 var server=https.createServer(cfg,app).listen(443);
 
+app.get('/:path',function(req,res){
 
-var HTML = require('./framework/classes/HTML');
+    var path = req.params;
+    console.log(path);
+    res.end();
+   /* console.log(path);
+    if(!path)
+    {
+        path='index'
+    }
 
-
-app.get('/',function(req,res){
-
-
-
-    var html = new HTML(language,"index",{nombre:"Roberto"},res);
-
+    var html = new HTML(language,path);
 
     res.send(html.code);
-
-
+*/
 })

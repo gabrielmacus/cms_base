@@ -1,0 +1,25 @@
+extends ../../../framework/views/layouts/A.pug
+
+block styles
+    include ../styles.pug
+
+block scripts
+    include ../declare.pug
+    include ../scripts.pug
+    script.
+        var app = angular.module('app', []);
+
+        app.controller('ctrl', function ($scope) {
+
+
+        });
+block header
+    include ../../../framework/views/navbar/A.pug
+
+    +addNavbarA(body.mainNavbar,2)
+block content
+    div(data-ng-app="app",data-ng-controller="ctrl")
+        include ../../../framework/views/forms/register/A.pug
+        +addRegisterFormA(body.registerForm)
+
+

@@ -1,14 +1,25 @@
-form(action="/register",method="post")
-    input(name="username")
-    input(name="password")
-    button(type="submit") Aceptar
-form(action="/login",method="post")
-    input(name="username")
-    input(name="password")
-    button(type="submit") Aceptar
+extends ../../../framework/views/layouts/A.pug
 
-form(action="/edit-user",method="post")
-    input(name="username")
-    input(name="name")
-    input(name="surname")
-    button(type="submit") Aceptar
+block styles
+    include ../styles.pug
+
+block scripts
+     include ../declare.pug
+     include ../scripts.pug
+
+block header
+    include ../../../framework/views/navbar/A.pug
+
+    +addNavbarA(body.mainNavbar,0)
+block content
+     div(data-ng-app="app",data-ng-controller="ctrl")
+
+
+
+
+
+
+
+
+
+

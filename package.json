@@ -14,6 +14,7 @@
     "json-query": "^2.2.0",
     "jsonwebtoken": "^7.2.0",
     "memjs": "^0.10.0",
+    "merge-json": "0.1.0-b.3",
     "mongodb": "^2.2.12",
     "nodemailer": "^2.6.4",
     "pug": "^2.0.0-beta6",

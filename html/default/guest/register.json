@@ -1,0 +1,14 @@
+{
+
+"registerForm":
+{
+  "name":"Nombre...",
+  "surname":"Apellido",
+  "email":"Email...",
+  "repeatEmail":"Repetir email...",
+  "password":"Contraseña...",
+  "repeatPassword":"Repetir contraseña",
+  "submit":"Registrarse"
+}
+
+}

@@ -7,7 +7,7 @@ var pug =  require('pug');
 var fs = require('fs');
 
 
-
+var mergeJSON = require("merge-json") ;
 
 module.exports=class HTML
 {
@@ -27,6 +27,21 @@ module.exports=class HTML
             folder="guest";
 
         }
+
+        var text = JSON.parse(fs.readFileSync('html/'+language+'/'+folder+'/'+page+".json").toString());
+
+
+        var global = JSON.parse(fs.readFileSync('html/'+language+'/global.json').toString());
+
+
+text =mergeJSON.merge(text,global);
+
+
+
+
+
+        data.body=text;
+
 
         var html=pug.renderFile('html/'+language+'/'+folder+'/'+page+".pug",data);
 

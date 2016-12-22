@@ -54,7 +54,8 @@ module.exports=function(app,connection,secret)
 
                 cookies.set('access_token',token,{ httpOnly: false,path:'/'} );
 
-                res.send(true);
+                goHome(res);
+
             }
 
 
@@ -63,13 +64,19 @@ module.exports=function(app,connection,secret)
 
     }
 
+    function goHome(res)
+    {
+        res.setHeader('location','/');
+        res.statusCode=302;
+        res.end();
+    }
     function logout(req,res)
     {
         var cookies= new Cookies(req,res);
 
         cookies.set("access_token",null);
 
-        res.send(true);
+        goHome(res);
     }
 
     function edit(req,res) {
@@ -95,6 +102,18 @@ module.exports=function(app,connection,secret)
 
 
     }
+    function getUserData(req,res)
+    {
+        var token = req.body.token;
+        jwt.verify(token,'secret',function(err,result)
+        {
+            if(err)
+            {
+                throw err;
+            }
+        });
+
+    }
     app.post('/register',register);
 
     app.post('/login',login);
@@ -102,4 +121,5 @@ module.exports=function(app,connection,secret)
     app.get('/logout',logout);
     app.post('/edit-user',edit)
 
+    app.post("/user-data",getUserData);
 }

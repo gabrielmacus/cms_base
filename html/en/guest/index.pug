@@ -1,14 +1,20 @@
-form(action="/register",method="post")
-    input(name="username")
-    input(name="password")
-    button(type="submit") Submit
-form(action="/login",method="post")
-    input(name="username")
-    input(name="password")
-    button(type="submit") Submit
 
-form(action="/edit-user",method="post")
+include ../../../framework/views/navbar/A.pug
+
++addNavbarA(body.navbars.mainNavbar)
+
+
+//form(action="/register",method="post")
+    input(name="username")
+    input(name="password")
+    button(type="submit") Aceptar
+//form(action="/login",method="post")
+    input(name="username")
+    input(name="password")
+    button(type="submit") Aceptar
+
+//form(action="/edit-user",method="post")
     input(name="username")
     input(name="name")
     input(name="surname")
-    button(type="submit") Submit
+    button(type="submit") Aceptar

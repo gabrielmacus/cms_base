@@ -1,0 +1,21 @@
+{
+  "mainNavbar": {
+    "id": "mainNavbar",
+
+    "logo":"https://scontent-eze1-1.xx.fbcdn.net/v/t35.0-12/15631292_1312774355439528_1407009462_o.jpg?oh=c290fbcffb9639a55b98459c659c40ec&oe=585D1292",
+    "items": [
+      {
+        "name": "Inicio","href":"/"
+      },
+      {
+        "name": "Ingresar","href":"/login","type":"guest"
+      },
+      {
+        "name": "Registrarse","href":"/register","type":"guest"
+      },
+      {
+        "name":"Salir","href":"/logout","type":"user"
+      }
+    ]
+  }
+}

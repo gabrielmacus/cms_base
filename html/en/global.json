@@ -1,0 +1,18 @@
+{
+  "navbars": {
+    "mainNavbar": {
+      "id": "mainNavbar",
+      "items": [
+        {
+          "name": "Item One"
+        },
+        {
+          "name": "Item Two"
+        },
+        {
+          "name": "Item Three"
+        }
+      ]
+    }
+  }
+}

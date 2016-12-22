@@ -1,0 +1,23 @@
+
+
+mixin addNavbarA(navbar,selected)
+
+ .main-navbar
+   figure
+        img(src=navbar.logo)
+   h1 #{navbar.brand}
+   navbar(id=navbar.id)
+
+    each item,index in navbar.items
+
+     if selected==index
+      a(href=item.href,data-type=item.type).active #{item.name}
+     else
+      a(href=item.href,data-type=item.type) #{item.name}
+
+
+
+
+
+
+
