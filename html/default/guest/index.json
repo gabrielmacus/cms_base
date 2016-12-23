@@ -1,4 +1,18 @@
 {
+  "sliderA":[
+    {"background":"http://alldonecompany.com/wp-content/uploads/2015/02/commercial-air-condition.jpg",
+      "text":"Instalación de equipos hogareños y profesionales"},
+    {"background":"http://www.jkmechanical.com/wp-content/uploads/2014/09/bigstock-Hand-of-woman-includes-air-con-12558755.jpg",
+    "text":"Asesoramiento y configuración sin cargo"},
+    {
+      "background":"http://2.bp.blogspot.com/_fu4W6mjXUXU/S6ytKI7P0QI/AAAAAAAAAE8/KMz5O4ZWHPk/s1600/Scorching+sun.jpg",
+      "text":"Protegete del sol y del verano, elegi seguridad y confianza"
+    }
+  ],
+  "tableA":[
+    {"title":"Lorem ipsum generated text"},
+    {"title":"Lorem ipsum generated text"},
+    {"title":"Lorem ipsum generated text"}
 
-
+  ]
 }

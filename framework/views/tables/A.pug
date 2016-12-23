@@ -1,0 +1,13 @@
+mixin addTableA(elements)
+
+    .table-a-container
+       each element in elements
+        .table-a
+
+          article
+           header
+             h2 #{element.title}
+           if element.image
+            figure
+             img(src=element.image)
+           p #{element.text}

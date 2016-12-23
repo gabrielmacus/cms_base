@@ -45,7 +45,7 @@ a
     -o-transition: all 250ms ease-in;
     transition: all 250ms ease-in;
     color:white;
-    padding: 18px;
+    padding: 23px;
     float: left;
     font-size: large;
 }
@@ -56,7 +56,7 @@ a
     float: left;
 }
 .main-navbar navbar
-{ background-color:#0074D9 ;
+{ background-color:#446CB3 ;
     width: 90%;
     float: left;
 }
@@ -64,7 +64,12 @@ a
 {
     width: 100%;
 }
-.main-navbar navbar a:hover,.main-navbar navbar a.active
+.main-navbar navbar a:hover
+{
+    color:#446CB3 ;
+    background-color: white;
+}
+.main-navbar navbar a.active
 {
     background-color: #F5AB35;
     transform: scale(1.1);
@@ -175,4 +180,115 @@ a
      -o-transform: scale(1);
      transform: scale(1);
 
+ }
+
+ .slider-a-container
+ {
+    float: left;
+     width: 90%;
+     margin-top: 30px;
+     position: relative;
+ }
+ .slider-a
+ {
+     background-position: center;
+     background-size: cover;
+     background-repeat: no-repeat;
+     height: 400px;
+
+ }
+
+ .slider-text
+ {
+
+     right: 0px;
+
+
+
+     font-weight: 100;
+     font-size: 25px;
+     position: absolute;
+     top:30px;
+
+     background-color: rgba(0,0,0,0.6);
+     color: white;
+     padding: 25px;
+     -webkit-transition: all 500ms;
+     -moz-transition: all 500ms;
+     -ms-transition:all 500ms;
+     -o-transition: all 500ms;
+     transition:all 500ms;
+ }
+ .slider-text:hover
+ {
+     filter: invert(100%);
+     -ms-filter:invert(100%);
+
+
+ }
+
+
+
+
+
+
+
+
+
+
+ .table-a
+ {
+     float: right;
+     width: 90%;
+     margin-top:15px;
+     margin-bottom: 15px;
+
+     background-color: #f0f0f0;
+     padding: 45px;
+ }
+
+ /*
+ .table-a-container
+ {
+     float: left;
+     padding-left: 20%;
+     padding-right: 20%;
+     padding-top: 30px;
+
+ }
+ .table-a
+ {
+     float: left;
+     width: 50%;
+
+     padding: 10px;
+     text-align: center;
+ }
+
+.table-a figure
+{
+    text-align: center;
+}
+.table-a img
+{
+    width: 85px;
+    height: 85px;
+}
+.table-a article
+{
+    float: left;
+    background-color: #f0f0f0;
+    padding: 20px;
+
+}*/
+
+
+
+
+
+
+
+
+.table-a p
+ {
  }
