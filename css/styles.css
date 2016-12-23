@@ -194,7 +194,7 @@ a
      background-position: center;
      background-size: cover;
      background-repeat: no-repeat;
-     height: 400px;
+     height: 450px;
 
  }
 
@@ -238,15 +238,43 @@ a
 
  .table-a
  {
-     float: right;
-     width: 90%;
+
+     float: left;
+     width: 100%;
      margin-top:15px;
      margin-bottom: 15px;
 
      background-color: #f0f0f0;
      padding: 45px;
- }
+     line-height: 40px;
 
+
+ }
+ .table-a h2
+ {
+     font-weight: 500;
+
+ }
+ .table-a-container
+ { float: right;
+     width: 90%;
+
+ }
+.table-a figure
+{
+
+    float: left;
+    width: 10%;
+}
+
+.table-a header
+{    margin-left: 30px;
+    float: left;width: 80%;
+}
+.table-a figure img
+{
+    width: 100%;
+}
  /*
  .table-a-container
  {

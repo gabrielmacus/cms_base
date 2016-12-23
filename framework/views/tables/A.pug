@@ -5,9 +5,10 @@ mixin addTableA(elements)
         .table-a
 
           article
+           if element.icon
+            figure
+                img(src=element.icon)
            header
              h2 #{element.title}
-           if element.image
-            figure
-             img(src=element.image)
+
            p #{element.text}

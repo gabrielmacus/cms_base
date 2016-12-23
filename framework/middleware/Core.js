@@ -84,11 +84,18 @@ module.exports=class Core
         });
         this.server.get('/img/:file',function(req,res)
         {
-            var param = req.params.file
+            var param = req.params.file;
+            console.log(param);
             res.sendFile(process.cwd()+'/img/'+param);
 
         });
+        this.server.get('/img/icons/:file',function(req,res)
+        {
+            var param = req.params.file;
+            console.log(param);
+            res.sendFile(process.cwd()+'/img/icons/'+param);
 
+        });
 
         this.server.get('/js/:file',function(req,res)
         {

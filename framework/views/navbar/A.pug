@@ -11,9 +11,11 @@ mixin addNavbarA(navbar,selected)
     each item,index in navbar.items
 
      if selected==index
-      a(href=item.href,data-type=item.type).active #{item.name}
+      a(href=item.href,data-type=item.type).active
+       span #{item.name}
      else
-      a(href=item.href,data-type=item.type) #{item.name}
+      a(href=item.href,data-type=item.type)
+         span #{item.name}
 
 
 

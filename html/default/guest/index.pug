@@ -13,12 +13,12 @@ block header
 
     +addNavbarA(body.mainNavbar,0)
 block content
-     div(data-ng-app="app",data-ng-controller="ctrl")
+    div(data-ng-app="app",data-ng-controller="ctrl")
+        include ../../../framework/views/sliders/A.pug
+        +addSliderA(body.sliderA)
 
-         include ../../../framework/views/sliders/A.pug
-         +addSliderA(body.sliderA)
-         include ../../../framework/views/tables/A.pug
-         +addTableA(body.tableA)
+        include ../../../framework/views/tables/A.pug
+        +addTableA(body.tableA)
 
 
 

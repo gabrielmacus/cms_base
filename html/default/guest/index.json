@@ -7,12 +7,20 @@
     {
       "background":"http://2.bp.blogspot.com/_fu4W6mjXUXU/S6ytKI7P0QI/AAAAAAAAAE8/KMz5O4ZWHPk/s1600/Scorching+sun.jpg",
       "text":"Protegete del sol y del verano, elegi seguridad y confianza"
+    },
+    {
+      "background":"http://cdn.abclocal.go.com/content/creativecontent/images/cms/428464_1280x720.jpg",
+      "text":"Confianos tus equipos de frío a nosotros"
     }
   ],
+
   "tableA":[
-    {"title":"Lorem ipsum generated text"},
-    {"title":"Lorem ipsum generated text"},
-    {"title":"Lorem ipsum generated text"}
+    {"title":"Mantené los filtros de tu equipo limpios y realizá un mantenimiento periódico para que el aire trabaje en las condiciones adecuadas",
+      "icon":"https://maxcdn.icons8.com/iOS7/PNG/512/Household/air_conditioner-512.png"},
+    {"title":"No pongas el aire a temperaturas menores de 24°. Cada grado suplementario que bajás, aumenta el consumo de energía en un 7%",
+    "icon":"/img/icons/24.svg"},
+    {"title":"Colocá cortinas blancas o de colores claros, ya que no absorben la radiación solar y evitan que aumente la temperatura de la habitación",
+    "icon":"/img/icons/window.png"}
 
   ]
 }
