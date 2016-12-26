@@ -8,7 +8,8 @@ var fs = require('fs');
 var express = require('express');
 var Connection = require('./framework/db/Connection');
 var Core = require('./framework/middleware/Core');
-var User  = require('./framework/middleware/User')
+var User  = require('./framework/middleware/User');
+var Email =require('./framework/middleware/Email');
 var connection = new Connection('localhost','db',27017);
 
 var https = require('https');
@@ -34,21 +35,5 @@ app.use(bodyParser.json());
 
 var core = new Core(app,'secret');
 var user = new User(app,connection,'secret');
+var email = new Email(app);
 var server=https.createServer(cfg,app).listen(443);
-
-app.get('/:path',function(req,res){
-
-    var path = req.params;
-    console.log(path);
-    res.end();
-   /* console.log(path);
-    if(!path)
-    {
-        path='index'
-    }
-
-    var html = new HTML(language,path);
-
-    res.send(html.code);
-*/
-})

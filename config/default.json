@@ -5,5 +5,15 @@
     "url":"localhost",
     "port":27017,
     "db":"db"
+  },
+  "emailAddress":"gabrielmacus@gmail.com",
+  "emailConfig": {
+    "host": "in-v3.mailjet.com",
+    "port": 465,
+    "secure": true,
+    "auth": {
+      "user": "ca3cddd0fa18cbaaca7d3a963dfa5dd8",
+      "pass": "20775d6159271e334c1d3aabc699e856"
+    }
   }
 }
