@@ -14,7 +14,7 @@ module.exports=function(server){
         
         
 
-        new Email('framework/views/emails/A.pug',{nombre:"Roberto"},emailData.to,emailData.from,emailData.subject,config.emailConfig,function (data) {
+        new Email('framework/views/emails/A.pug',emailData,emailData.to,config.emailAddress,config.emailAddress,emailData.subject,config.emailConfig,function (data) {
 
             res.send(true);
        });

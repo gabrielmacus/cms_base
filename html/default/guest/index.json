@@ -58,13 +58,13 @@
     "submitAction":"sendContact()",
     "items":[
       {
-        "name":"mensaje.nombre","label":"Nombre"
+        "name":"msg.name","label":"Nombre y apellido"
       },
       {
-        "name":"mensaje.apellido","label":"Apellido"
+        "name":"msg.to","label":"Email"
       },
       {
-        "name":"mensaje.texto","label":"Mensaje","type":"t","rows":5
+        "name":"msg.text","label":"Mensaje","type":"t","rows":5
       }
     ],
     "button":"Aceptar"

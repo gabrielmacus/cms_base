@@ -102,14 +102,43 @@ function loadUser()
 
 }
 
+function showLoader() {
+
+    //TODO
+}
+function hideLoader() {
+    //TODO
+}
+
+function error(err) {
+
+    //TODO
+    console.log(err);
+    alert("ERROR!");
+}
 
 function controller($scope/*, socket,*/, $http,$sce) {
+
+    $scope.sendContact=function () {
+
+        
+        postData($http,$scope.msg,'/send-email',function (res) {
+     
+            if(res.data==true)
+            {
+                alert("Ok!");
+                
+            }
+        },error);
+    }
 
     angularSce=$sce;
     angularScope = $scope;
     angularHttp = $http;
 
-    loadUser();
+
+
+    //loadUser();
 
 
 };

@@ -34,13 +34,14 @@ a
     width: 100%;
     padding-left: 10%;
     padding-right: 10%;
+
 }
 #contact-form form
 {  float: left;
     width: 50%;
     padding: 20px;
     background-color: #f0f0f0;
-
+    margin-bottom: 10px;
 }
 #contact-form form input,#contact-form form textarea
 {
