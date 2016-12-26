@@ -6,9 +6,12 @@ block styles
 block scripts
      include ../declare.pug
      include ../scripts.pug
+     meta(name="viewport",content ="width=device-width, initial-scale=1.0")
+
 
 block header
-    include ../../../framework/views/navbar/A.pug
+    header
+     include ../../../framework/views/navbar/A.pug
 
 
     +addNavbarA(body.mainNavbar,0)
@@ -18,7 +21,12 @@ block content
         +addSliderA(body.sliderA)
 
         include ../../../framework/views/tables/A.pug
-        +addTableA(body.tableA)
+        include ../../../framework/views/tables/B.pug
+        include ../../../framework/views/forms/A.pug
+
+        +addTableB(body.tableA0)
+        +addTableA(body.tableA1)
+        +addFormA(body.formA)
 
 
 

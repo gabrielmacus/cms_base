@@ -1,0 +1,19 @@
+mixin addTableB(elements)
+
+
+    div(id=elements.id)
+        h2.table-a-title #{elements.title}
+        .table-a-container
+
+            each element in elements.items
+                .table-a
+
+                    article
+                        header
+                            h3 #{element.subtitle}
+                        if element.icon
+                            figure
+                                img(src=element.icon)
+
+                        section
+                          p #{element.text}

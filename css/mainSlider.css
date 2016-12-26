@@ -1,0 +1,132 @@
+
+@media screen and (max-width:649px)
+{
+    #mainSlider.slider-a-container {
+        float: left;
+        width: 100%;
+        margin-top: 30px;
+        position: relative;
+    }
+
+    #mainSlider .slider-a {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 250px;
+
+    }
+
+    #mainSlider .slider-text {
+
+        right: 0px;
+
+        font-weight: 100;
+        font-size: 25px;
+        position: absolute;
+        top: 30px;
+
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 25px;
+        -webkit-transition: all 500ms;
+        -moz-transition: all 500ms;
+        -ms-transition: all 500ms;
+        -o-transition: all 500ms;
+        transition: all 500ms;
+    }
+
+    #mainSlider .slider-text:hover {
+        filter: invert(100%);
+        -ms-filter: invert(100%);
+
+    }
+}
+
+
+@media screen and (min-width:650px) and (max-width:1024px)
+{
+    #mainSlider.slider-a-container {
+        float: left;
+        width: 90%;
+        margin-top: 30px;
+        position: relative;
+    }
+
+    #mainSlider .slider-a {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 350px;
+
+    }
+
+    #mainSlider .slider-text {
+
+        right: 0px;
+
+        font-weight: 100;
+        font-size: 25px;
+        position: absolute;
+        top: 30px;
+
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 25px;
+        -webkit-transition: all 500ms;
+        -moz-transition: all 500ms;
+        -ms-transition: all 500ms;
+        -o-transition: all 500ms;
+        transition: all 500ms;
+    }
+
+    #mainSlider .slider-text:hover {
+        filter: invert(100%);
+        -ms-filter: invert(100%);
+
+    }
+}
+
+
+
+@media screen and (min-width: 1025px) {
+    #mainSlider.slider-a-container {
+        float: left;
+        width: 90%;
+        margin-top: 30px;
+        position: relative;
+    }
+
+    #mainSlider .slider-a {
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 450px;
+
+    }
+
+    #mainSlider .slider-text {
+
+        right: 0px;
+
+        font-weight: 100;
+        font-size: 25px;
+        position: absolute;
+        top: 30px;
+
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 25px;
+        -webkit-transition: all 500ms;
+        -moz-transition: all 500ms;
+        -ms-transition: all 500ms;
+        -o-transition: all 500ms;
+        transition: all 500ms;
+    }
+
+    #mainSlider .slider-text:hover {
+        filter: invert(100%);
+        -ms-filter: invert(100%);
+
+    }
+
+}

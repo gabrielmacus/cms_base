@@ -2,11 +2,14 @@
 
 mixin addNavbarA(navbar,selected)
 
- .main-navbar
-   figure
+  div(id=navbar.id).main-navbar
+
+   div.main-brand
+    figure
         img(src=navbar.logo)
-   h1 #{navbar.brand}
-   navbar(id=navbar.id)
+    h1 #{navbar.brand}
+
+   nav
 
     each item,index in navbar.items
 

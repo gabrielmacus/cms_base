@@ -1,0 +1,27 @@
+mixin addMobileNavbarA(navbar,selected)
+    div(id=navbar.id).main-navbar
+
+
+        figure
+            img(src=navbar.logo)
+
+        h1 #{navbar.brand}
+        nav
+
+
+
+            each item,index in navbar.items
+
+                if selected == index
+                    a(href=item.href,data-type=item.type).active
+                        span #{item.name}
+                else
+                    a(href=item.href,data-type=item.type)
+                        span #{item.name}
+
+
+
+
+
+
+

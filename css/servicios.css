@@ -1,0 +1,392 @@
+
+
+@media screen and (max-width:649px) {
+    #servicios .table-a-container
+    {
+        float: left;
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    #servicios .table-a-container .table-a
+    {
+        padding: 10px;
+
+    }
+
+
+
+    #servicios .table-a article
+    {
+        background-color: #446CB3;
+        position: relative;
+    }
+    #servicios .table-a
+    {
+
+
+        float: right;
+        width: 100%;
+
+        color: white;
+        -webkit-transition: all 500ms;
+        -moz-transition: all 500ms;
+        -ms-transition: all 500ms;
+        -o-transition: all 500ms;
+        transition: all 500ms;
+    }
+    #servicios .table-a-container h3
+    {
+        font-weight: 300;
+        font-size: 21px;
+        padding: 10px;
+    }
+    #servicios .table-a img
+    {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        bottom: -4px;
+    }
+
+    #servicios .table-a-title
+    {
+        float: right;
+        width: 100%;
+        background-color: #3a3a3a;
+        padding:10px ;
+
+        margin-top: 20px;
+
+        color: white;
+    }
+    #servicios .table-a
+    {
+
+        position: relative;
+
+    }
+
+    #servicios .table-a:hover section
+    {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+        border-radius: 0%;
+    }
+    #servicios section p
+    {
+        width: 100%;
+    }
+    #servicios section
+    {
+        -webkit-transition: all 500ms ease-in-out;
+        -moz-transition: all 500ms ease-in-out;
+        -ms-transition: all 500ms ease-in-out;
+        -o-transition: all 500ms ease-in-out;
+        transition: all 500ms ease-in-out;
+
+
+
+
+
+
+
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: scale(0);
+        position: absolute;
+        top:0px;
+        right: 0px;
+        background-color:rgba(68,108,169,0.8);
+        border-radius: 50%;
+
+        width: 100%;
+        padding-left: 25px;
+        padding-right: 25px;
+        height: 100%;
+        font-size: 20px;
+        text-align: center;
+
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+
+        align-items: center;
+
+    }
+}
+
+@media screen and (min-width:650px) and (max-width:1240px) {
+    #servicios .table-a-container
+    {
+        float: left;
+        width: 100%;
+        margin-top: 10px;
+    }
+    #servicios .table-a-container .table-a:nth-child(even)
+    {
+        margin-right:0.95%;
+    }
+    #servicios .table-a-container .table-a:nth-child(odd)
+    {
+        margin-left:0.95%;
+    }
+
+
+    #servicios .table-a:nth-child(3) {
+
+        margin-top: 20px;
+        width: 60%;
+        margin-right: 15%;
+
+
+    }
+    #servicios .table-a
+    {
+
+
+        float: right;
+        width: 43.5%;
+        background-color: #446CB3;
+        color: white;
+        -webkit-transition: all 500ms;
+        -moz-transition: all 500ms;
+        -ms-transition: all 500ms;
+        -o-transition: all 500ms;
+        transition: all 500ms;
+    }
+    #servicios .table-a-container h3
+    {
+        font-weight: 300;
+        font-size: 21px;
+        padding: 10px;
+    }
+    #servicios .table-a img
+    {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        bottom: -4px;
+    }
+
+    #servicios .table-a-title
+    {
+        float: right;
+        width: 89%;
+        background-color: #3a3a3a;
+        padding:10px ;
+
+        margin-top: 20px;
+
+        color: white;
+    }
+    #servicios .table-a
+    {
+
+        position: relative;
+
+    }
+
+    #servicios .table-a:hover section
+    {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+        border-radius: 0%;
+    }
+    #servicios section p
+    {
+        width: 100%;
+    }
+    #servicios section
+    {
+        -webkit-transition: all 500ms ease-in-out;
+        -moz-transition: all 500ms ease-in-out;
+        -ms-transition: all 500ms ease-in-out;
+        -o-transition: all 500ms ease-in-out;
+        transition: all 500ms ease-in-out;
+
+
+
+
+
+
+
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: scale(0);
+        position: absolute;
+        top:0px;
+        right: 0px;
+        background-color:rgba(68,108,169,0.8);
+        border-radius: 50%;
+
+        width: 100%;
+        padding-left: 25px;
+        padding-right: 25px;
+        height: 100%;
+        font-size: 20px;
+        text-align: center;
+
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+
+        align-items: center;
+
+    }
+
+
+}
+
+
+
+@media screen and (min-width: 1241px) {
+    #servicios .table-a-container
+    {
+        float: left;
+        width: 90%;
+        margin-top: 10px;
+    }
+    #servicios .table-a-container .table-a:nth-child(even)
+    {
+        margin-right:0.95%;
+    }
+    #servicios .table-a-container .table-a:nth-child(odd)
+    {
+        margin-left:0.95%;
+    }
+
+
+    #servicios .table-a:nth-child(3) {
+
+        margin-top: 20px;
+        width: 60%;
+        margin-right: 15%;
+
+
+    }
+    #servicios .table-a
+    {
+
+
+        float: right;
+        width: 43.5%;
+        background-color: #446CB3;
+        color: white;
+        -webkit-transition: all 500ms;
+        -moz-transition: all 500ms;
+        -ms-transition: all 500ms;
+        -o-transition: all 500ms;
+        transition: all 500ms;
+    }
+    #servicios .table-a-container h3
+    {
+        font-weight: 300;
+        font-size: 21px;
+        padding: 10px;
+    }
+    #servicios .table-a img
+    {
+        width: 100%;
+        height: 200px;
+        position: relative;
+        bottom: -4px;
+    }
+
+    #servicios .table-a-title
+    {
+        float: right;
+        width: 90%;
+        background-color: #3a3a3a;
+        padding:10px ;
+
+        margin-top: 20px;
+
+        color: white;
+    }
+    #servicios .table-a
+    {
+
+        position: relative;
+
+    }
+
+    #servicios .table-a:hover section
+    {
+        -webkit-transform: scale(1);
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        transform: scale(1);
+        border-radius: 0%;
+    }
+    #servicios section p
+    {
+        width: 100%;
+    }
+    #servicios section
+    {
+        -webkit-transition: all 500ms ease-in-out;
+        -moz-transition: all 500ms ease-in-out;
+        -ms-transition: all 500ms ease-in-out;
+        -o-transition: all 500ms ease-in-out;
+        transition: all 500ms ease-in-out;
+
+
+
+
+
+
+
+        -webkit-transform: scale(0);
+        -moz-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: scale(0);
+        position: absolute;
+        top:0px;
+        right: 0px;
+        background-color:rgba(68,108,169,0.8);
+        border-radius: 50%;
+
+        width: 100%;
+        padding-left: 25px;
+        padding-right: 25px;
+        height: 100%;
+        font-size: 20px;
+        text-align: center;
+
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        -webkit-box-align: center;
+
+        align-items: center;
+
+    }
+
+
+}
+
+

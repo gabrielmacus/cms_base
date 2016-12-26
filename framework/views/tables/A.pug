@@ -1,7 +1,11 @@
 mixin addTableA(elements)
 
+
+   div(id=elements.id)
+    h2.table-a-title #{elements.title}
     .table-a-container
-       each element in elements
+
+       each element in elements.items
         .table-a
 
           article
@@ -9,6 +13,6 @@ mixin addTableA(elements)
             figure
                 img(src=element.icon)
            header
-             h2 #{element.title}
+             h3 #{element.subtitle}
 
            p #{element.text}

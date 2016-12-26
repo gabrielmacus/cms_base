@@ -11,9 +11,9 @@ mixin addSliderA(elements)
         })
     });
 
- .swiper-container.slider-a-container
+ .swiper-container.slider-a-container(id=elements.id)
     .swiper-wrapper
-       each element in elements
+       each element in elements.items
         .swiper-slide
             .slider-a(style='background-image:url("'+element.background+'")')
             if element.text

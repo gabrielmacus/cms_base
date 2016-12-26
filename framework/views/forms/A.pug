@@ -1,0 +1,14 @@
+mixin addFormA(elements)
+ div(id=elements.id)
+  form(data-ng-submit=elements.submitAction)
+   each element in elements.items
+    div
+        label #{element.label}
+        if !element.type || element.type=="i"
+         input(data-ng-model=element.name,placeholder=element.placeholder,required=element.required)
+        else if element.type="t"
+         textarea(data-ng-model=element.name,placeholder=element.placeholder,required=element.required,rows=element.rows)
+
+   div
+        button(type="submit")
+            b #{elements.submit} #{elements.button}
