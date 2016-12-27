@@ -132,6 +132,10 @@ function controller($scope/*, socket,*/, $http,$sce) {
         },error);
     }
 
+    $('.equal-height2').matchHeight();
+    $('.equal-height').matchHeight();
+
+    
     angularSce=$sce;
     angularScope = $scope;
     angularHttp = $http;

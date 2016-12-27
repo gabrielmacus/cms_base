@@ -53,7 +53,16 @@
       "icon": "/img/icons/window.png"}]
 
 },
+  "titleContact":
+  {
+    "id":"title-contact",
+    "title":"Contactate con nosotros"
+  },
+
   "formA":{
+
+
+    "title":"Envianos tus datos asi podemos contactarte",
     "id":"contact-form",
     "submitAction":"sendContact()",
     "items":[
@@ -68,7 +77,23 @@
       }
     ],
     "button":"Aceptar"
+  ,
+    "classes":"equal-height"
 
+  },
+  "facebookA": {
+    "title": "Dale MG a nuestra página de Facebook y enterate de las últimas novedades",
+    "id": "facebook-a",
+    "facebook": "https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjfinstalacionesok&tabs=timeline&width=340&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=157432188034766",
+    "classes":"equal-height"
+  }
+  ,
+  "mapA":
+  {
+    "id":"map-a",
+    "title":"Donde nos podes encontrar...",
+    "map":"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4033.996482780662!2d-60.48476944497855!3d-31.765762184990763!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95b44e7e14e1b8b9%3A0x3759c5ce577312df!2sLas+Camelias+%26+Estrella+Federal%2C+Paran%C3%A1%2C+Entre+R%C3%ADos!5e0!3m2!1ses-419!2sar!4v1482869098878",
+    "subtitle":"Las Camelias y Estrella Federal, Paraná, Entre Rios"
 
   }
 }

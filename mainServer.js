@@ -11,6 +11,8 @@ var Core = require('./framework/middleware/Core');
 var User  = require('./framework/middleware/User');
 var Email =require('./framework/middleware/Email');
 var connection = new Connection('localhost','db',27017);
+global.mainConfig = JSON.parse(fs.readFileSync('config/global.json','UTF-8'));
+
 
 var https = require('https');
 var cfg =  {

@@ -13,9 +13,16 @@ module.exports=class HTML
 {
     constructor(language,page,data,res)
     {
-        if(!language)
+        if(!language|| !isNaN(language+1))
         {
             language="default";
+        }
+        else
+        {
+            if(mainConfig.languages.indexOf(language)>-1)
+            {
+                throw new Error("Language not defined");
+            }
         }
         var folder="user";
 

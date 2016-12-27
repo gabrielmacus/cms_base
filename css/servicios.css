@@ -67,7 +67,7 @@
 
     }
 
-    #servicios .table-a:hover section
+    #servicios .table-a:hover .content
     {
         -webkit-transform: scale(1);
         -moz-transform: scale(1);
@@ -76,11 +76,11 @@
         transform: scale(1);
         border-radius: 0%;
     }
-    #servicios section p
+    #servicios .content p
     {
         width: 100%;
     }
-    #servicios section
+    #servicios .content
     {
         -webkit-transition: all 500ms ease-in-out;
         -moz-transition: all 500ms ease-in-out;
@@ -196,7 +196,7 @@
 
     }
 
-    #servicios .table-a:hover section
+    #servicios .table-a:hover .content
     {
         -webkit-transform: scale(1);
         -moz-transform: scale(1);
@@ -205,11 +205,11 @@
         transform: scale(1);
         border-radius: 0%;
     }
-    #servicios section p
+    #servicios .content p
     {
         width: 100%;
     }
-    #servicios section
+    #servicios .content
     {
         -webkit-transition: all 500ms ease-in-out;
         -moz-transition: all 500ms ease-in-out;
@@ -329,7 +329,7 @@
 
     }
 
-    #servicios .table-a:hover section
+    #servicios .table-a:hover .content
     {
         -webkit-transform: scale(1);
         -moz-transform: scale(1);
@@ -338,11 +338,11 @@
         transform: scale(1);
         border-radius: 0%;
     }
-    #servicios section p
+    #servicios .content p
     {
         width: 100%;
     }
-    #servicios section
+    #servicios .content
     {
         -webkit-transition: all 500ms ease-in-out;
         -moz-transition: all 500ms ease-in-out;

@@ -1,0 +1,11 @@
+mixin addMapA(elements)
+
+    div.map-a(id=elements.id,class=elements.classes)
+        if elements.title
+            h2 #{elements.title}
+            h3 #{elements.subtitle}
+        figure
+          iframe(src=elements.map)
+          if elements.caption
+              figcaption #{elements.caption}
+

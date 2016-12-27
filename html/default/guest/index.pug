@@ -1,12 +1,16 @@
 extends ../../../framework/views/layouts/A.pug
 
+block meta
+    meta(name="viewport",content ="width=device-width, initial-scale=1.0")
 block styles
+
     include ../styles.pug
 
 block scripts
+
      include ../declare.pug
      include ../scripts.pug
-     meta(name="viewport",content ="width=device-width, initial-scale=1.0")
+
 
 
 block header
@@ -23,10 +27,16 @@ block content
         include ../../../framework/views/tables/A.pug
         include ../../../framework/views/tables/B.pug
         include ../../../framework/views/forms/A.pug
+        include ../../../framework/views/maps/A.pug
+        include ../../../framework/views/facebook/A.pug
+        include ../../../framework/views/titles/B.pug
 
         +addTableB(body.tableA0)
         +addTableA(body.tableA1)
+        +addTitleB(body.titleContact)
         +addFormA(body.formA)
+        +addFacebookA(body.facebookA)
+        +addMapA(body.mapA)
 
 
 

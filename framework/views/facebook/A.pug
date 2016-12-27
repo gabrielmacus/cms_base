@@ -1,0 +1,11 @@
+mixin addFacebookA(elements)
+
+  div.facebook-a(id=elements.id,class=elements.classes)
+    if elements.title
+        h2 #{elements.title}
+        h3 #{elements.subtitle}
+    figure
+        iframe.equal-height2(src=elements.facebook)
+        if elements.caption
+            figcaption #{elements.caption}
+

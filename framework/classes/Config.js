@@ -11,9 +11,16 @@ module.exports=class Config
 {
     constructor(language)
     {
-        if(!language)
+        if(!language|| !isNaN(language+1))
         {
             language="default";
+        }
+        else
+        {
+         if(mainConfig.languages.indexOf(language)>-1)
+         {
+             throw new Error("Language not defined");
+         }
         }
         return JSON.parse(fs.readFileSync('config/'+language+'.json','UTF-8'));
     }

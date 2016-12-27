@@ -9,13 +9,19 @@
         "name": "Inicio","href":"/"
       },
       {
-        "name": "Ingresar","href":"/login","type":"guest"
+        "name": "Servicios","href":"/login","type":"guest"
       },
       {
-        "name": "Registrarse","href":"/register","type":"guest"
+        "name": "Tips","href":"/register","type":"guest"
       },
       {
-        "name":"Salir","href":"/logout","type":"user"
+        "name":"Contacto","href":"/logout","type":"user"
+      },
+      {
+        "name":"Ubicacion","href":"/logout","type":"user"
+      },
+      {
+        "name":"Nuestros trabajos"
       }
     ]
   }

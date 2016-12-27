@@ -68,6 +68,11 @@ module.exports=class Core
     set()
     {
         var self =this;
+        this.server.get('/favicon.ico',function (req,res) {
+
+            res.end();
+
+        });
         this.server.get('/css/:file',function(req,res)
         {
             var param = req.params.file

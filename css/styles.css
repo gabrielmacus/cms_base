@@ -31,29 +31,56 @@ a
 #contact-form
 {
     float: left;
-    width: 100%;
+
+  width: 50%;
     padding-left: 10%;
-    padding-right: 10%;
+    margin-bottom: 30px;
+
+
 
 }
+
+#contact-form .container
+{
+
+    background-color: #f0f0f0;
+    float: left;
+    width: 100%;
+    padding: 40px;
+}
+
 #contact-form form
 {  float: left;
-    width: 50%;
-    padding: 20px;
-    background-color: #f0f0f0;
+    width: 100%;
+
+
+
     margin-bottom: 10px;
 }
+
+
 #contact-form form input,#contact-form form textarea
 {
     width: 100%;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 300;
     padding: 5px;
     outline: 0;
     border: 0;
 
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+    -ms-transition:all 500ms;
+    -o-transition: all 500ms;
+    transition: all 500ms;
 }
+#contact-form form input:focus,#contact-form form textarea:focus
+{
 
+    background-color: #2C2C2C;
+    color: white;
+
+}
 #contact-form form div
 {
     float: left;
@@ -65,7 +92,7 @@ a
     font-size: 22px;
     font-weight: 100;
     margin-top: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     display: block;
 
 }
@@ -86,11 +113,89 @@ a
     -o-transition: all 500ms;
     transition: all 500ms;
 }
+#contact-form h2
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
 #contact-form form div:hover button
 {
    background-color: white;
     outline:  rgb(68,108,169) solid 1px;
     color: rgb(68,108,169);    cursor: hand;
+}
+#map-a
+{
+    float: left;
+    width: 100%;
+    padding-left:10%;
+
+
+}
+#map-a h2
+{
+    width: 100%;
+
+    background-color: #3a3a3a;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+#map-a figure
+{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+}
+#map-a h3
+{
+    background-color: #f0f0f0;
+    padding: 20px;
+    font-weight: 100;
+}
+#map-a figure iframe
+{
+    width: 100%;
+    height: 300px;
+    border: 0;
+
+}
+#facebook-a
+{
+    float: left;
+    width: 50%;
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 40px;
+
+}
+#facebook-a iframe
+{
+    border: 0;
+    width: 340px;
+    text-align: center;
+    height: 300px;
+}
+#facebook-a h2
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    float: left;
+    text-align: left;
+    font-weight: 500;
+}
+#title-contact
+{
+    float: left;width: 90%;
+    margin-left: 10%;
+    margin-bottom: 20px;
+    background-color: #3a3a3a;
+    color: white;
+    padding: 10px;
 }
 /*
 .table-a-container
