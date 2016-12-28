@@ -9,11 +9,13 @@ mixin addTableB(elements)
                 .table-a
 
                     article
-                        header
+                        header.equal-height3
                             h3 #{element.subtitle}
                         if element.icon
+                            figure(style="background-image:url('" + element.icon + "')")
+                        if element.image
                             figure
-                                img(src=element.icon)
+                                img(src=element.image)
 
                         div.content
                           p #{element.text}

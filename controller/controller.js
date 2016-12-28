@@ -134,6 +134,7 @@ function controller($scope/*, socket,*/, $http,$sce) {
 
     $('.equal-height2').matchHeight();
     $('.equal-height').matchHeight();
+    $('.equal-height3').matchHeight();
 
     
     angularSce=$sce;

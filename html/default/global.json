@@ -2,17 +2,17 @@
   "mainNavbar": {
     "id": "mainNavbar",
 
-    "logo":"https://scontent-eze1-1.xx.fbcdn.net/v/t35.0-12/15631292_1312774355439528_1407009462_o.jpg?oh=05dbf49c20290ceb27eab7fd16133c93&oe=58630152",
+    "logo":"https://fb-s-d-a.akamaihd.net/h-ak-xlf1/v/t1.0-9/15590047_1253716744708383_3416414662135361030_n.jpg?oh=ce31df132da68e15889642e12b9dc2a9&oe=58EF50A3&__gda__=1492084527_72255b1de3f11afa8736e3ac781bdf52",
 
     "items": [
       {
         "name": "Inicio","href":"/"
       },
       {
-        "name": "Servicios","href":"/login","type":"guest"
+        "name": "Servicios","href":"#servicios","type":"guest"
       },
       {
-        "name": "Tips","href":"/register","type":"guest"
+        "name": "Tips","href":"#tips","type":"guest"
       },
       {
         "name":"Contacto","href":"/logout","type":"user"

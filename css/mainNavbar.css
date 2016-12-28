@@ -112,7 +112,7 @@
     #mainNavbar.main-navbar .main-brand
     {
 
-        width: 11%;
+        width: 8%;
         padding: 10px;
         float: left;
     }
@@ -124,7 +124,7 @@
 
     #mainNavbar.main-navbar nav
     { background-color:#446CB3 ;
-        width: 89%;
+        width: 92%;
         float: left;
     }
 

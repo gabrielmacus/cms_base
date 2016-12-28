@@ -41,14 +41,18 @@
         font-size: 21px;
         padding: 10px;
     }
-    #servicios .table-a img
-    {
+    #servicios .table-a figure
+    {/*
         width: 100%;
         height: 200px;
         position: relative;
-        bottom: -4px;
-    }
+        bottom: -4px;*/
 
+        height: 200px;
+        position: relative;
+        background-size:cover;
+
+    }
     #servicios .table-a-title
     {
         float: right;
@@ -170,12 +174,17 @@
         font-size: 21px;
         padding: 10px;
     }
-    #servicios .table-a img
-    {
+    #servicios .table-a figure
+    {/*
         width: 100%;
         height: 200px;
         position: relative;
-        bottom: -4px;
+        bottom: -4px;*/
+
+        height: 250px;
+        position: relative;
+        background-size:cover;
+
     }
 
     #servicios .table-a-title
@@ -303,12 +312,17 @@
         font-size: 21px;
         padding: 10px;
     }
-    #servicios .table-a img
-    {
+    #servicios .table-a figure
+    {/*
         width: 100%;
         height: 200px;
         position: relative;
-        bottom: -4px;
+        bottom: -4px;*/
+
+        height: 300px;
+        position: relative;
+        background-size:cover;
+
     }
 
     #servicios .table-a-title
@@ -390,3 +404,6 @@
 }
 
 
+#servicios{
+    float: left;
+}
