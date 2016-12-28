@@ -89,7 +89,6 @@
         align-items: center;
         float: left;
         width: 100%;
-        margin-top: 15px;
 
     }
 
@@ -112,7 +111,7 @@
     #mainNavbar.main-navbar .main-brand
     {
 
-        width: 8%;
+        width: 7%;
         padding: 10px;
         float: left;
     }
@@ -120,11 +119,12 @@
     {
         float: left;
         width: 100%;
+        padding: 10px;
     }
 
     #mainNavbar.main-navbar nav
     { background-color:#446CB3 ;
-        width: 92%;
+        width: 93%;
         float: left;
     }
 

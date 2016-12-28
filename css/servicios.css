@@ -405,5 +405,22 @@
 
 
 #servicios{
-    float: left;
+    float: right;
+    width:100%;
+}
+
+#servicios .table-a figure
+{
+    -webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    -ms-transition: all 500ms ease-in-out;
+    -o-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
+
+
+}
+
+#servicios .table-a:hover figure
+{
+    filter:blur(8px);
 }
