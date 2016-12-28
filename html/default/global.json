@@ -6,7 +6,7 @@
 
     "items": [
       {
-        "name": "Inicio","href":"/"
+        "name": "Inicio","href":"#"
       },
       {
         "name": "Servicios","href":"#servicios","type":"guest"
@@ -15,10 +15,10 @@
         "name": "Tips","href":"#tips","type":"guest"
       },
       {
-        "name":"Contacto","href":"/logout","type":"user"
+        "name":"Contacto","href":"#title-contact","type":"user"
       },
       {
-        "name":"Ubicacion","href":"/logout","type":"user"
+        "name":"Ubicacion","href":"#map-a","type":"user"
       },
       {
         "name":"Nuestros trabajos"
