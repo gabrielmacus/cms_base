@@ -1,0 +1,12 @@
+mixin addTableC(elements)
+
+  .table-c
+     if elements.title
+       h2 #{elements.title}
+     .container
+         each element in elements.items
+             figure
+               img(src=element.src)
+               figcaption #{element.caption}
+
+

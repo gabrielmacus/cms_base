@@ -11,6 +11,7 @@ var Core = require('./framework/middleware/Core');
 var User  = require('./framework/middleware/User');
 var Email =require('./framework/middleware/Email');
 var connection = new Connection('localhost','db',27017);
+
 global.mainConfig = JSON.parse(fs.readFileSync('config/global.json','UTF-8'));
 
 
@@ -38,4 +39,30 @@ app.use(bodyParser.json());
 var core = new Core(app,'secret');
 var user = new User(app,connection,'secret');
 var email = new Email(app);
+
 var server=https.createServer(cfg,app).listen(443);
+
+
+var Upload = require('./framework/classes/Upload');
+app.post('/upload',function(req,res){
+
+
+    var upload = new Upload('/fotos/recursive/',req,function (result) {
+        console.log(result);
+
+        res.end('ok');
+
+
+    },{
+        versions: [{
+            suffix: '-thumb',
+            maxHeight: 150,
+            maxWidth: 150
+        },
+            {
+                suffix: '-sthumb',
+                maxHeight: 75,
+                maxWidth:75
+            }]
+    });
+});
