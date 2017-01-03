@@ -10,6 +10,9 @@ var Connection = require('../db/Connection');
 module.exports=function(app,connection,secret)
 {
 
+    
+
+
     function register(req,res)
     {
 

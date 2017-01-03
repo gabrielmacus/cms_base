@@ -10,6 +10,8 @@ var Connection = require('./framework/db/Connection');
 var Core = require('./framework/middleware/Core');
 var User  = require('./framework/middleware/User');
 var Email =require('./framework/middleware/Email');
+var Gallery = require('./framework/middleware/Gallery');
+
 var connection = new Connection('localhost','db',27017);
 
 global.mainConfig = JSON.parse(fs.readFileSync('config/global.json','UTF-8'));
@@ -36,14 +38,19 @@ app.use(bodyParser.json());
 
 
 
+var gallery = new Gallery(app,connection,2);
+
 var core = new Core(app,'secret');
+
 var user = new User(app,connection,'secret');
 var email = new Email(app);
 
+
 var server=https.createServer(cfg,app).listen(443);
 
-
 var Upload = require('./framework/classes/Upload');
+
+
 app.post('/upload',function(req,res){
 
 

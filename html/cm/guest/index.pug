@@ -1,0 +1,29 @@
+doctype
+html
+    head
+        link(rel="stylesheet",href="/css/w3.css")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js")
+
+    body(data-ng-app="cm", data-ng-controller="cmcontroller")
+        h1.w3-padding.w3-light-grey Content Manager v1
+        script.
+
+
+
+            var app = angular.module('cm', []);
+
+            function loadGalleryData()
+            {
+
+            }
+
+
+            app.controller('cmcontroller', function ($scope) {
+
+
+                loadGalleryData();
+            });
+        .w3-container
+            h2 Galeria de fotos
+
+

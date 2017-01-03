@@ -91,7 +91,16 @@ module.exports = class Connection
         );
 
     }
-    read(obj,collection,callback){
+    read(obj,collection,callback,limit,skip){
+
+        if(!limit)
+        {
+            limit=0;
+        }
+        if(!skip)
+        {
+            skip=0;
+        }
         if(obj._id)
         {
             obj._id= new ObjectID(obj._id.toString());
@@ -101,19 +110,28 @@ module.exports = class Connection
             function(collection)
             {
 
-                collection.find(obj).toArray(function(err,res){
+                collection.find(obj).limit(limit).skip(skip).toArray(function(err,res){
 
                     if(err)
                     {
                         throw err;
                     }
 
-                    if(res.length==1)
+                    var pages=1;
+
+                    if(limit>0)
                     {
-                        res=res[0];
+                         pages = Math.ceil(res.length/limit);
                     }
 
-                    callback(res);
+                    var result={data:res,pages:pages};
+
+                    /*if(res.length==1)
+                    {
+                        res=res[0];
+                    }*/
+
+                    callback(result);
 
 
                 });
